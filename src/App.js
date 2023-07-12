@@ -5,6 +5,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
 import AppBackground from "./components/AppBackground/AppBackground";
 import LoginPage from "./pages/LoginPage/LoginPage";
+import Currency from "./components/Currency/Currency";
 import RegisterPage from "./pages/RegisterPage";
 import VerifyPage from "./pages/VerifyPage/VerifyPage";
 
@@ -23,7 +24,9 @@ function App() {
               setUserId={setUserId}
               authenticated={authenticated}
               setAvatar = {setAvatar}/>} />
-              <Route
+          <Route path="/currency" element={<Currency />} />
+
+          <Route
                   path="/register"
                   element={authenticated ? <Navigate to="/" /> : <RegisterPage />}
                 />
