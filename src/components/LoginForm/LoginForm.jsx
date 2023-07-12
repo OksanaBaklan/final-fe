@@ -1,84 +1,82 @@
-import { Form, Formik } from "formik";
-import { NavLink } from "react-router-dom";
+import { Formik, Form } from "formik";
+import { NavLink, useNavigate } from "react-router-dom";
 import s from "./LoginForm.module.css";
-import InputField from "../InputField/";
+import classNames from "classnames";
+import LogoComponent from "../LogoComponent/LogoComponent"
 import { ReactComponent as Emailcon } from "../../images/icon-form/email.svg";
 import { ReactComponent as Passwordcon } from "../../images/icon-form/password.svg";
+import { useState } from "react";
+import axios from "axios"
 
 
-export default function LoginForm() {
+export default function LoginForm(props) {
+  const [showError, setShowError] = useState(false);
+  const navigate = useNavigate()
+  const {setAuthenticated, setUserName, setUserId, authenticated, setAvatar} = props
 
+  const handleSubmit = async(e) => {
+      e.preventDefault();
+  
+      try{
+        const userCredential = {
+          email: e.target["email"].value,
+          password: e.target["password"].value
+        }
+      const response = await axios.post(`http://localhost:5555/api/users/login`,userCredential)
+      // console.log(response.data)
+      localStorage.setItem("my-app-token", JSON.stringify(response.data.data.token))
+      e.target.reset()
+      setAuthenticated(true)
+      setUserName(response.data.data.userName)
+      setUserId(response.data.data.userId)
+      setAvatar(response.data.data.avatar)
+      navigate("/")
+      }
+      catch(err){
+        setShowError(err.response.data)
+      }
 
-   return (
-      <>
-         <Formik
-            initialValues={{
-               password: "",
-               email: "",
-            }}
-            validateOnBlur
-            onSubmit={() => {
-               console.log('onSubmitHandler')
-            }}
-         >
-            {({
-               values,
-               errors,
-               touched,
-               handleChange,
-               handleBlur,
-               isValid,
-               handleSubmit,
-               dirty,
-            }) => (
-               <Form className={s.formRegister}>
-                  <h1>MoneyMinder</h1>
-                  <div className={s.input_wrap}>
+  };
+  return (
+    <>
+            <form className={s.formRegister} onSubmit={handleSubmit}>
+            <LogoComponent />
+            <div className={classNames(s.input_wrap, s.inputTop)}>
+    
+              <input
+                label={<Emailcon className={s.icon} />}
+                placeholder="E-mail"
+                className={s.input}
+                type="email"
+                name="email"
+                required
+              />
+            </div>
+            <div className={s.input_wrap}>
+   
+              <input
+                label={<Passwordcon className={s.icon} />}
+                className={s.input}
+                type="password"
+                name="password"
+                placeholder="Password"
+                required
 
-                     <InputField
-                        label={<Emailcon className={s.icon} />}
-                        placeholder="E-mail"
-                        className={s.input}
-                        type={`email`}
-                        name={`email`}
-                        onChange={() => "handleChange"}
-                        onBlur={() => "handleBlur"}
-                        value={values.email}
-                     />
-                  </div>
-                  <div className={s.input_wrap}>
-                     {touched.password && errors.password && (
-                        <span className={s.error}>{errors.password}</span>
-                     )}
-                     <InputField
-                        label={<Passwordcon className={s.icon} />}
-                        className={s.input}
-                        placeholder="Password"
-                        type={`password`}
-                        name={`password`}
-                        onChange={() => "handleChange"}
-                        onBlur={() => { "handleBlur" }}
-                        value={values.password}
-                     />
-                  </div>
-                  <button
-                     className={s.btn}
-                     disabled={!isValid || !dirty}
-                     type={`submit`}
-                  >
-                     Log in
-                  </button>
-                  <NavLink
-                     to="/register"
-                     className={s.btn1}
-                     style={{ textDecoration: "none" }}
-                  >
-                     Register
-                  </NavLink>
-               </Form>
-            )}
+              />
+            </div>
 
-         </Formik>
-      </>
-   );
+            <input type="submit" value="log in" className={s.btn}/>
+
+            <NavLink
+              to="/register"
+              className={s.btn1}
+              style={{ textDecoration: "none" }}
+            >
+             register
+            </NavLink>
+          </form>
+
+ 
+    </>
+  );
 }

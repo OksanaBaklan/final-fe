@@ -1,0 +1,56 @@
+:root {
+  /* breakpoints */
+  --mobile-bp: 320px;
+  --max-mobile-bp: 767px;
+  --tablet-bp: 768px;
+  --max-tablet-bp: 1279px;
+  --desktop-bp: 1280px;
+
+  /* background colors */
+  --main-bcg-color: #e7eaf2;
+  --light-bcg-color: #ffffff;
+  --accent-bcg-color: #4a56e2;
+  --under-wallpaper-bcg-color: #f1f2f7;
+
+  /* text colors */
+  --main-text-color: #000000;
+  --secondary-text-color: #bdbdbd;
+  --light-text-color: #ffffff;
+  --accent-text-color: #4a56e2;
+
+  --amount-incomes-text-color: #24cca7;
+  --amount-expenses-text-color: #ff6596;
+  --balance-title-text-color: #a6a6a6;
+
+  /* button colors */
+  --btn-color: #ffffff;
+  --accent-btn-color: #24cca7;
+
+  /* svg colors */
+  --main-svg-color: #e0e0e0;
+  --light-svg-color: #ffffff;
+  --exit-svg-color: #bdbdbd;
+  --unselected-svg-color: #6e78e8;
+  --accent-svg-color: #4a56e2;
+
+  /* color line Tab */
+  --line-table-color: #dcdcdf;
+  --border-color: #e0e0e0;
+
+  /* size  */
+  --font-size__logo: 30px;
+  --font-size__btn: 18px;
+  --font-size__form: 18px;
+  --font-size__main: 16px;
+  --font-size__accent: 18px;
+  --font-size__balance: 30px;
+  --font-size__logo: 30px;
+  --font-size__balance_title: 12px;
+  --font-size__balance_amount: 30px;
+  --font-size__modal_accent: 30px;
+  --font-size__modal_accent_mob: 30px;
+  --font-size__modal_main: 18px;
+
+  --main__font-family: Circe, sans-serif;
+  --logo__font-family: Poppins, sans-serif;
+}
