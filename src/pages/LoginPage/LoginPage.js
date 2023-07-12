@@ -3,20 +3,20 @@ import { useMediaQuery } from "react-responsive";
 import LoginForm from "../../components/LoginForm";
 
 function LoginPage() {
-  const isLarge = useMediaQuery({ query: "(min-width: 1280px)" });
-  return (
-    <>
-      {isLarge && <div className={s.content_filter}></div>}
-      <div className={s.container}>
-        <div className={s.wrapper}>
-          <h1 className={s.title}>Finance App</h1>
-        </div>
-        <div className={s.content_container}>
-          <LoginForm />
-        </div>
-      </div>
-    </>
-  );
+   const isLarge = useMediaQuery({ query: "(min-width: 1280px)" });
+   return (
+      <>
+         {isLarge && <div className={s.content_filter}></div>}
+         <div className={s.container}>
+            <div className={s.wrapper}>
+               <h1 className={s.title}>Finance App</h1>
+            </div>
+            <div className={s.content_container}>
+               <LoginForm />
+            </div>
+         </div>
+      </>
+   );
 }
 
 export default LoginPage;
