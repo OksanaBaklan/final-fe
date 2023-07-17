@@ -1,4 +1,3 @@
-import { useMediaQuery } from "react-responsive";
 import { Outlet, useLocation } from "react-router-dom";
 
 // import Balance from "components/Balance/Balance";

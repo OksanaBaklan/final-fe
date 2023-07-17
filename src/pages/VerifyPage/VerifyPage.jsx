@@ -9,19 +9,19 @@ axios.defaults.baseURL = "http://localhost:5656/api/"
 
 export default function VerifyPage() {
   let { verificationToken } = useParams();
+  console.log(verificationToken);
+//  axios.get(`users/verify/${verificationToken}`);
   const verify = async (token) => {
     try {
-      const { data } = await axios.get(`users/verify/${token}`);
-      console.log(data);
-      if (!data) {
+      const response = await axios.get(`users/verify/${token}`);
+      console.log(response);
+      if (!response) {
         return;
       }
-      return data;
+      return response;
     } catch (error) {
-      if (error.response.status === 404) {
-        return;
-      }
-      return error.response.message;
+
+      return error.message;
     }
   };
 
@@ -32,7 +32,7 @@ export default function VerifyPage() {
   return (
     <>
       <div className={s.backdrop}>
-        <div className={s.modal}>
+ <div className={s.modal}>
           <p className={s.text}>You have successfully registered</p>
           <Link to={`/login`} className={s.btn}>
             Ok

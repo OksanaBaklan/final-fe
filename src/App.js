@@ -1,6 +1,6 @@
 /** @format */
 
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
 import AppBackground from "./components/AppBackground/AppBackground";
@@ -33,7 +33,7 @@ function App() {
               )
             }
           />
-          <Route path="home" element={<Table />} />
+          <Route path="/home" element={<Table />} />
 
           <Route path="/login" element={<LoginPage />} />
           <Route path="/currency" element={<Currency />} />

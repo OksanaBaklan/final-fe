@@ -3,30 +3,80 @@ import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import {  ThemeProvider } from "@mui/material/styles";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 import s from "./TransactionTable.module.css";
 import NoTransactions from "../NoTransactions";
 import axios from "axios";
-import { useEffect } from "react";
+import dateConverter from '../../services/dateConverter'
+import { transactionCategories } from "./transactionCategories";
+import createData from "../../services/createData";
+import { useEffect, useState } from "react";
 
 
+const theme = createTheme({
+  components: {
+    MuiTable: {
+      styleOverrides: {
+        // Name of the slot
+        root: {
+          // Some CSS
+          table: {
+            backgroundColor: "inherit",
+          },
+          thead: {
+            backgroundColor: "#fff",
+            th: { borderBottom: "none" },
+          },
+        },
+      },
+    },
+  },
+});
 
-export default async function TransactionTable () {
-
+export default  function TransactionTable () {
+const [transactions, setTransaction]=useState([])
+// console.log(transactions);
 
 const token = JSON.parse(localStorage.getItem("my-app-token"));
+async function fetchData(token) {
+  try {
+        const { data } = await axios.get(`http://localhost:5555/api/transactions/`,{
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setTransaction(data.transactions)
 
-  const { data } = await axios.get(`http://localhost:5555/api/transactions/`,{
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-  console.log(data);
-  const transactions = data.transactions;
-  const rows = transactions?.map((trans) => {
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+useEffect( () => { 
+  fetchData(token);
+}, [token])
+
+
+  const rows = transactions.map((trans) => {
     const isIncome = trans.isIncome ? "+" : "-";  
+    const fullDate = dateConverter(trans.date);
+    const transactionName = transactionCategories.find(
+      (el) => el.id === trans.categoryId
+    );
+
+    const arrRow = createData(
+      fullDate,
+      isIncome,
+      transactionName.name,
+      trans.comment,
+      trans.amount,
+      trans.balance
+    );
+    
+    return arrRow;
   });
+    console.log(rows)
 
   if (!rows) {
     return (
@@ -40,7 +90,7 @@ const token = JSON.parse(localStorage.getItem("my-app-token"));
   return (
     <div className={s.tableWrapper}>
       <div className={s.table}>
-        <ThemeProvider >
+        <ThemeProvider theme={theme}>
           <Table aria-label="transacti table" sx={{ position: "relative" }}>
             <TableHead
               sx={{
@@ -57,18 +107,19 @@ const token = JSON.parse(localStorage.getItem("my-app-token"));
               }}
             >
               <TableRow>
-                <TableCell>Date</TableCell>
-                <TableCell align="center">Type</TableCell>
-                <TableCell align="center">Category</TableCell>
-                <TableCell align="center">Comment</TableCell>
-                <TableCell align="center">Sum</TableCell>
-                <TableCell align="center">Balance</TableCell>
+                <TableCell>date</TableCell>
+                <TableCell align="center">type</TableCell>
+                <TableCell align="center">category</TableCell>
+                <TableCell align="center">comment</TableCell>
+                <TableCell align="center">amount</TableCell>
+                <TableCell align="center">balance</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows.map((row, idx) => (
+              {rows.map((row, _id) => (
+
                 <TableRow
-                  key={idx}
+                  key={_id}
                   sx={{
                     "&:last-child td, &:last-child th": { border: 0 },
                   }}
