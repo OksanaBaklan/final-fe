@@ -1,10 +1,8 @@
-/** @format */
-
-import s from "./LoginPage.module.css";
+import s from "./RegisterPage.module.css";
 import { useMediaQuery } from "react-responsive";
-import LoginForm from "../../components/LoginForm";
+import RegisterForm from "../../components/RegisterForm";
 
-function LoginPage() {
+function RegisterPage() {
   const isLarge = useMediaQuery({ query: "(min-width: 1280px)" });
   return (
     <>
@@ -14,11 +12,11 @@ function LoginPage() {
           <h1 className={s.title}>Finance App</h1>
         </div>
         <div className={s.content_container}>
-          <LoginForm />
+          <RegisterForm />
         </div>
       </div>
     </>
   );
 }
 
-export default LoginPage;
+export default RegisterPage;
