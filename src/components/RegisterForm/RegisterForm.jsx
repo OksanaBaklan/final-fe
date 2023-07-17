@@ -1,6 +1,6 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
-import LogoComponent from "../LogoComponent";
+// import LogoComponent from "../LogoComponent";
 import s from "./RegisterForm.module.css";
 import { ReactComponent as NameIcon } from "../../images/icon-form/name.svg";
 import { ReactComponent as Emailcon } from "../../images/icon-form/email.svg";
@@ -8,6 +8,7 @@ import { ReactComponent as Passwordcon } from "../../images/icon-form/password.s
 import classNames from "classnames";
 import { useState } from "react";
 import axios from "axios";
+import LogoComponent from "../LogoComponent/LogoComponent";
 
 
 

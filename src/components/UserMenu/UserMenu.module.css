@@ -1,0 +1,56 @@
+@import "../../stylesheet/var.css";
+
+.header__user {
+  display: inline-flex;
+  align-items: center;
+}
+
+.header__text {
+  font-family: var(--main__font-family);
+  font-style: normal;
+  font-weight: normal;
+  font-size: var(--font-size__accent);
+  line-height: 27px;
+  text-align: right;
+  margin-right: 10px;
+  margin-left: 10px;
+  color: var(--secondary-text-color);
+}
+
+.line {
+  color: var(--secondary-text-color);
+  margin-right: 0px;
+}
+@media screen and (min-width: 768px) {
+  .line {
+    margin-right: 15px;
+  }
+}
+
+.logout {
+  background-color: var(--btn-color);
+  border: none;
+  outline: none;
+  color: var(--secondary-text-color);
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+.logout:hover,
+.logout:focus {
+  color: var(--accent-btn-color);
+  stroke: var(--accent-btn-color);
+}
+
+@media screen and (min-width: 768px) {
+  .exit {
+    margin-left: 10px;
+    font-family: var(--main__font-family);
+    font-style: normal;
+    font-weight: normal;
+    font-size: var(--font-size__btn);
+    line-height: 27px;
+    text-align: right;
+  }
+}

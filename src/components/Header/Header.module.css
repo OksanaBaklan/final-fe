@@ -1,0 +1,21 @@
+/** @format */
+
+.header {
+  z-index: 1;
+  background-color: #fff;
+  height: 60px;
+}
+
+.headerContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+@media screen and (min-width: 768px) {
+  .header {
+    height: 80px;
+  }
+}

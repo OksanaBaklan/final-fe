@@ -16,8 +16,8 @@ export default function LoginForm() {
   const navigate = useNavigate()
 
   // const {dispatch}=useContext(AuthContext)
-  const { user, setUser, token, setToken, authenticated, setAuthenticated } = useContext(UserContext);
-      // console.log(authenticated)
+  const { user, setUser, balance, setBalance, setToken, authenticated, setAuthenticated } = useContext(UserContext);
+      console.log(authenticated)
 
   const handleSubmit = async(e) => {
       e.preventDefault();
@@ -28,8 +28,10 @@ export default function LoginForm() {
           password: e.target["password"].value
         }
       const response = await axios.post(`http://localhost:5555/api/users/login`,userCredential)
-      // console.log(response.data)
+      console.log(response.data)
       localStorage.setItem("my-app-token", JSON.stringify(response.data.token))
+           
+
       // dispatch({
       //   type:types.AUTH_USER,
       //   payload:userCredential
@@ -40,6 +42,9 @@ export default function LoginForm() {
       // setUserId(response.data.data.userId)
       // setAvatar(response.data.data.avatar)
       navigate("/")
+       setAuthenticated(true)
+      console.log(authenticated)
+      setBalance(response.data.balance)
       }
       catch(err){
         setShowError(err.response.data)

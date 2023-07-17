@@ -9,14 +9,14 @@ const UserProvider = ({ children }) => {
   const [authenticated, setAuthenticated] = useState(false);
   const [userName, setUserName] = useState("");
   const [userId, setUserId] = useState("");
-  const [avatar, setAvatar] = useState("");
+  const [balance, setBalance] = useState("");
+  console.log(balance);
 
-  
   useEffect(() => {
     const token = JSON.parse(localStorage.getItem("my-app-token"));
-    console.log(token);
+    // console.log(token);
 
-    if (token !== null) {
+    if (!token) {
       axios
         .get(`http://localhost:5555/api/users/authorize-user`, {
           headers: {
@@ -26,9 +26,10 @@ const UserProvider = ({ children }) => {
         .then((response) => {
           console.log("response", response);
           setAuthenticated(true);
+          console.log(authenticated);
+
           setUserName(response.data.userName);
           setUserId(response.data.userId);
-          //   setAvatar(response.data.data.avatar);
         })
         .catch((err) => {
           console.log("error mes", err);
@@ -50,8 +51,8 @@ const UserProvider = ({ children }) => {
         userName,
         setUserName,
         setAuthenticated,
-        avatar,
-        setAvatar,
+        balance,
+        setBalance,
       }}
     >
       {children}
