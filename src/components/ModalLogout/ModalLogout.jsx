@@ -1,9 +1,15 @@
 import s from "./ModalLogout.module.css";
 
-function ModalLogout() {
+function ModalLogout({onOverlayClose}) {
 
   return (
-   <><div>ModalLogout</div></>
+   <>
+    <div className={s.overlay} onClick={onOverlayClose}>
+    <div>
+      <h1>ModalLogout</h1>
+      </div>
+      </div>
+    </>
   );
 }
 
