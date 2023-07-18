@@ -10,6 +10,12 @@ export default function UserMenu() {
     setShowModal((prev) => !prev);
   };
 
+  const onOverlayClose = (event) => {
+    if (event.target === event.currentTarget) {
+      onModalToggle();
+    }
+  };
+
   return (
     <div className={s.header__user}>
       <>
@@ -24,8 +30,10 @@ export default function UserMenu() {
           {<Logout />}
         </button>
         {showModal && (
-        <ModalLogout/>
-      )}      </>
+        <ModalLogout           onOverlayClose={onOverlayClose}
+        />
+      )}     
+       </>
 
 
     </div>
