@@ -1,0 +1,35 @@
+.table {
+  overflow: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  max-height: 60vh;
+}
+.table::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.tableWrapper {
+  width: 100%;
+  min-height: 640px;
+}
+
+@media screen and (min-width: 768px) {
+  .table {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .table {
+    width: 688px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .table {
+    width: 700px;
+    margin-top: 46px;
+    margin-left: 30px;
+  }
+}

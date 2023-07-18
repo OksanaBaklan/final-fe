@@ -1,0 +1,24 @@
+@import "stylesheet/var.css";
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+.logo__text {
+  font-family: var(--logo__font-family);
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 40px;
+  margin-left: 15.56px;
+}
+@media screen and (min-width: 768px) {
+  .logo__text {
+    font-family: var(--logo__font-family);
+    font-style: normal;
+    font-weight: bold;
+    font-size: var(--font-size__logo);
+    line-height: 45px;
+    margin-left: 20px;
+  }
+}

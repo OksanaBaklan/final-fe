@@ -2,7 +2,7 @@
 
 import s from "./LoginPage.module.css";
 import { useMediaQuery } from "react-responsive";
-import LoginForm from "../../components/LoginForm";
+import LoginForm from "../../components/LoginForm/LoginForm";
 
 function LoginPage() {
   const isLarge = useMediaQuery({ query: "(min-width: 1280px)" });
