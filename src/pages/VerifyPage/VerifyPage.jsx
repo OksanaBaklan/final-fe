@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 
 import s from "./VerifyPage.module.css";
 
-axios.defaults.baseURL = "http://localhost:5656/api/"
+axios.defaults.baseURL = "http://localhost:5555/api/"
 
 export default function VerifyPage() {
   let { verificationToken } = useParams();

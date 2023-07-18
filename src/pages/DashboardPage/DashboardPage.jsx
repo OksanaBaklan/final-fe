@@ -1,6 +1,5 @@
 import { Outlet, useLocation } from "react-router-dom";
 
-// import Balance from "components/Balance/Balance";
 
 
 import s from "./DashboardPage.module.css";
@@ -26,7 +25,7 @@ export default function DashboardPage() {
             {/* <Currency /> */}
           </div>
           <Outlet />
-          {pathname === "/home"}
+          {pathname === "/table"}
 
         </div>
       </Container>

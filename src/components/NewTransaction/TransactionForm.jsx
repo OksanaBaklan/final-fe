@@ -64,8 +64,8 @@ const TransactionForm = (props) => {
                 <Grid container onSubmit={submitHandler} spacing={2}>
                     <h2>Add Transaction</h2>
 
-                    <div class="cont">
-                        <div class="material-switch">
+                    <div className="cont">
+                        <div className="material-switch">
                             <label>Income</label>
                             <input id="switchy" name="someSwitchOption001" type="checkbox" />
                             <label for="switchy" class="label-default"></label>

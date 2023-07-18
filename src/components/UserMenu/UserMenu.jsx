@@ -1,7 +1,14 @@
+import { useState } from "react";
 import { ReactComponent as Logout } from "../../images/icon-logout/logout.svg";
+import ModalLogout from "../ModalLogout/ModalLogout";
 import s from "./UserMenu.module.css";
 
 export default function UserMenu() {
+  const [showModal, setShowModal] = useState(false);
+
+  const onModalToggle = () => {
+    setShowModal((prev) => !prev);
+  };
 
   return (
     <div className={s.header__user}>
@@ -13,8 +20,12 @@ export default function UserMenu() {
           height='25px'
           alt='avatar'
         />
-        <Logout/>
-      </>
+        <button onClick={onModalToggle} type='button' className={s.logout}>
+          {<Logout />}
+        </button>
+        {showModal && (
+        <ModalLogout/>
+      )}      </>
 
 
     </div>
