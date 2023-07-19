@@ -5,7 +5,7 @@ import { Link, Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
 import AppBackground from "./components/AppBackground/AppBackground";
 import LoginPage from "./pages/LoginPage/LoginPage";
-import Donutchart from "./components/Diagramm Tab/Donutchart";
+// import Donutchart from "./components/Diagramm Tab/Donutchart";
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip } from "chart.js";
 import TransactionForm from "./components/NewTransaction/TransactionForm";
@@ -16,7 +16,7 @@ import { UserContext } from "./storeContext/UserContext";
 import DashboardPage from "./pages/DashboardPage/DashboardPage";
 import Table from "./components/TransactionTable/Table";
 import Statistic from "./components/Statistic/Statistic";
-// import DashboardPage from "./pages/DashboardPage";
+import Chart from "./components/Chart/Chart";
 // import { UserContextProvider } from "./storeContext/authContext/UserContextProvider";
 
 ChartJS.register(ArcElement, Tooltip);
@@ -118,11 +118,13 @@ function App() {
             }
           >
             <Route path="table" element={<Table />} />
-            <Route path="statistic" element={<Statistic />} />
+            <Route path="statistic" element={<Chart />} />
           </Route>
 
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/donutchart" element={<Donutchart />} />
+          {/* <Route path="/donutchart" element={<Donutchart />} /> */}
+          {/* <Route path="diagram" element={<Chart />} /> */}
+
           <Route path="/currency" element={<Currency />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/verify/:verificationToken" element={<VerifyPage />} />

@@ -94,7 +94,7 @@ export default function RegisterForm() {
                 name="userName"
               />
             </div>
-            <div className={s.input_wrap}>
+            {/* <div className={s.input_wrap}>
             <input 
                             className={s.input}
 
@@ -102,7 +102,7 @@ export default function RegisterForm() {
           name="avatar"
           onChange={(e)=>setUserImage(e.target.files[0])}
         />
-            </div>
+            </div> */}
 
 
             <input type="submit"   className={s.btn}  value="Register" />
