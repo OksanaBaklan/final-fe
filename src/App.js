@@ -16,75 +16,13 @@ import { UserContext } from "./storeContext/UserContext";
 import DashboardPage from "./pages/DashboardPage/DashboardPage";
 import Table from "./components/TransactionTable/Table";
 import Statistic from "./components/Statistic/Statistic";
+import ModalAddTransaction from "./components/ModalAddTransaction/ModalAddTransaction";
 // import DashboardPage from "./pages/DashboardPage";
 // import { UserContextProvider } from "./storeContext/authContext/UserContextProvider";
 
 ChartJS.register(ArcElement, Tooltip);
-const INITIAL_DATA = [
-  {
-    id: "",
-    date: new Date(2022, 4, 12),
-    categories: "Vehicle",
-    labels: "salmon",
-    amount: 0.99,
-  },
-  {
-    id: "",
-    date: new Date(2022, 4, 12),
-    categories: "Food&Drinks",
-    labels: "pink",
-    amount: 999.99,
-  },
-  {
-    id: "",
-    date: new Date(2022, 4, 12),
-    categories: "Health Care",
-    labels: "mediumslateblue",
-    amount: 9.99,
-  },
-  {
-    id: "",
-    date: new Date(2022, 4, 12),
-    categories: "Basic Expanses",
-    labels: "skyblue",
-    amount: 99.99,
-  },
-  {
-    id: "",
-    date: new Date(2022, 4, 12),
-    categories: "Child Support",
-    labels: "slateblue",
-    amount: 0.99,
-  },
-  {
-    id: "",
-    date: new Date(2022, 4, 12),
-    categories: "Home, garden",
-    labels: "plum",
-    amount: 0.99,
-  },
-  {
-    id: "",
-    date: new Date(2022, 4, 12),
-    categories: "Education",
-    labels: "mediumaqamarine",
-    amount: 9.99,
-  },
-  {
-    id: "",
-    date: new Date(2022, 4, 12),
-    categories: "Holidays",
-    labels: "yellow",
-    amount: 999.99,
-  },
-  {
-    id: "",
-    date: new Date(2022, 4, 12),
-    categories: "Others Expanses",
-    labels: "mediumseagreen",
-    amount: 99.99,
-  },
-];
+
+
 
 function App() {
   const { authenticated } = useContext(UserContext);
@@ -95,6 +33,7 @@ function App() {
       <AppBackground>
         {" "}
         <TransactionForm></TransactionForm>
+        <ModalAddTransaction/>
         <Routes>
           <Route
             path="/"
