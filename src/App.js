@@ -15,6 +15,9 @@ import VerifyPage from "./pages/VerifyPage/VerifyPage";
 import { UserContext } from "./storeContext/UserContext";
 import DashboardPage from "./pages/DashboardPage/DashboardPage";
 import Table from "./components/TransactionTable/Table";
+import { Button } from "@mui/material";
+import Buton from "./components/NewTransaction/Buton";
+import NewTransaction from "./components/NewTransaction/NewTransaction";
 // import DashboardPage from "./pages/DashboardPage";
 // import { UserContextProvider } from "./storeContext/authContext/UserContextProvider";
 
@@ -97,7 +100,7 @@ function App() {
   console.log(authenticated);
   return (
     <div className="App">
-      <AppBackground>     <TransactionForm></TransactionForm>
+      <AppBackground>  <Buton/>
         <Routes>
           {/* <Route path="/" element={<HomePage />} /> */}
           <Route

@@ -34,7 +34,7 @@ const UserProvider = ({ children }) => {
         .catch((err) => {
           console.log("error mes", err);
 
-          if (err.response.status === 401)
+          if (err)
             localStorage.removeItem("my-app-token");
           console.log(err.message);
         });
