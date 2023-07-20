@@ -1,7 +1,9 @@
+/** @format */
+
 import React, { useState, useEffect } from "react";
 import Select from "react-select";
 import { format } from "date-fns";
-import { ru } from "date-fns/locale";
+import { enAU } from "date-fns/locale";
 
 import { selectStyles } from "../Select/selectStyles";
 import s from "../Select/select.module.css";
@@ -9,7 +11,7 @@ import s from "../Select/select.module.css";
 const currentMonth = new Date().getMonth() + 1;
 const months = Array.from({ length: 12 }, (_, i) => {
   return format(new Date(0, i), "LLLL", {
-    locale: ru,
+    locale: enAU,
   });
 });
 
@@ -49,7 +51,6 @@ function SelectDate({ fetchDate, loader }) {
     }
     return data;
   }
-  
 
   const updateDate = async (name, value) => {
     const newDate = { ...date, [name]: value };
@@ -68,7 +69,7 @@ function SelectDate({ fetchDate, loader }) {
       <Select
         styles={selectStyles}
         options={monthOptions}
-        placeholder="Месяц"
+        placeholder="month"
         onChange={(option) => {
           updateDate("month", option.value);
         }}

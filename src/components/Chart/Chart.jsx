@@ -5,9 +5,7 @@ import { Doughnut } from "react-chartjs-2";
 import s from "./Chart.module.css";
 import DiagramTab from "../DiagrammTab/Donutchart";
 
-// import LoaderComponent from "../LoaderComponent"
 import { UserContext } from "../../storeContext/UserContext";
-// import LoaderSpinner from "components/LoaderComponentCurrency/LoaderComponent";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -27,7 +25,6 @@ const obj = {
 };
 
 export default function Chart() {
-  // const balance = useSelector(getBalance);
   const {balance}=useContext(UserContext)
 
   const [loader, setLoader] = useState(false);

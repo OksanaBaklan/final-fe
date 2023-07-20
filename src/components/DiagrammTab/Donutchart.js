@@ -10,17 +10,17 @@ export default function DiagramTab({ fetchDate, data, loader }) {
     <>
       <SelectDate fetchDate={fetchDate} loader={loader} />
       <div className={s.container}>
-        <p className={s.title}>Категория</p> <p className={s.title}>Сумма</p>
+        <p className={s.title}>Category</p> <p className={s.title}>Amount</p>
       </div>
 
       {data.total.Expense !== 0 && <Category data={data} />}
 
       <div className={s.containerSum}>
-        <p className={s.titleSum}>Расходы</p>
+        <p className={s.titleSum}>Expenses</p>
         <span className={s.costs}>{data.total.Expense.toFixed(2)}</span>
       </div>
       <div className={s.containerSum}>
-        <p className={s.titleSum}>Доходы</p>
+        <p className={s.titleSum}>Income</p>
         <span className={s.income}>{data.total.Income.toFixed(2)}</span>
       </div>
     </>
