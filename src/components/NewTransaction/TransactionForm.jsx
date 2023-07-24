@@ -1,11 +1,18 @@
 import { Grid, Paper, TextField, Button } from "@mui/material";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./TransactionForm.css";
+import { transactionCategories } from "../TransactionTable/transactionCategories";
+import { UserContext } from "../../storeContext/UserContext";
+import axios from "axios";
 
 const TransactionForm = (props) => {
     const [comment, setComment] = useState("");
     const [amount, setAmount] = useState("");
     const [date, setDate] = useState("");
+    const [check, setCheck] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("")
+
+    const {setBalance}=useContext(UserContext)
 
     const commentChangeHandler = (e) => {
         setComment(e.target.value);
@@ -19,19 +26,36 @@ const TransactionForm = (props) => {
         setDate(e.target.value);
     };
 
-    const submitHandler = (e) => {
+    const submitHandler = async(e) => {
         e.preventDefault();
+        const dateParse = Date.parse(date);
 
-        const costData = {
+        const newTransaction = {
+            isIncome: !check,
+            categoryId: e.target["categoryId"]===undefined ?"321344421": e.target["categoryId"].value,
+            amount:amount,
+            date: dateParse,
             comment: comment,
-            amount: amount,
-            date: new Date(date),
         };
+        const token = JSON.parse(localStorage.getItem("my-app-token"));
 
-        props.onSaveCostData(costData);
-        setComment("");
-        setAmount("");
-        setDate("");
+        try{
+            const response = await axios.post(`http://localhost:5555/api/transactions/`, newTransaction, {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            })
+            e.target.reset()
+            setComment("")
+            setAmount("")
+            setDate("")
+            console.log(response.data.balance)
+      setBalance(response.data.balance)
+          }
+          catch(err){
+            setErrorMessage(err.request.response)
+          }
+          
     };
 
     const paperStyle = {
@@ -61,18 +85,39 @@ const TransactionForm = (props) => {
     return (
      
             <Paper elevation={1} style={paperStyle}>
-                <Grid container onSubmit={submitHandler} spacing={2}>
+                 <form autoComplete="off" onSubmit={submitHandler}>
+                <Grid container spacing={2}>
                     <h2>Add Transaction</h2>
 
                     <div className="cont">
                         <div className="material-switch">
                             <label>Income</label>
-                            <input id="switchy" name="someSwitchOption001" type="checkbox" />
-                            <label for="switchy" class="label-default"></label>
+                            <input id="switchy" name="isIncome" type="checkbox" onChange={(e) => setCheck(e.target.checked) } />
+                            <label for="switchy" className="label-default"></label>
                             <label style={expensesStyle}>Expenses</label>
                         </div>
                     </div>
 
+
+                    {check && (<label htmlFor={`category`}>
+                    <select
+                    //   className={s.category}
+                      name='categoryId'
+                      className="category"
+                      required
+                 >
+                      <option value='0' key={"1"}>
+                      select a category
+                      </option>
+                      {transactionCategories.map(({ name, id }) => {
+                        return (
+                          <option key={id} value={id} >
+                            {name}
+                          </option>
+                        );
+                      })}
+                    </select>
+                  </label>)}
 
                     <Grid item xs={6} >
                     <TextField
@@ -111,6 +156,7 @@ const TransactionForm = (props) => {
                         </Button>
                     </Grid>
                 </Grid>
+                </form>
             </Paper>
      
     );

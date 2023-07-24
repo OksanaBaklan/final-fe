@@ -11,7 +11,8 @@ import axios from "axios";
 import dateConverter from '../../services/dateConverter'
 import { transactionCategories } from "./transactionCategories";
 import createData from "../../services/createData";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { UserContext } from "../../storeContext/UserContext";
 
 
 const theme = createTheme({
@@ -36,6 +37,9 @@ const theme = createTheme({
 
 export default  function TransactionTable () {
 const [transactions, setTransaction]=useState([])
+
+const {setBalance,balance}=useContext(UserContext)
+
 // console.log(transactions);
 
 const token = JSON.parse(localStorage.getItem("my-app-token"));
@@ -47,7 +51,7 @@ async function fetchData(token) {
           },
         });
         setTransaction(data.transactions)
-
+        setBalance(data.balance)
     } catch (err) {
         console.log(err);
     }
@@ -55,28 +59,28 @@ async function fetchData(token) {
 
 useEffect( () => { 
   fetchData(token);
-}, [token])
+}, [balance])
 
 
-  const rows = transactions.map((trans) => {
+  const rows = transactions?.map((trans) => {
     const isIncome = trans.isIncome ? "+" : "-";  
     const fullDate = dateConverter(trans.date);
-    const transactionName = transactionCategories.find(
+    const transactionCategorieName = transactionCategories.find(
       (el) => el.id === trans.categoryId
     );
 
     const arrRow = createData(
       fullDate,
       isIncome,
-      transactionName.name,
+      transactionCategorieName.name,
       trans.comment,
       trans.amount,
       trans.balance
     );
     
+    console.log(arrRow)
     return arrRow;
   });
-    console.log(rows)
 
   if (!rows) {
     return (
@@ -107,7 +111,7 @@ useEffect( () => {
               }}
             >
               <TableRow>
-                <TableCell>date</TableCell>
+                <TableCell align="center">date</TableCell>
                 <TableCell align="center">type</TableCell>
                 <TableCell align="center">category</TableCell>
                 <TableCell align="center">comment</TableCell>
@@ -116,7 +120,7 @@ useEffect( () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows.map((row, _id) => (
+              {rows?.map((row, _id) => (
 
                 <TableRow
                   key={_id}
@@ -137,9 +141,9 @@ useEffect( () => {
                     }}
                     align="center"
                   >
-                    {row.amount.toFixed(2)}
+                    {row.amount}
                   </TableCell>
-                  <TableCell align="center">{row.balance.toFixed(2)}</TableCell>
+                  <TableCell align="center">{row.balance}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
