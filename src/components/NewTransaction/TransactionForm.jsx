@@ -6,160 +6,169 @@ import { UserContext } from "../../storeContext/UserContext";
 import axios from "axios";
 
 const TransactionForm = (props) => {
-    const [comment, setComment] = useState("");
-    const [amount, setAmount] = useState("");
-    const [date, setDate] = useState("");
-    const [check, setCheck] = useState(false);
-    const [errorMessage, setErrorMessage] = useState("")
+  const [comment, setComment] = useState("");
+  const [amount, setAmount] = useState("");
+  const [date, setDate] = useState("");
+  const [check, setCheck] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
-    const {setBalance}=useContext(UserContext)
+  const { setBalance } = useContext(UserContext);
 
-    const commentChangeHandler = (e) => {
-        setComment(e.target.value);
+  const commentChangeHandler = (e) => {
+    setComment(e.target.value);
+  };
+
+  const amountChangeHandler = (e) => {
+    setAmount(e.target.value);
+  };
+
+  const dateChangeHandler = (e) => {
+    setDate(e.target.value);
+  };
+
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    const dateParse = Date.parse(date);
+
+    const newTransaction = {
+      isIncome: !check,
+      categoryId:
+        e.target["categoryId"] === undefined
+          ? "321344421"
+          : e.target["categoryId"].value,
+      amount: amount,
+      date: dateParse,
+      comment: comment,
     };
+    const token = JSON.parse(localStorage.getItem("my-app-token"));
 
-    const amountChangeHandler = (e) => {
-        setAmount(e.target.value);
-    };
+    try {
+      const response = await axios.post(
+        `http://localhost:5555/api/transactions/`,
+        newTransaction,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+      e.target.reset();
+      setComment("");
+      setAmount("");
+      setDate("");
+      console.log(response.data.balance);
+      setBalance(response.data.balance);
+    } catch (err) {
+      setErrorMessage(err.request.response);
+    }
+  };
 
-    const dateChangeHandler = (e) => {
-        setDate(e.target.value);
-    };
+  const paperStyle = {
+    display: "flex",
+    textAline: "center",
+    padding: "20px",
+    height: "540px",
+    width: "540px",
+    margin: "40px auto",
+    borderRadius: "20px",
+  };
 
-    const submitHandler = async(e) => {
-        e.preventDefault();
-        const dateParse = Date.parse(date);
+  const fieldStyle = {
+    margin: "30px",
+  };
 
-        const newTransaction = {
-            isIncome: !check,
-            categoryId: e.target["categoryId"]===undefined ?"321344421": e.target["categoryId"].value,
-            amount:amount,
-            date: dateParse,
-            comment: comment,
-        };
-        const token = JSON.parse(localStorage.getItem("my-app-token"));
+  const fielddStyle = {
+    width: "100%",
+    margin: "50px",
+    marginTop: "0px",
+  };
 
-        try{
-            const response = await axios.post(`http://localhost:5555/api/transactions/`, newTransaction, {
-              headers: {
-                Authorization: `Bearer ${token}`,
-              },
-            })
-            e.target.reset()
-            setComment("")
-            setAmount("")
-            setDate("")
-            console.log(response.data.balance)
-      setBalance(response.data.balance)
-          }
-          catch(err){
-            setErrorMessage(err.request.response)
-          }
-          
-    };
+  const expensesStyle = {
+    marginLeft: "40px",
+  };
 
-    const paperStyle = {
-        display: 'flex',
-        textAline: 'center',
-        padding: '20px',
-        height: "540px",
-        width: "540px",
-        margin: "40px auto",
-        borderRadius: "20px",
-    };
+  return (
+    <Paper elevation={1} style={paperStyle}>
+      <form autoComplete="off" onSubmit={submitHandler}>
+        <Grid container spacing={2}>
+          <h2>Add Transaction</h2>
 
-    const fieldStyle = {
-        margin: "30px",
-    };
+          <div className="cont">
+            <div className="material-switch">
+              <label>Income</label>
+              <input
+                id="switchy"
+                name="isIncome"
+                type="checkbox"
+                onChange={(e) => setCheck(e.target.checked)}
+              />
+              <label for="switchy" className="label-default"></label>
+              <label style={expensesStyle}>Expenses</label>
+            </div>
+          </div>
 
-    const fielddStyle = {
-        width: "100%",
-        margin: '50px',
-        marginTop: '0px'
-    };
+          {check && (
+            <label htmlFor={`category`}>
+              <select
+                //   className={s.category}
+                name="categoryId"
+                className="category"
+                required
+              >
+                <option value="0" key={"1"}>
+                  select a category
+                </option>
+                {transactionCategories.map(({ name, id }) => {
+                  return (
+                    <option key={id} value={id}>
+                      {name}
+                    </option>
+                  );
+                })}
+              </select>
+            </label>
+          )}
 
-    const expensesStyle = {
-        marginLeft: "40px",
-    };
+          <Grid item xs={6}>
+            <TextField
+              placeholder="0.00"
+              style={fieldStyle}
+              type="number"
+              value={amount}
+              onChange={amountChangeHandler}
+              variant="standard"
+            ></TextField>
+          </Grid>
+          <Grid item xs={6}>
+            <TextField
+              style={fieldStyle}
+              type="date"
+              value={date}
+              onChange={dateChangeHandler}
+              variant="standard"
+            ></TextField>
+          </Grid>
 
-    return (
-     
-            <Paper elevation={1} style={paperStyle}>
-                 <form autoComplete="off" onSubmit={submitHandler}>
-                <Grid container spacing={2}>
-                    <h2>Add Transaction</h2>
+          <TextField
+            style={fielddStyle}
+            placeholder="Comment"
+            variant="standard"
+            value={comment}
+            onChange={commentChangeHandler}
+          ></TextField>
 
-                    <div className="cont">
-                        <div className="material-switch">
-                            <label>Income</label>
-                            <input id="switchy" name="isIncome" type="checkbox" onChange={(e) => setCheck(e.target.checked) } />
-                            <label for="switchy" className="label-default"></label>
-                            <label style={expensesStyle}>Expenses</label>
-                        </div>
-                    </div>
-
-
-                    {check && (<label htmlFor={`category`}>
-                    <select
-                    //   className={s.category}
-                      name='categoryId'
-                      className="category"
-                      required
-                 >
-                      <option value='0' key={"1"}>
-                      select a category
-                      </option>
-                      {transactionCategories.map(({ name, id }) => {
-                        return (
-                          <option key={id} value={id} >
-                            {name}
-                          </option>
-                        );
-                      })}
-                    </select>
-                  </label>)}
-
-                    <Grid item xs={6} >
-                    <TextField
-                        placeholder="0.00"
-                            style={fieldStyle}
-                            type="number"
-                            value={amount}
-                            onChange={amountChangeHandler}
-                            variant="standard"
-                        ></TextField>
-                    </Grid>
-                    <Grid item xs={6}>
-                        <TextField
-                            style={fieldStyle}
-                            type="date"
-                            value={date}
-                            onChange={dateChangeHandler}
-                            variant="standard"
-                        ></TextField>
-                    </Grid>
-
-                    <TextField
-                        style={fielddStyle}
-                        placeholder="Comment"
-                        variant="standard"
-                        value={comment}
-                        onChange={commentChangeHandler}
-                    ></TextField>
-
-                    <Grid>
-                        <Button type="submit" className="buttonStyle" variant="outlined">
-                            Add Transaction
-                        </Button>
-                        <Button className="buttonStyle" variant="outlined">
-                            Close
-                        </Button>
-                    </Grid>
-                </Grid>
-                </form>
-            </Paper>
-     
-    );
+          <Grid>
+            <Button type="submit" className="buttonStyle" variant="outlined">
+              Add Transaction
+            </Button>
+            <Button className="buttonStyle" variant="outlined">
+              Close
+            </Button>
+          </Grid>
+        </Grid>
+      </form>
+    </Paper>
+  );
 };
 
 export default TransactionForm;

@@ -8,12 +8,11 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import s from "./TransactionTable.module.css";
 import NoTransactions from "../NoTransactions";
 import axios from "axios";
-import dateConverter from '../../services/dateConverter'
+import dateConverter from "../../services/dateConverter";
 import { transactionCategories } from "./transactionCategories";
 import createData from "../../services/createData";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../storeContext/UserContext";
-
 
 const theme = createTheme({
   components: {
@@ -35,38 +34,40 @@ const theme = createTheme({
   },
 });
 
-export default  function TransactionTable () {
-const [transactions, setTransaction]=useState([])
+export default function TransactionTable() {
+  const [transactions, setTransaction] = useState([]);
 
-const {setBalance,balance}=useContext(UserContext)
+  const { setBalance, balance } = useContext(UserContext);
 
-// console.log(transactions);
+  // console.log(transactions);
 
-const token = JSON.parse(localStorage.getItem("my-app-token"));
-async function fetchData(token) {
-  try {
-        const { data } = await axios.get(`http://localhost:5555/api/transactions/`,{
+  const token = JSON.parse(localStorage.getItem("my-app-token"));
+  async function fetchData(token) {
+    try {
+      const { data } = await axios.get(
+        `http://localhost:5555/api/transactions/`,
+        {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        });
-        setTransaction(data.transactions)
-        setBalance(data.balance)
+        },
+      );
+      setTransaction(data.transactions);
+      setBalance(data.balance);
     } catch (err) {
-        console.log(err);
+      console.log(err);
     }
-}
+  }
 
-useEffect( () => { 
-  fetchData(token);
-}, [balance])
-
+  useEffect(() => {
+    fetchData(token);
+  }, [balance]);
 
   const rows = transactions?.map((trans) => {
-    const isIncome = trans.isIncome ? "+" : "-";  
+    const isIncome = trans.isIncome ? "+" : "-";
     const fullDate = dateConverter(trans.date);
     const transactionCategorieName = transactionCategories.find(
-      (el) => el.id === trans.categoryId
+      (el) => el.id === trans.categoryId,
     );
 
     const arrRow = createData(
@@ -75,10 +76,10 @@ useEffect( () => {
       transactionCategorieName.name,
       trans.comment,
       trans.amount,
-      trans.balance
+      trans.balance,
     );
-    
-    console.log(arrRow)
+
+    console.log(arrRow);
     return arrRow;
   });
 
@@ -90,7 +91,6 @@ useEffect( () => {
     );
   }
 
-  
   return (
     <div className={s.tableWrapper}>
       <div className={s.table}>
@@ -121,7 +121,6 @@ useEffect( () => {
             </TableHead>
             <TableBody>
               {rows?.map((row, _id) => (
-
                 <TableRow
                   key={_id}
                   sx={{

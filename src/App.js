@@ -22,8 +22,6 @@ import ModalAddTransaction from "./components/ModalAddTransaction/ModalAddTransa
 
 ChartJS.register(ArcElement, Tooltip);
 
-
-
 function App() {
   const { authenticated } = useContext(UserContext);
 
@@ -33,7 +31,7 @@ function App() {
       <AppBackground>
         {" "}
         <TransactionForm></TransactionForm>
-        <ModalAddTransaction/>
+        <ModalAddTransaction />
         <Routes>
           <Route
             path="/"

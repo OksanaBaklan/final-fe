@@ -22,20 +22,15 @@ export default function UserMenu() {
         <img
           style={{ borderRadius: "50%" }}
           // src={avatar}
-          width='25px'
-          height='25px'
-          alt='avatar'
+          width="25px"
+          height="25px"
+          alt="avatar"
         />
-        <button onClick={onModalToggle} type='button' className={s.logout}>
+        <button onClick={onModalToggle} type="button" className={s.logout}>
           {<Logout />}
         </button>
-        {showModal && (
-        <ModalLogout           onOverlayClose={onOverlayClose}
-        />
-      )}     
-       </>
-
-
+        {showModal && <ModalLogout onOverlayClose={onOverlayClose} />}
+      </>
     </div>
   );
 }
