@@ -4,6 +4,7 @@ import TableCell from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { faTrash, faPen } from "@fortawesome/free-solid-svg-icons";
 
 import s from "./TransactionTable.module.css";
 import NoTransactions from "../NoTransactions";
@@ -13,6 +14,7 @@ import { transactionCategories } from "./transactionCategories";
 import createData from "../../services/createData";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../storeContext/UserContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const theme = createTheme({
   components: {
@@ -117,6 +119,10 @@ export default function TransactionTable() {
                 <TableCell align="center">comment</TableCell>
                 <TableCell align="center">amount</TableCell>
                 <TableCell align="center">balance</TableCell>
+                <TableCell align="center">delete</TableCell>
+
+                <TableCell align="center">edit</TableCell>
+
               </TableRow>
             </TableHead>
             <TableBody>
@@ -143,6 +149,18 @@ export default function TransactionTable() {
                     {row.amount}
                   </TableCell>
                   <TableCell align="center">{row.balance}</TableCell>
+                  <TableCell align="center">
+                  <button className={s.deletebtn} onClick={()=>{}}>
+  <FontAwesomeIcon icon={faTrash} />
+</button>
+                    </TableCell>
+<TableCell align="center">
+<button
+  className={s.updateIcon}
+  onClick={() => {}}
+>  <FontAwesomeIcon icon={faPen} />
+</button>
+</TableCell>
                 </TableRow>
               ))}
             </TableBody>
