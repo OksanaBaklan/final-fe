@@ -5,6 +5,7 @@ export default function createData(
   comment,
   amount,
   balance,
+  id
 ) {
-  return { name, type, category, comment, amount, balance };
+  return { name, type, category, comment, amount, balance,id };
 }

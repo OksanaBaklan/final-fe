@@ -17,6 +17,7 @@ import DashboardPage from "./pages/DashboardPage/DashboardPage";
 import Table from "./components/TransactionTable/Table";
 import Statistic from "./components/Statistic/Statistic";
 import ModalAddTransaction from "./components/ModalAddTransaction/ModalAddTransaction";
+import UpdateTransaction from "./components/TransactionTable/UpdateTransaction";
 // import DashboardPage from "./pages/DashboardPage";
 // import { UserContextProvider } from "./storeContext/authContext/UserContextProvider";
 
@@ -37,26 +38,29 @@ function App() {
             path="/"
             element={
               authenticated ? (
-                <DashboardPage />
+                <Navigate to="/" /> 
               ) : (
                 <Navigate replace to="/login" />
               )
             }
           />
           <Route
-            path="/dashboard"
+            path="/"
             element={
-              <DashboardPage />
-              // authenticated ? (
-              //   <DashboardPage />
-              // ) : (
-              //   <Navigate replace to="/login" />
-              // )
+              // <DashboardPage />
+              authenticated ? (
+                <DashboardPage />
+              ) : (
+                <Navigate replace to="/login" />
+              )
             }
           >
+            <Route index element={<Navigate replace to="/table" />} />
+
             <Route path="table" element={<Table />} />
             <Route path="statistic" element={<Statistic />} />
           </Route>
+          <Route path="/update-transaction/:transactionId" element={<UpdateTransaction />} />
 
           <Route path="/login" element={<LoginPage />} />
           <Route path="/donutchart" element={<Donutchart />} />

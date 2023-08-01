@@ -15,6 +15,7 @@ import createData from "../../services/createData";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../storeContext/UserContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useNavigate } from "react-router-dom";
 
 const theme = createTheme({
   components: {
@@ -42,6 +43,9 @@ export default function TransactionTable() {
   const { setBalance, balance } = useContext(UserContext);
 
   // console.log(transactions);
+
+  const navigate = useNavigate()
+
 
   const token = JSON.parse(localStorage.getItem("my-app-token"));
   async function fetchData(token) {
@@ -79,9 +83,10 @@ export default function TransactionTable() {
       trans.comment,
       trans.amount,
       trans.balance,
+      trans._id
     );
 
-    console.log(arrRow);
+    // console.log(arrRow.id);
     return arrRow;
   });
 
@@ -120,7 +125,6 @@ export default function TransactionTable() {
                 <TableCell align="center">amount</TableCell>
                 <TableCell align="center">balance</TableCell>
                 <TableCell align="center">delete</TableCell>
-
                 <TableCell align="center">edit</TableCell>
 
               </TableRow>
@@ -150,14 +154,26 @@ export default function TransactionTable() {
                   </TableCell>
                   <TableCell align="center">{row.balance}</TableCell>
                   <TableCell align="center">
-                  <button className={s.deletebtn} onClick={()=>{}}>
+                  <button className={s.deletebtn} onClick={async()=>{ 
+                      const token = JSON.parse(localStorage.getItem("my-app-token"));
+
+      try {
+      await axios.delete(`http://localhost:5555/api/transactions/${row.id}`, {
+        headers:{
+          'Authorization': `Bearer ${JSON.parse(localStorage.getItem("my-app-token"))}`
+        }
+      });
+      fetchData(token);
+    } catch (error) {
+      console.log(error.message)
+    }}}>
   <FontAwesomeIcon icon={faTrash} />
 </button>
-                    </TableCell>
+</TableCell>
 <TableCell align="center">
 <button
   className={s.updateIcon}
-  onClick={() => {}}
+  onClick={() => navigate(`/update-transaction/${row.id}`)}
 >  <FontAwesomeIcon icon={faPen} />
 </button>
 </TableCell>
