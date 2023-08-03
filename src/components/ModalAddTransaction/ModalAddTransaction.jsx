@@ -13,63 +13,61 @@ import s from "./ModalAddTransaction.module.css";
 import { transactionCategories } from "../TransactionTable/transactionCategories";
 import { UserContext } from "../../storeContext/UserContext";
 
-export default function ModalAddTransaction({submitHandler,setCheck, check, transactionDetails }) {
-  // const [check, setCheck] = React.useState(false);setCheck
-  // const [errorMessage, setErrorMessage] = React.useState("");
+export default function ModalAddTransaction() {
+  const [check, setCheck] = React.useState(false);
+  const [errorMessage, setErrorMessage] = React.useState("");
 
-  // const { setBalance } = useContext(UserContext);
+  const { setBalance } = useContext(UserContext);
 
   // const dispatch = useDispatch();
-  // const handleSubmit = async (e) => {
-  //   // dispatch(addTransaction({ date, isIncome, amount, comment, categoryId }));
-  //   const date = Date.parse(e.target["date"].value);
+  const handleSubmit = async (e) => {
+    // dispatch(addTransaction({ date, isIncome, amount, comment, categoryId }));
+    const date = Date.parse(e.target["date"].value);
 
-  //   e.preventDefault();
+    e.preventDefault();
 
-  //   const newTransaction = {
-  //     isIncome: !check,
-  //     categoryId:
-  //       e.target["categoryId"] === undefined
-  //         ? "321344421"
-  //         : e.target["categoryId"].value,
-  //     amount: e.target["amount"].value,
-  //     date: date,
-  //     comment: e.target["comment"].value,
-  //   };
-  //   const token = JSON.parse(localStorage.getItem("my-app-token"));
+    const newTransaction = {
+      isIncome: !check,
+      categoryId:
+        e.target["categoryId"] === undefined
+          ? "321344421"
+          : e.target["categoryId"].value,
+      amount: e.target["amount"].value,
+      date: date,
+      comment: e.target["comment"].value,
+    };
+    const token = JSON.parse(localStorage.getItem("my-app-token"));
 
-  //   console.log(newTransaction.categoryId);
+    console.log(newTransaction.categoryId);
 
-  //   try {
-  //     const response = await axios.post(
-  //       `http://localhost:5555/api/transactions/`,
-  //       newTransaction,
-  //       {
-  //         headers: {
-  //           Authorization: `Bearer ${token}`,
-  //         },
-  //       },
-  //     );
-  //     e.target.reset();
-  //     console.log(response.data.balance);
-  //     setBalance(response.data.balance);
-  //     // navigate("/login")
-  //   } catch (err) {
-  //     setErrorMessage(err.request.response);
-  //   }
-  // };
-  // const {comment, isIncome, categoryId, amount} = transactionDetails
-  // console.log(transactionDetails)
-
+    try {
+      const response = await axios.post(
+        `http://localhost:5555/api/transactions/`,
+        newTransaction,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+      e.target.reset();
+      console.log(response.data.balance);
+      setBalance(response.data.balance);
+      // navigate("/login")
+    } catch (err) {
+      setErrorMessage(err.request.response);
+    }
+  };
 
   return (
     <div>
       <button type="button" className={s.closeBtn}>
         <img src={closeIcon} alt="" />
       </button>
-      <form onSubmit={submitHandler}>
+      <form onSubmit={handleSubmit}>
         <div className={s.form}>
-          <b className={s.modalDescription}>{transactionDetails?.amount?"Edit transactions details":"Add Transaction"}</b>
+          <b className={s.modalDescription}>Add Transaction</b>
+          {errorMessage && <p style={{color:"red"}}>{errorMessage}</p>}
 
           <div className={s.switch__container}>
             <div className={s.switch__control}>
@@ -78,7 +76,6 @@ export default function ModalAddTransaction({submitHandler,setCheck, check, tran
                 type="checkbox"
                 id={`switch-toggle`}
                 name="isIncome"
-                // value={this.checked?'true':'false'}
                 onChange={(e) => setCheck(e.target.checked)}
               />
               <label
@@ -114,7 +111,9 @@ export default function ModalAddTransaction({submitHandler,setCheck, check, tran
               className={s.sum}
               type={`number`}
               name={`amount`}
-              placeholder={transactionDetails?.amount?transactionDetails.amount:"0.00"}
+              placeholder="0.00"
+              required
+
             />
 
             <input className={s.date} type="date" name="date" required />
@@ -124,11 +123,13 @@ export default function ModalAddTransaction({submitHandler,setCheck, check, tran
             className={s.comment}
             name={`comment`}
             type={`text`}
-            placeholder={transactionDetails?.comment?transactionDetails.comment:"Comment"}
+            placeholder="Comment"
+            required
+
           />
 
           <button className={classNames(s.btn, s.btnAdd)} type={`submit`}>
-          {transactionDetails?.amount?"Update transactions details":"Add Transaction"}
+            Add Transaction
           </button>
           <button className={classNames(s.btn, s.btnCancel)} type="button">
             Cancel

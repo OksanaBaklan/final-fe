@@ -40,9 +40,9 @@ const theme = createTheme({
 export default function TransactionTable() {
   const [transactions, setTransaction] = useState([]);
 
-  const { setBalance, balance } = useContext(UserContext);
+  const { balance, setBalance  } = useContext(UserContext);
 
-  // console.log(transactions);
+  console.log(balance);
 
   const navigate = useNavigate()
 

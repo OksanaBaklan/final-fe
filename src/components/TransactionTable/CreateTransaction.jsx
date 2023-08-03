@@ -9,7 +9,7 @@ import ModalAddTransaction from '../ModalAddTransaction/ModalAddTransaction'
 
 export default function CreateTransaction() {
     const { authenticated } = useContext(UserContext);
-    const [check, setCheck] = React.useState(false);
+    const [check, setCheck] = useState(false);
 
     const [errorMessage, setErrorMessage] = useState("")
     const navigate = useNavigate()
@@ -42,7 +42,7 @@ export default function CreateTransaction() {
         };
         const token = JSON.parse(localStorage.getItem("my-app-token"));
     
-        console.log(newTransaction.categoryId);
+        // console.log(newTransaction.categoryId);
     
         try {
           const response = await axios.post(
@@ -63,11 +63,12 @@ export default function CreateTransaction() {
         }
       };
     
+      const checkHandler = (e)=> setCheck(e.target.checked)
 
     return(
         <>
         <h1>CreateTransaction</h1>
-        <ModalAddTransaction submitHandler={handleSubmit} setCheck = {setCheck} check= {check}/>
+        <ModalAddTransaction submitHandler={handleSubmit} checkHandler={checkHandler}  check={check}/>
         </>
     )
 }

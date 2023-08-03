@@ -18,6 +18,7 @@ import Table from "./components/TransactionTable/Table";
 import Statistic from "./components/Statistic/Statistic";
 import ModalAddTransaction from "./components/ModalAddTransaction/ModalAddTransaction";
 import UpdateTransaction from "./components/TransactionTable/UpdateTransaction";
+import CreateTransaction from "./components/TransactionTable/CreateTransaction";
 // import DashboardPage from "./pages/DashboardPage";
 // import { UserContextProvider } from "./storeContext/authContext/UserContextProvider";
 
@@ -31,14 +32,15 @@ function App() {
     <div className="App">
       <AppBackground>
         {" "}
-        <TransactionForm></TransactionForm>
-        <ModalAddTransaction />
+        {/* <TransactionForm></TransactionForm> */}
+        {/* <ModalAddTransaction /> */}
+        {/* <CreateTransaction /> */}
         <Routes>
           <Route
             path="/"
             element={
               authenticated ? (
-                <Navigate to="/" /> 
+                <Navigate to="/" />
               ) : (
                 <Navigate replace to="/login" />
               )
@@ -60,7 +62,10 @@ function App() {
             <Route path="table" element={<Table />} />
             <Route path="statistic" element={<Statistic />} />
           </Route>
-          <Route path="/update-transaction/:transactionId" element={<UpdateTransaction />} />
+          <Route
+            path="/update-transaction/:transactionId"
+            element={<UpdateTransaction />}
+          />
 
           <Route path="/login" element={<LoginPage />} />
           <Route path="/donutchart" element={<Donutchart />} />
