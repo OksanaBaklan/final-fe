@@ -1,12 +1,11 @@
 /** @format */
 
-<<<<<<< HEAD
 import { useContext } from "react";
 import { Link, Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
 import AppBackground from "./components/AppBackground/AppBackground";
 import LoginPage from "./pages/LoginPage/LoginPage";
-// import Donutchart from "./components/Diagramm Tab/Donutchart";
+import Donutchart from "./components/Diagramm Tab/Donutchart";
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip } from "chart.js";
 import TransactionForm from "./components/NewTransaction/TransactionForm";
@@ -18,28 +17,7 @@ import DashboardPage from "./pages/DashboardPage/DashboardPage";
 import Table from "./components/TransactionTable/Table";
 import Statistic from "./components/Statistic/Statistic";
 import Chart from "./components/Chart/Chart";
-=======
-import { useContext } from 'react';
-import { Link, Navigate, Route, Routes } from 'react-router-dom';
-import './App.css';
-import AppBackground from './components/AppBackground/AppBackground';
-import LoginPage from './pages/LoginPage/LoginPage';
-import Donutchart from './components/Diagramm Tab/Donutchart';
-import { Doughnut } from 'react-chartjs-2';
-import { Chart as ChartJS, ArcElement, Tooltip } from 'chart.js';
-import TransactionForm from './components/NewTransaction/TransactionForm';
-import Currency from './components/Currency/Currency';
-import RegisterPage from './pages/RegisterPage';
-import VerifyPage from './pages/VerifyPage/VerifyPage';
-import { UserContext } from './storeContext/UserContext';
-import DashboardPage from './pages/DashboardPage/DashboardPage';
-import Table from './components/TransactionTable/Table';
-import Statistic from './components/Statistic/Statistic';
-import ModalAddTransaction from './components/ModalAddTransaction/ModalAddTransaction';
-import UpdateTransaction from './components/TransactionTable/UpdateTransaction';
-import CreateTransaction from './components/TransactionTable/CreateTransaction';
-// import DashboardPage from "./pages/DashboardPage";
->>>>>>> main
+import UpdateTransaction from "./components/TransactionTable/UpdateTransaction";
 // import { UserContextProvider } from "./storeContext/authContext/UserContextProvider";
 
 ChartJS.register(ArcElement, Tooltip);
