@@ -4,7 +4,6 @@ import axios from 'axios'
 import React, { useState,useEffect, useContext } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { UserContext } from '../../storeContext/UserContext';
-import ModalAddTransaction from '../ModalAddTransaction/ModalAddTransaction'
 import classNames from "classnames";
 import s from "../ModalAddTransaction/ModalAddTransaction.module.css";
 import closeIcon from "../../images/modal-transaction/close.svg";

@@ -1,24 +1,24 @@
 /** @format */
 
-import { useContext } from "react";
-import { Link, Navigate, Route, Routes } from "react-router-dom";
-import "./App.css";
-import AppBackground from "./components/AppBackground/AppBackground";
-import LoginPage from "./pages/LoginPage/LoginPage";
-import Donutchart from "./components/Diagramm Tab/Donutchart";
-import { Doughnut } from "react-chartjs-2";
-import { Chart as ChartJS, ArcElement, Tooltip } from "chart.js";
-import TransactionForm from "./components/NewTransaction/TransactionForm";
-import Currency from "./components/Currency/Currency";
-import RegisterPage from "./pages/RegisterPage";
-import VerifyPage from "./pages/VerifyPage/VerifyPage";
-import { UserContext } from "./storeContext/UserContext";
-import DashboardPage from "./pages/DashboardPage/DashboardPage";
-import Table from "./components/TransactionTable/Table";
-import Statistic from "./components/Statistic/Statistic";
-import ModalAddTransaction from "./components/ModalAddTransaction/ModalAddTransaction";
-import UpdateTransaction from "./components/TransactionTable/UpdateTransaction";
-import CreateTransaction from "./components/TransactionTable/CreateTransaction";
+import { useContext } from 'react';
+import { Link, Navigate, Route, Routes } from 'react-router-dom';
+import './App.css';
+import AppBackground from './components/AppBackground/AppBackground';
+import LoginPage from './pages/LoginPage/LoginPage';
+import Donutchart from './components/Diagramm Tab/Donutchart';
+import { Doughnut } from 'react-chartjs-2';
+import { Chart as ChartJS, ArcElement, Tooltip } from 'chart.js';
+import TransactionForm from './components/NewTransaction/TransactionForm';
+import Currency from './components/Currency/Currency';
+import RegisterPage from './pages/RegisterPage';
+import VerifyPage from './pages/VerifyPage/VerifyPage';
+import { UserContext } from './storeContext/UserContext';
+import DashboardPage from './pages/DashboardPage/DashboardPage';
+import Table from './components/TransactionTable/Table';
+import Statistic from './components/Statistic/Statistic';
+import ModalAddTransaction from './components/ModalAddTransaction/ModalAddTransaction';
+import UpdateTransaction from './components/TransactionTable/UpdateTransaction';
+import CreateTransaction from './components/TransactionTable/CreateTransaction';
 // import DashboardPage from "./pages/DashboardPage";
 // import { UserContextProvider } from "./storeContext/authContext/UserContextProvider";
 
@@ -31,30 +31,20 @@ function App() {
   return (
     <div className="App">
       <AppBackground>
-        {" "}
-        {/* <TransactionForm></TransactionForm> */}
+        {' '}
+        <TransactionForm></TransactionForm>
         {/* <ModalAddTransaction /> */}
         {/* <CreateTransaction /> */}
         <Routes>
           <Route
             path="/"
-            element={
-              authenticated ? (
-                <Navigate to="/" />
-              ) : (
-                <Navigate replace to="/login" />
-              )
-            }
+            element={authenticated ? <Navigate to="/" /> : <Navigate replace to="/login" />}
           />
           <Route
             path="/"
             element={
               // <DashboardPage />
-              authenticated ? (
-                <DashboardPage />
-              ) : (
-                <Navigate replace to="/login" />
-              )
+              authenticated ? <DashboardPage /> : <Navigate replace to="/login" />
             }
           >
             <Route index element={<Navigate replace to="/table" />} />
@@ -62,10 +52,7 @@ function App() {
             <Route path="table" element={<Table />} />
             <Route path="statistic" element={<Statistic />} />
           </Route>
-          <Route
-            path="/update-transaction/:transactionId"
-            element={<UpdateTransaction />}
-          />
+          <Route path="/update-transaction/:transactionId" element={<UpdateTransaction />} />
 
           <Route path="/login" element={<LoginPage />} />
           <Route path="/donutchart" element={<Donutchart />} />
@@ -75,11 +62,11 @@ function App() {
           <Route
             path="*"
             element={
-              <main style={{ padding: "1rem" }}>
+              <main style={{ padding: '1rem' }}>
                 <span>There's nothing here!</span>
                 <br />
                 <span>
-                  <Link to={"/"}>Return</Link>
+                  <Link to={'/'}>Return</Link>
                 </span>
               </main>
             }
