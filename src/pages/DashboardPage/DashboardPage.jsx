@@ -23,7 +23,7 @@ export default function DashboardPage() {
             {/* <Currency /> */}
           </div>
           <Outlet />
-          {pathname === "/table"}
+          {/* {pathname === "/table"} */}
         </div>
       </Container>
     </>

@@ -67,6 +67,7 @@ export default function ModalAddTransaction() {
       <form onSubmit={handleSubmit}>
         <div className={s.form}>
           <b className={s.modalDescription}>Add Transaction</b>
+          {errorMessage && <p style={{color:"red"}}>{errorMessage}</p>}
 
           <div className={s.switch__container}>
             <div className={s.switch__control}>
@@ -75,7 +76,6 @@ export default function ModalAddTransaction() {
                 type="checkbox"
                 id={`switch-toggle`}
                 name="isIncome"
-                // value={this.checked?'true':'false'}
                 onChange={(e) => setCheck(e.target.checked)}
               />
               <label
@@ -112,6 +112,8 @@ export default function ModalAddTransaction() {
               type={`number`}
               name={`amount`}
               placeholder="0.00"
+              required
+
             />
 
             <input className={s.date} type="date" name="date" required />
@@ -122,6 +124,8 @@ export default function ModalAddTransaction() {
             name={`comment`}
             type={`text`}
             placeholder="Comment"
+            required
+
           />
 
           <button className={classNames(s.btn, s.btnAdd)} type={`submit`}>
