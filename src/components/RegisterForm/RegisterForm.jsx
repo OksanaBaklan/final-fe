@@ -49,6 +49,62 @@ export default function RegisterForm() {
   };
   return (
     <>
+<<<<<<< HEAD
+          <form className={s.formRegister} onSubmit={submitHandler}>
+            <LogoComponent />
+            <div className={classNames(s.input_wrap, s.inputTop)}>
+              <input
+                label={<Emailcon className={s.icon} />}
+                placeholder="E-mail"
+                className={s.input}
+                type="email"
+                name="email" 
+                required
+              />
+            </div>
+            <div className={s.input_wrap}>
+              <input
+                label={<Passwordcon className={s.icon} />}
+                className={s.input}
+                placeholder="password"
+                type="password"
+                name="password"
+                required
+              />
+            </div>
+            <div className={s.input_wrap}>
+              <input
+                label={<Passwordcon className={s.icon} />}
+                placeholder="confirm password "
+                className={s.input}
+                type="password"
+                name="confirmPassword"
+                // style={{ marginBottom: "5px" }}
+              />
+            </div>
+            {/* <ProgressSwitch value={values.password.length} /> */}
+            <div className={s.input_wrap}>
+              <input
+                label={<NameIcon className={s.icon} />}
+                placeholder="name"
+                className={s.input}
+                type="text"
+                name="userName"
+              />
+            </div>
+            {/* <div className={s.input_wrap}>
+            <input 
+                            className={s.input}
+
+          type="file"
+          name="avatar"
+          onChange={(e)=>setUserImage(e.target.files[0])}
+        />
+            </div> */}
+
+
+            <input type="submit"   className={s.btn}  value="Register" />
+=======
       <form className={s.formRegister} onSubmit={submitHandler}>
         <LogoComponent />
         <div className={classNames(s.input_wrap, s.inputTop)}>
@@ -99,6 +155,7 @@ export default function RegisterForm() {
             onChange={(e) => setUserImage(e.target.files[0])}
           />
         </div>
+>>>>>>> main
 
         <input type="submit" className={s.btn} value="Register" />
 
