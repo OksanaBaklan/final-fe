@@ -1,7 +1,5 @@
 import { Outlet, useLocation } from "react-router-dom";
 
-
-
 import s from "./DashboardPage.module.css";
 import Navigation from "../../components/Navigation";
 // import Currency from "../../components/Currency/Currency";
@@ -20,13 +18,12 @@ export default function DashboardPage() {
           <div className={s.flex}>
             <div className={s.navBox}>
               <Navigation />
-              <Balance/>
+              <Balance />
             </div>
             {/* <Currency /> */}
           </div>
           <Outlet />
-          {pathname === "/table"}
-
+          {/* {pathname === "/table"} */}
         </div>
       </Container>
     </>

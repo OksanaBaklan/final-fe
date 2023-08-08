@@ -1,3 +1,5 @@
+/** @format */
+
 h2 {
   margin: 30px auto;
   font-weight: 400;
@@ -16,24 +18,24 @@ h2 {
 }
 
 .buttonStyle:hover {
-  background-color: #24CCa7 !important;
+  background-color: #24cca7 !important;
   color: white !important;
   border-color: white !important;
 }
 
 .cont {
-display: inline-block;
-padding: 10px;
-margin-left: 120px;
+  display: inline-block;
+  padding: 10px;
+  margin-left: 120px;
 }
 
 label {
- font-weight: 500;
- line-height: normal;
- font-size: 16px;
- font-style: normal;
- color: #24CCa7;
- margin-right: 40px;
+  font-weight: 500;
+  line-height: normal;
+  font-size: 16px;
+  font-style: normal;
+  color: #24cca7;
+  margin-right: 40px;
 }
 
 .material-switch {
@@ -43,11 +45,11 @@ label {
   flex-direction: row;
 }
 
-.material-switch>input[type="checkbox"] {
+.material-switch > input[type="checkbox"] {
   display: none;
 }
 
-.material-switch> .label-default {
+.material-switch > .label-default {
   cursor: pointer;
   height: 0px;
   position: relative;
@@ -55,13 +57,12 @@ label {
   height: 44px;
 }
 
-.material-switch>.label-default::before {
+.material-switch > .label-default::before {
   content: "";
   text-decoration: inherit;
-
 }
 
-.material-switch>.label-default::before {
+.material-switch > .label-default::before {
   text-align: center;
   background: rgb(255, 255, 255);
   border: 1px solid #7e7a7a;
@@ -76,16 +77,16 @@ label {
   height: 40px;
 }
 
-.material-switch>.label-default::after {
+.material-switch > .label-default::after {
   content: "\2b";
   text-align: center;
   font-family: FontAwesome;
   text-decoration: inherit;
   color: #ffffff;
   font-size: 37px;
-  background: #27CCa7;
+  background: #27cca7;
   border-radius: 30px;
-  box-shadow: 0px 1px 10px #27CCa7;
+  box-shadow: 0px 1px 10px #27cca7;
   height: 44px;
   left: -4px;
   margin-top: -8px;
@@ -94,11 +95,11 @@ label {
   width: 44px;
 }
 
-.material-switch>input[type="checkbox"]:checked+.label-default::before {
+.material-switch > input[type="checkbox"]:checked + .label-default::before {
   background: white;
 }
 
-.material-switch>input[type="checkbox"]:checked+.label-default::after {
+.material-switch > input[type="checkbox"]:checked + .label-default::after {
   background: #ff6596;
   box-shadow: 0px 1px 10px #ff6596;
   left: 40px;
@@ -109,4 +110,21 @@ label {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+}
+
+.category {
+  padding: 0 20px;
+  /* margin-bottom: 40px; */
+  width: 280px;
+  height: 34px;
+  outline: none;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-bottom: 1px solid var(--border-color);
+  margin-left: 65%;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 26.53px;
+  color: var(--secondary-text-color);
 }

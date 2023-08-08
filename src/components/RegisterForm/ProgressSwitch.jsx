@@ -6,13 +6,13 @@ export default function ProgressSwitch({ value }) {
   }
 
   if (value === 6) {
-    return <ProgressBar bgcolor="red" progress={100} text={"weak"} />;
+    return <ProgressBar bgcolor="red" progress={100} text={"Weak password"} />;
   }
   if (value > 6 && value < 8) {
-    return <ProgressBar bgcolor="orange" progress={200} text={"average"} />;
+    return <ProgressBar bgcolor="orange" progress={200} text={"Average"} />;
   }
   if (value >= 8 && value < 10) {
-    return <ProgressBar bgcolor="#37f3ca" progress={300} text={"safe"} />;
+    return <ProgressBar bgcolor="#37f3ca" progress={300} text={"Strong password"} />;
   }
   if (value >= 10) {
     return (
