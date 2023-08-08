@@ -68,7 +68,7 @@ const TransactionForm = (props) => {
                         <div className="material-switch">
                             <label>Income</label>
                             <input id="switchy" name="someSwitchOption001" type="checkbox" />
-                            <label for="switchy" class="label-default"></label>
+                            <label for="switchy" className="label-default"></label>
                             <label style={expensesStyle}>Expenses</label>
                         </div>
                     </div>

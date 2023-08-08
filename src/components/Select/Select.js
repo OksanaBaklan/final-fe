@@ -9,11 +9,27 @@ import { selectStyles } from "../Select/selectStyles";
 import s from "../Select/select.module.css";
 
 const currentMonth = new Date().getMonth() + 1;
+
 const months = Array.from({ length: 12 }, (_, i) => {
   return format(new Date(0, i), "LLLL", {
     locale: enAU,
   });
 });
+
+// const months = [
+//   { id: 1, name: 'January' },
+//   { id: 2, name: 'February' },
+//   { id: 3, name: 'March' },
+//   { id: 4, name: 'April' },
+//   { id: 5, name: 'May' },
+//   { id: 6, name: 'June' },
+//   { id: 7, name: 'July' },
+//   { id: 8, name: 'August' },
+//   { id: 9, name: 'September' },
+//   { id: 10, name: 'October' },
+//   { id: 11, name: 'November' },
+//   { id: 12, name: 'December' },
+// ];
 
 const monthOptions = Array(12)
   .fill(null)
