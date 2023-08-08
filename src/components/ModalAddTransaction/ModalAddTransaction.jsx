@@ -1,141 +1,185 @@
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
+import { useDispatch, useSelector } from "react-redux";
 import classNames from "classnames";
 import * as React from "react";
-import axios from "axios";
+import { addTransaction } from "../../redux/transactions/transaction-operations";
 
-// import { addTransaction } from "redux/transactions/transaction-operations";
-// import { getTransactionCategories } from "../../redux/auth/auth-selectors";
-import { useContext } from "react";
+import { useEffect } from "react";
 import closeIcon from "../../images/modal-transaction/close.svg";
+import { transactionCategories } from "../TransactionTable/transactionCategories";
 
 import s from "./ModalAddTransaction.module.css";
-import { transactionCategories } from "../TransactionTable/transactionCategories";
-import { UserContext } from "../../storeContext/UserContext";
 
-export default function ModalAddTransaction() {
-  const [check, setCheck] = React.useState(false);
-  const [errorMessage, setErrorMessage] = React.useState("");
+const validationSchema = Yup.object().shape({
+  amount: Yup.number()
+    .typeError("Must be a number")
+    .required("required"),
+  comment: Yup.string(),
+});
 
-  const { setBalance } = useContext(UserContext);
+export default function ModalAddTransaction({ modalAction }) {
 
-  // const dispatch = useDispatch();
-  const handleSubmit = async (e) => {
-    // dispatch(addTransaction({ date, isIncome, amount, comment, categoryId }));
-    const date = Date.parse(e.target["date"].value);
+  const dispatch = useDispatch();
+  const handleSubmit = ({ date, isIncome, amount, comment, categoryId }) => {
+    dispatch(addTransaction({ date, isIncome, amount, comment, categoryId }));
+  };
 
-    e.preventDefault();
-
-    const newTransaction = {
-      isIncome: !check,
-      categoryId:
-        e.target["categoryId"] === undefined
-          ? "321344421"
-          : e.target["categoryId"].value,
-      amount: e.target["amount"].value,
-      date: date,
-      comment: e.target["comment"].value,
-    };
-    const token = JSON.parse(localStorage.getItem("my-app-token"));
-
-    console.log(newTransaction.categoryId);
-
-    try {
-      const response = await axios.post(
-        `http://localhost:5555/api/transactions/`,
-        newTransaction,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        },
-      );
-      e.target.reset();
-      console.log(response.data.balance);
-      setBalance(response.data.balance);
-      // navigate("/login")
-    } catch (err) {
-      setErrorMessage(err.request.response);
+  const handleKeyDown = (event) => {
+    if (event.code === "Escape") {
+      modalAction();
     }
   };
 
+  const onBackdropClick = (event) => {
+    if (event.target === event.currentTarget) {
+      modalAction();
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  });
+
   return (
-    <div>
-      <button type="button" className={s.closeBtn}>
-        <img src={closeIcon} alt="" />
-      </button>
-      <form onSubmit={handleSubmit}>
-        <div className={s.form}>
-          <b className={s.modalDescription}>Add Transaction</b>
-          {errorMessage && <p style={{color:"red"}}>{errorMessage}</p>}
+    <Formik
+      initialValues={{
+        date: new Date().toISOString().substr(0, 10),
+        isIncome: true,
+        amount: "",
+        comment: "",
+        categoryId: "",
+      }}
+      validateOnBlur
+      onSubmit={({ date, isIncome, ...all }, { resetForm }) => {
+        date = Date.parse(date);
+        console.log(date);
+        console.log(typeof date);
+        isIncome = !isIncome;
+        handleSubmit({ date, isIncome, ...all });
+        resetForm();
+        modalAction();
+      }}
+      validationSchema={validationSchema}>
+      {({
+        values,
+        errors,
+        touched,
+        handleChange,
+        handleBlur,
+        isValid,
+        dirty,
+      }) => (
+        <div className={s.overlay} onClick={onBackdropClick}>
+          <div className={s.formBox}>
+            <button type='button' className={s.closeBtn} onClick={modalAction}>
+              <img src={closeIcon} alt='' />
+            </button>
+            <Form>
+              <div className={s.form}>
+                <b className={s.modalDescription}>Add transaction</b>
 
-          <div className={s.switch__container}>
-            <div className={s.switch__control}>
-              <input
-                className={s.switch__toggle}
-                type="checkbox"
-                id={`switch-toggle`}
-                name="isIncome"
-                onChange={(e) => setCheck(e.target.checked)}
-              />
-              <label
-                className={s.switch__track}
-                htmlFor={`switch-toggle`}
-              ></label>
+                <div className={s.switch__container}>
+                  <div className={s.switch__control}>
+                    <input
+                      className={s.switch__toggle}
+                      type='checkbox'
+                      id={`switch-toggle`}
+                      name='isIncome'
+                      onBlur={handleBlur}
+                      checked={values.isIncome}
+                      value={values.isIncome}
+                      onChange={handleChange}
+                    />
+                    <label
+                      className={s.switch__track}
+                      htmlFor={`switch-toggle`}></label>
+                    <div className={s.switch__marker}></div>
+                    <p className={s.switchIncome}>Income</p>
+                    <p className={s.switchCosts}>Expenses</p>
+                  </div>
+                </div>
 
-              <div className={s.switch__marker}></div>
-              <p className={s.switchIncome}>Income</p>
-              <p className={s.switchCosts}>Expenses</p>
-            </div>
+                {values.isIncome === true && (
+                  <label className={s.span} htmlFor={`category`}>
+                    <select
+                      className={s.category}
+                      name='categoryId'
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.categoryId}>
+                      <option value='0' key={"1"}>
+                      select a category
+                      </option>
+                      {transactionCategories.map(({ name, id }) => {
+                        return (
+                          <option key={id} value={id}>
+                            {name}
+                          </option>
+                        );
+                      })}
+                    </select>
+                  </label>
+                )}
+
+                <div className={s.subBox}>
+                  <input
+                    className={s.sum}
+                    type={`number`}
+                    name={`amount`}
+                    placeholder='0.00'
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.amount}
+                  />
+                  {touched.amount && errors.amount && (
+                    <span className={s.error}>{errors.amount}</span>
+                  )}
+                  <input
+                    className={s.date}
+                    value={values.date}
+                    type='date'
+                    name='date'
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+
+                {touched.comment && errors.comment && (
+                  <span className={s.error}>{errors.comment}</span>
+                )}
+                <input
+                  className={s.comment}
+                  name={`comment`}
+                  type={`text`}
+                  placeholder='comment'
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.comment}
+                />
+
+                <button
+                  className={classNames(s.btn, s.btnAdd)}
+                  type={`submit`}
+                  disabled={!isValid || !dirty}>
+                  Add
+                </button>
+                <button
+                  onClick={modalAction}
+                  className={classNames(s.btn, s.btnCancel)}
+                  type='button'>
+                  Cancel
+                </button>
+              </div>
+            </Form>
           </div>
-
-          {check && (
-            <label className={s.span} htmlFor={`category`}>
-              <select className={s.category} name="categoryId" required>
-                <option value="0" key={"1"}>
-                  select a category
-                </option>
-                {transactionCategories.map(({ name, id }) => {
-                  return (
-                    <option key={id} value={id}>
-                      {name}
-                    </option>
-                  );
-                })}
-              </select>
-            </label>
-          )}
-
-          <div className={s.subBox}>
-            <input
-              className={s.sum}
-              type={`number`}
-              name={`amount`}
-              placeholder="0.00"
-              required
-
-            />
-
-            <input className={s.date} type="date" name="date" required />
-          </div>
-
-          <input
-            className={s.comment}
-            name={`comment`}
-            type={`text`}
-            placeholder="Comment"
-            required
-
-          />
-
-          <button className={classNames(s.btn, s.btnAdd)} type={`submit`}>
-            Add Transaction
-          </button>
-          <button className={classNames(s.btn, s.btnCancel)} type="button">
-            Cancel
-          </button>
         </div>
-      </form>
-    </div>
+      )}
+    </Formik>
   );
 }
