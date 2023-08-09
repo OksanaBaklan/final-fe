@@ -30,7 +30,7 @@ function App() {
     <div className="App">
       <AppBackground>
         {' '}
-        <TransactionForm></TransactionForm>
+        {/* <TransactionForm></TransactionForm> */}
         {/* <ModalAddTransaction /> */}
         {/* <CreateTransaction /> */}
         <Routes>

@@ -6,6 +6,7 @@ import Navigation from "../../components/Navigation";
 import Container from "../../components/Container/Container";
 import Header from "../../components/Header/Header";
 import Balance from "../../components/Balance/Balance";
+import ButtonAddTransaction from "../../components/ButtonAddTransactions/ButtonAddTransactions";
 
 export default function DashboardPage() {
   const location = useLocation();
@@ -23,7 +24,8 @@ export default function DashboardPage() {
             {/* <Currency /> */}
           </div>
           <Outlet />
-          {/* {pathname === "/table"} */}
+          {pathname === "/table" && <ButtonAddTransaction />}
+
         </div>
       </Container>
     </>
