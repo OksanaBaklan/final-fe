@@ -1,3 +1,5 @@
+/** @format */
+
 .table {
   overflow: auto;
   -ms-overflow-style: none;
@@ -12,6 +14,20 @@
 .tableWrapper {
   width: 100%;
   min-height: 640px;
+}
+
+.deletebtn {
+  color: #f44336;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.updateIcon {
+  background-color: transparent;
+  border: none;
+  float: right;
+  cursor: pointer;
 }
 
 @media screen and (min-width: 768px) {

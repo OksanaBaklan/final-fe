@@ -1,0 +1,25 @@
+.name {
+    font-size: var(--font-size__main);
+    line-height: 1.16;
+  }
+  
+  .leftContainer {
+    display: flex;
+    align-items: center;
+  }
+
+  .containerTab {
+   
+    padding-right: 20px;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 20px;
+    margin-top: 16px;
+    padding-bottom: 21px;
+    border-bottom: 1px solid var(--line-table-color);
+    box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.6);
+  }
+  .list{
+    margin: 0;
+    padding: 0;
+  }

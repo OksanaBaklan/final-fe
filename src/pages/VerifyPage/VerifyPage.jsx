@@ -5,12 +5,12 @@ import { useParams } from "react-router-dom";
 
 import s from "./VerifyPage.module.css";
 
-axios.defaults.baseURL = "http://localhost:5656/api/"
+axios.defaults.baseURL = "http://localhost:5555/api/";
 
 export default function VerifyPage() {
   let { verificationToken } = useParams();
   console.log(verificationToken);
-//  axios.get(`users/verify/${verificationToken}`);
+  //  axios.get(`users/verify/${verificationToken}`);
   const verify = async (token) => {
     try {
       const response = await axios.get(`users/verify/${token}`);
@@ -20,7 +20,6 @@ export default function VerifyPage() {
       }
       return response;
     } catch (error) {
-
       return error.message;
     }
   };
@@ -32,7 +31,7 @@ export default function VerifyPage() {
   return (
     <>
       <div className={s.backdrop}>
- <div className={s.modal}>
+        <div className={s.modal}>
           <p className={s.text}>You have successfully registered</p>
           <Link to={`/login`} className={s.btn}>
             Ok

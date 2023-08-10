@@ -17,7 +17,7 @@ export default function Navigation() {
   return (
     <nav className={s.nav}>
       <NavLink
-        to="/home"
+        to="/table"
         className={({ isActive }) => (isActive ? s.activeLink : s.link)}
       >
         <HomeImgMob className={s.navImgMob} />
@@ -26,7 +26,7 @@ export default function Navigation() {
       </NavLink>
 
       <NavLink
-        to="/diagram"
+        to="/statistic"
         className={({ isActive }) => (isActive ? s.activeLink : s.link)}
       >
         <StatisticsImgMob className={s.navImgMob} />

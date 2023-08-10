@@ -9,20 +9,28 @@ import { BrowserRouter } from "react-router-dom";
 // import { UserContextProvider } from "./storeContext/authContext/UserContextProvider";
 import UserProvider from "./storeContext/UserContext";
 import { Provider } from "react-redux";
-import store from "./store/index";
+//import store from "./store/index";
+import { store, persistor } from "./redux/store";
+import { PersistGate } from "redux-persist/integration/react";
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <Provider store = {store}>
+ // <Provider store = {store}>
   <BrowserRouter>
     <React.StrictMode>
+    <Provider store={store}>
+
+    {/* <PersistGate loading={null} persistor={persistor}> */}
+
       <UserProvider>
-      <App />
+        <App />
       </UserProvider>
+      {/* </PersistGate> */}
+      </Provider>
+
     </React.StrictMode>
-    </BrowserRouter>
-  </Provider>
+  </BrowserRouter>,
 );
 
 // If you want to start measuring performance in your app, pass a function

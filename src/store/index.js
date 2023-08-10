@@ -1,7 +1,7 @@
 
 import { legacy_createStore } from "redux";
 
-const typeReducer = (state = { colorstate: "#27CCa7" }, action) => {
+export const typeReducer = (state = { colorstate: "#27CCa7" }, action) => {
     
     switch (action.type) {
         case "GREEN":
@@ -14,7 +14,7 @@ const typeReducer = (state = { colorstate: "#27CCa7" }, action) => {
 
 }
 
-const store = legacy_createStore(typeReducer);
+const storeColor = legacy_createStore(typeReducer);
 
-export default store;
+export default storeColor;
 
