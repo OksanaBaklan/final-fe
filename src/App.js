@@ -1,5 +1,5 @@
 /** @format */
-
+import { useState } from 'react';
 import { useContext } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
@@ -8,7 +8,7 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import Donutchart from "./components/Diagramm Tab/Donutchart";
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip } from 'chart.js';
-import TransactionForm from "./components/NewTransaction/TransactionForm";
+import TransactionForm from "./components/Transaction/TransactionForm";
 import Currency from "./components/Currency/Currency";
 import RegisterPage from "./pages/RegisterPage";
 import VerifyPage from "./pages/VerifyPage/VerifyPage";
@@ -16,8 +16,8 @@ import { UserContext } from "./storeContext/UserContext";
 import DashboardPage from "./pages/DashboardPage/DashboardPage";
 import Table from "./components/TransactionTable/Table";
 import { Button } from "@mui/material";
-import Buton from "./components/NewTransaction/Buton";
-import NewTransaction from "./components/NewTransaction/NewTransaction";
+import Buton from "./components/Transaction/Buton";
+import Costs from './components/Transaction/Costs';
 // import DashboardPage from "./pages/DashboardPage";
 // import { UserContextProvider } from "./storeContext/authContext/UserContextProvider";
 
@@ -28,13 +28,16 @@ ChartJS.register(
 const INITIAL_DATA = [
   {
     id: '',
+    type: '+',
     date: new Date(2022, 4, 12),
     categories: 'Vehicle',
     labels: 'salmon',
-    amount: 0.99
+    amount: 0.99,
+    balance: ''
   },
   {
     id: '',
+    type: '-',
     date: new Date(2022, 4, 12),
     categories: 'Food&Drinks',
     labels: 'pink',
@@ -97,10 +100,12 @@ const INITIAL_DATA = [
 function App() {
   const { authenticated } = useContext(UserContext);
 
-  console.log(authenticated);
+
+
   return (
     <div className="App">
-      <AppBackground>  <Buton/>
+      <AppBackground>
+       
         <Routes>
           {/* <Route path="/" element={<HomePage />} /> */}
           <Route
@@ -113,8 +118,19 @@ function App() {
               )
             }
           />
-          <Route path="/home" element={<Table />} />
 
+          <Route
+            path="/dashboard"
+            element={
+              <DashboardPage />
+              // authenticated ? (
+              //   <DashboardPage />
+              // ) : (
+              //   <Navigate replace to="/login" />
+              // )
+            }
+          />
+          <Route path="/home" element={<Table />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/donutchart" element={<Donutchart />} />
           <Route path="/currency" element={<Currency />} />
