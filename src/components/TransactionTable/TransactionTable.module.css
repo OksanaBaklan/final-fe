@@ -17,13 +17,15 @@
 }
 
 .deletebtn {
-  color: #f44336;
+  color:var(--amount-expenses-text-color);
   background-color: transparent;
   border: none;
   cursor: pointer;
 }
 
 .updateIcon {
+  color: var(--accent-btn-color);
+
   background-color: transparent;
   border: none;
   float: right;

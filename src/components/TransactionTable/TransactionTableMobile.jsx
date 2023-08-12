@@ -15,6 +15,16 @@ import dateConverter from "../../services/dateConverter";
 import createData from "../../services/createData";
 
 import s from "./TransactionTable.module.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
+import '@fortawesome/fontawesome-svg-core/styles.css'; // Make sure to import FontAwesome styles
+
+// This configuration ensures proper behavior of the icon library
+import { library } from '@fortawesome/fontawesome-svg-core';
+
+library.add(faTrash);
+library.add(faEdit);
+
 
 const theme = createTheme({
   components: {
@@ -33,8 +43,6 @@ const theme = createTheme({
 });
 
 export default function TransactionTableMobile({ transactions }) {
-  // const transactionCategories = useSelector(getTransactionCategories);
-console.log(transactions);
   const column = transactions.map((trans) => {
     const isIncome = trans.isIncome ? "+" : "-";
     const fullDate = dateConverter(trans.date);
@@ -123,6 +131,24 @@ console.log(transactions);
               >
                 <TableCell align="left">balance</TableCell>
                 <TableCell align="right">{col.balance}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell align="left">delete transaction</TableCell>
+                <TableCell>
+                <button className={s.deletebtn}>
+      <FontAwesomeIcon icon="trash" />
+                </button>
+                </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell align="left">edit transaction</TableCell>
+                <TableCell>
+                <button
+  className={s.updateIcon}
+  // onClick={() => navigate(`/update-transaction/${row.id}`)}
+>   <FontAwesomeIcon icon="edit" />
+</button>
+                </TableCell>
               </TableRow>
             </TableBody>
           </Table>

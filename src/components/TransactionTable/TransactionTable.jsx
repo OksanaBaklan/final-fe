@@ -4,7 +4,6 @@ import TableCell from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-// import { faTrash, faPen } from "@fortawesome/free-solid-svg-icons";
 
 import s from "./TransactionTable.module.css";
 import NoTransactions from "../NoTransactions";
@@ -14,8 +13,20 @@ import { transactionCategories } from "./transactionCategories";
 import createData from "../../services/createData";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../storeContext/UserContext";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash,faEdit } from '@fortawesome/free-solid-svg-icons';
+import '@fortawesome/fontawesome-svg-core/styles.css'; // Make sure to import FontAwesome styles
+
+// This configuration ensures proper behavior of the icon library
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { useDispatch, useSelector } from "react-redux";
+import { getLoading, getTransactions } from "../../redux/transactions/transactions-selectors";
+import { getAllTransactions } from "../../redux/transactions/transaction-operations";
+
+library.add(faTrash);
+library.add(faEdit);
 
 const theme = createTheme({
   components: {
@@ -37,37 +48,15 @@ const theme = createTheme({
   },
 });
 
-export default function TransactionTable() {
-  const [transactions, setTransaction] = useState([]);
+export default function TransactionTable({transactions, transactionsDeleteHandler}) {
+
 
   const { balance, setBalance  } = useContext(UserContext);
 
-  console.log(balance);
+  // console.log(balance);
 
   const navigate = useNavigate()
 
-
-  const token = JSON.parse(localStorage.getItem("my-app-token"));
-  async function fetchData(token) {
-    try {
-      const { data } = await axios.get(
-        `http://localhost:5555/api/transactions/`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        },
-      );
-      setTransaction(data.transactions);
-      setBalance(data.balance);
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
-  useEffect(() => {
-    fetchData(token);
-  }, [balance]);
 
   const rows = transactions?.map((trans) => {
     const isIncome = trans.isIncome ? "+" : "-";
@@ -86,7 +75,6 @@ export default function TransactionTable() {
       trans._id
     );
 
-    // console.log(arrRow.id);
     return arrRow;
   });
 
@@ -154,27 +142,30 @@ export default function TransactionTable() {
                   </TableCell>
                   <TableCell align="center">{row.balance}</TableCell>
                   <TableCell align="center">
-                  <button className={s.deletebtn} onClick={async()=>{ 
-                      const token = JSON.parse(localStorage.getItem("my-app-token"));
+                  <button className={s.deletebtn} 
+    //               onClick={async()=>{ 
+    //                   const token = JSON.parse(localStorage.getItem("my-app-token"));
 
-      try {
-      await axios.delete(`http://localhost:5555/api/transactions/${row.id}`, {
-        headers:{
-          'Authorization': `Bearer ${JSON.parse(localStorage.getItem("my-app-token"))}`
-        }
-      });
-      fetchData(token);
-    } catch (error) {
-      console.log(error.message)
-    }}}>
-  delete
+    //   try {
+    //   await axios.delete(`http://localhost:5555/api/transactions/${row.id}`, {
+    //     headers:{
+    //       'Authorization': `Bearer ${JSON.parse(localStorage.getItem("my-app-token"))}`
+    //     }
+    //   });
+    //   // fetchData(token);
+    // } catch (error) {
+    //   console.log(error.message)
+    // }}}
+    onClick={()=>transactionsDeleteHandler(row.id)}
+    >
+   <FontAwesomeIcon icon="trash" />
 </button>
 </TableCell>
 <TableCell align="center">
 <button
   className={s.updateIcon}
   onClick={() => navigate(`/update-transaction/${row.id}`)}
->  update
+>   <FontAwesomeIcon icon="edit" />
 </button>
 </TableCell>
                 </TableRow>
