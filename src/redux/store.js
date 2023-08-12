@@ -10,12 +10,13 @@ import {
     REGISTER,
   } from "redux-persist";
   import { modalTransaction } from "./global/global-reducer";
+  import transactionsReducer from "./transactions/transactions-reducer";
 
 
 export const store = configureStore({
     reducer: {
     //   auth: persistReducer(authPersistConfig, authReducer),
-    //   transactions: transactionsReducer,
+      transactions: transactionsReducer,
       modal: modalTransaction,
     },
     middleware: (getDefaultMiddleware) =>

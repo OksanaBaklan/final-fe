@@ -37,7 +37,11 @@ export const getAllTransactions = createAsyncThunk(
 
   async (_, { rejectWithValue }) => {
     try {
-      const { data } = await axios.get("/transactions");
+      const { data } = await axios.get("/transactions",        {
+        headers: {
+          Authorization: `Bearer ${JSON.parse(localStorage.getItem("my-app-token"))}`,
+        },
+      },);
       return data.transactions;
     } catch (err) {
       if (err.response.status === 401) {
