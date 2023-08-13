@@ -59,14 +59,19 @@ export const getBalanceTransactions = createAsyncThunk(
 
   async (_, { rejectWithValue }) => {
     try {
-      const { data } = await axios.get("/transactions");
-
+      const { data } = await axios.get("/transactions",        {
+        headers: {
+          Authorization: `Bearer ${JSON.parse(localStorage.getItem("my-app-token"))}`,
+        },
+      },);
+console.log(data)
       return data.balance;
     } catch (err) {
       return rejectWithValue(toast.error("No data"));
     }
   }
 );
+
 export const deleteTransaction = createAsyncThunk(
   "transactions/delete",
   async (_id, { rejectWithValue }) => {
@@ -77,7 +82,7 @@ export const deleteTransaction = createAsyncThunk(
             }
           });
 
-      return  { deletedId:_id, balance: data.balance };
+      return  { deletedId:_id, balance: data.data.balance };
     } catch (err) {
       return rejectWithValue(toast.error("No data"));
     }

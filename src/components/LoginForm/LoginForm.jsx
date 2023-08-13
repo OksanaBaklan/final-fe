@@ -19,7 +19,7 @@ export default function LoginForm() {
     user,
     setUser,
     balance,
-    setBalance,
+    // setBalance,
     setToken,
     authenticated,
     setAuthenticated,
@@ -53,7 +53,7 @@ export default function LoginForm() {
       navigate("/");
       setAuthenticated(true);
       console.log(authenticated);
-      setBalance(response.data.balance);
+      // setBalance(response.data.balance);
     } catch (err) {
       setShowError(err.response.data);
     }

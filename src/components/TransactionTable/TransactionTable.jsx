@@ -111,7 +111,7 @@ export default function TransactionTable({transactions, transactionsDeleteHandle
                 <TableCell align="center">category</TableCell>
                 <TableCell align="center">comment</TableCell>
                 <TableCell align="center">amount</TableCell>
-                <TableCell align="center">balance</TableCell>
+                {/* <TableCell align="center">balance</TableCell> */}
                 <TableCell align="center">delete</TableCell>
                 <TableCell align="center">edit</TableCell>
 
@@ -140,7 +140,7 @@ export default function TransactionTable({transactions, transactionsDeleteHandle
                   >
                     {row.amount}
                   </TableCell>
-                  <TableCell align="center">{row.balance}</TableCell>
+                  {/* <TableCell align="center">{row.balance}</TableCell> */}
                   <TableCell align="center">
                   <button className={s.deletebtn} 
     //               onClick={async()=>{ 

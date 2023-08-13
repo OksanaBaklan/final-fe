@@ -12,7 +12,11 @@ const items = createReducer([], {
   [getAllTransactions.fulfilled]: (_, { payload }) => payload,
 });
 const balance = createReducer(0, {
-  [getBalanceTransactions.fulfilled]: (_, { payload }) => payload,
+  [getBalanceTransactions.fulfilled]: (_, { payload }) => {
+    // console.log(payload);
+    return payload},
+  [deleteTransaction.fulfilled]: (_, { payload }) => payload.balance,
+
 });
 const isLoading = createReducer(false, {
   [addTransaction.pending]: () => true,
