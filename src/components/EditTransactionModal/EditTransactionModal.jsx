@@ -3,7 +3,7 @@ import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import classNames from "classnames";
 import * as React from "react";
-import { addTransaction } from "../../redux/transactions/transaction-operations";
+import { editTransaction } from "../../redux/transactions/transaction-operations";
 
 import { useEffect } from "react";
 import closeIcon from "../../images/modal-transaction/close.svg";
@@ -18,11 +18,11 @@ const validationSchema = Yup.object().shape({
   comment: Yup.string(),
 });
 
-export default function ModalAddTransaction({ modalAction }) {
-
+export default function ModalEditTransaction({ modalAction, id }) {
+  console.log(id);
   const dispatch = useDispatch();
   const handleSubmit = ({ date, isIncome, amount, comment, categoryId }) => {
-    dispatch(addTransaction({ date, isIncome, amount, comment, categoryId }));
+    dispatch(editTransaction({id:id,updateTransaction:{ date, isIncome, amount, comment, categoryId }}));
   };
 
   const handleKeyDown = (event) => {
@@ -81,7 +81,7 @@ export default function ModalAddTransaction({ modalAction }) {
             </button>
             <Form>
               <div className={s.form}>
-                <b className={s.modalDescription}>Add transaction</b>
+                <b className={s.modalDescription}>Update transaction</b>
 
                 <div className={s.switch__container}>
                   <div className={s.switch__control}>
@@ -167,7 +167,7 @@ export default function ModalAddTransaction({ modalAction }) {
                   className={classNames(s.btn, s.btnAdd)}
                   type={`submit`}
                   disabled={!isValid || !dirty}>
-                  Add
+                  Update
                 </button>
                 <button
                   onClick={modalAction}

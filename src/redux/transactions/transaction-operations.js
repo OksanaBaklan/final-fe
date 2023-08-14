@@ -32,6 +32,7 @@ export const addTransaction = createAsyncThunk(
     }
   }
 );
+
 export const getAllTransactions = createAsyncThunk(
   "transaction/all",
 
@@ -54,6 +55,7 @@ export const getAllTransactions = createAsyncThunk(
     }
   }
 );
+
 export const getBalanceTransactions = createAsyncThunk(
   "transaction/balance",
 
@@ -64,7 +66,7 @@ export const getBalanceTransactions = createAsyncThunk(
           Authorization: `Bearer ${JSON.parse(localStorage.getItem("my-app-token"))}`,
         },
       },);
-console.log(data)
+
       return data.balance;
     } catch (err) {
       return rejectWithValue(toast.error("No data"));
@@ -88,3 +90,38 @@ export const deleteTransaction = createAsyncThunk(
     }
   }
 )
+
+export const editTransaction = createAsyncThunk(
+  "transactions/edit",
+  async ({_id,updateTransaction}, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.patch(`/transactions/${_id}`,updateTransaction, {
+            headers:{
+              'Authorization': `Bearer ${JSON.parse(localStorage.getItem("my-app-token"))}`
+            }
+          });
+
+          return data;
+        } catch (err) {
+      return rejectWithValue(toast.error("No data"));
+    }
+  }
+)
+
+export const getDetailsTransactions = createAsyncThunk(
+  "transaction/detailsTransactions",
+
+  async (_id, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.delete(`/transactions/${_id}`, {
+        headers:{
+          'Authorization': `Bearer ${JSON.parse(localStorage.getItem("my-app-token"))}`
+        }
+      });
+console.log(data)
+      return data;
+    } catch (err) {
+      return rejectWithValue(toast.error("No data"));
+    }
+  }
+);
