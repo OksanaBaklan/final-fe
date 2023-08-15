@@ -7,15 +7,16 @@ const Currency = () => {
   const [exchangeRates, setExchangeRates] = useState([]);
 
   const fetchData = async () => {
-    const access_key = "33f17c9d131c752a6bac77cc7c11580f";
-    const endpoint = "latest";
+    // const access_key = "33f17c9d131c752a6bac77cc7c11580f";
+    // const endpoint = "latest";
 
     try {
       const response = await axios.get(
-        `http://data.fixer.io/api/${endpoint}?access_key=${access_key}`,
+        `https://v6.exchangerate-api.com/v6/8278746a42b16c9d29c494c9/latest/USD`,
       );
 
-      const { rates } = response.data;
+      const  rates  = response.data.conversion_rates;
+console.log(rates);
 
       if (rates) {
         const filteredRates = Object.entries(rates)

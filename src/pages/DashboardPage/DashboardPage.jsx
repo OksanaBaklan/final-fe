@@ -2,7 +2,7 @@ import { Outlet, useLocation } from "react-router-dom";
 
 import s from "./DashboardPage.module.css";
 import Navigation from "../../components/Navigation";
-// import Currency from "../../components/Currency/Currency";
+import Currency from "../../components/Currency/Currency";
 import Container from "../../components/Container/Container";
 import Header from "../../components/Header/Header";
 import Balance from "../../components/Balance/Balance";
@@ -21,7 +21,7 @@ export default function DashboardPage() {
               <Navigation />
               <Balance />
             </div>
-            {/* <Currency /> */}
+            <Currency />
           </div>
           <Outlet />
           {pathname === "/table" && <ButtonAddTransaction />}
