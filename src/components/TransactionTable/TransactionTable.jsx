@@ -4,7 +4,6 @@ import TableCell from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { faTrash, faPen } from "@fortawesome/free-solid-svg-icons";
 
 import s from "./TransactionTable.module.css";
 import NoTransactions from "../NoTransactions";
@@ -12,10 +11,24 @@ import axios from "axios";
 import dateConverter from "../../services/dateConverter";
 import { transactionCategories } from "./transactionCategories";
 import createData from "../../services/createData";
-import { useContext, useEffect, useState } from "react";
+import { Fragment, useCallback, useContext, useEffect, useState } from "react";
 import { UserContext } from "../../storeContext/UserContext";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash,faEdit } from '@fortawesome/free-solid-svg-icons';
+import '@fortawesome/fontawesome-svg-core/styles.css'; // Make sure to import FontAwesome styles
+
+// This configuration ensures proper behavior of the icon library
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { useDispatch, useSelector } from "react-redux";
+import { getDetailTransaction, getLoading, getTransactions } from "../../redux/transactions/transactions-selectors";
+import { fetchDetailsTransaction, getAllTransactions } from "../../redux/transactions/transaction-operations";
+import { globalAction, globalSelectors } from "../../redux/global";
+import ModalEditTransaction from "../EditTransactionModal/EditTransactionModal";
+
+library.add(faTrash);
+library.add(faEdit);
 
 const theme = createTheme({
   components: {
@@ -37,37 +50,28 @@ const theme = createTheme({
   },
 });
 
-export default function TransactionTable() {
-  const [transactions, setTransaction] = useState([]);
+export default function TransactionTable({transactions, transactionsDeleteHandler}) {
+  const [editId, setEditId]=useState('')
 
-  const { balance, setBalance  } = useContext(UserContext);
+  const dispatch = useDispatch();
 
-  console.log(balance);
+  const modal = useSelector(globalSelectors.getEditModalValue);
 
-  const navigate = useNavigate()
+  useEffect(()=>{
+    dispatch(fetchDetailsTransaction(editId))
+  },[dispatch, editId])
 
+  const transactionDetails = useSelector(getDetailTransaction);
+  const closeModal = useCallback(
+    () => dispatch(globalAction.closeEditModal()),
+    [dispatch]
+  );
 
-  const token = JSON.parse(localStorage.getItem("my-app-token"));
-  async function fetchData(token) {
-    try {
-      const { data } = await axios.get(
-        `http://localhost:5555/api/transactions/`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        },
-      );
-      setTransaction(data.transactions);
-      setBalance(data.balance);
-    } catch (err) {
-      console.log(err);
-    }
-  }
+  // const openModal = useCallback(
+  //   () => dispatch(globalAction.openEditModal()),
+  //   [dispatch]
+  // );
 
-  useEffect(() => {
-    fetchData(token);
-  }, [balance]);
 
   const rows = transactions?.map((trans) => {
     const isIncome = trans.isIncome ? "+" : "-";
@@ -86,7 +90,6 @@ export default function TransactionTable() {
       trans._id
     );
 
-    // console.log(arrRow.id);
     return arrRow;
   });
 
@@ -123,7 +126,7 @@ export default function TransactionTable() {
                 <TableCell align="center">category</TableCell>
                 <TableCell align="center">comment</TableCell>
                 <TableCell align="center">amount</TableCell>
-                <TableCell align="center">balance</TableCell>
+                {/* <TableCell align="center">balance</TableCell> */}
                 <TableCell align="center">delete</TableCell>
                 <TableCell align="center">edit</TableCell>
 
@@ -152,30 +155,30 @@ export default function TransactionTable() {
                   >
                     {row.amount}
                   </TableCell>
-                  <TableCell align="center">{row.balance}</TableCell>
+                  {/* <TableCell align="center">{row.balance}</TableCell> */}
                   <TableCell align="center">
-                  <button className={s.deletebtn} onClick={async()=>{ 
-                      const token = JSON.parse(localStorage.getItem("my-app-token"));
+                  <button className={s.deletebtn} 
 
-      try {
-      await axios.delete(`http://localhost:5555/api/transactions/${row.id}`, {
-        headers:{
-          'Authorization': `Bearer ${JSON.parse(localStorage.getItem("my-app-token"))}`
-        }
-      });
-      fetchData(token);
-    } catch (error) {
-      console.log(error.message)
-    }}}>
-  <FontAwesomeIcon icon={faTrash} />
+    onClick={()=>transactionsDeleteHandler(row.id)}
+    >
+   <FontAwesomeIcon icon="trash" />
 </button>
 </TableCell>
 <TableCell align="center">
 <button
   className={s.updateIcon}
-  onClick={() => navigate(`/update-transaction/${row.id}`)}
->  <FontAwesomeIcon icon={faPen} />
+  type="button"
+  name="editOperation"
+  onClick={  
+      () =>
+     { setEditId(row.id);
+      dispatch(globalAction.openEditModal()) }
+  }
+>   <FontAwesomeIcon icon="edit" />
 </button>
+      <Fragment>
+        {modal && <ModalEditTransaction modalValue={modal} editId={editId} transactionDetails={transactionDetails} modalAction={closeModal}></ModalEditTransaction>}
+      </Fragment>
 </TableCell>
                 </TableRow>
               ))}

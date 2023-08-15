@@ -5,7 +5,6 @@ import { Link, Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
 import AppBackground from "./components/AppBackground/AppBackground";
 import LoginPage from "./pages/LoginPage/LoginPage";
-import Donutchart from "./components/Diagramm Tab/Donutchart";
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip } from "chart.js";
 import TransactionForm from "./components/NewTransaction/TransactionForm";

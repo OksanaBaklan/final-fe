@@ -9,8 +9,8 @@ const UserProvider = ({ children }) => {
   const [authenticated, setAuthenticated] = useState(false);
   const [userName, setUserName] = useState("");
   const [userId, setUserId] = useState("");
-  const [balance, setBalance] = useState("");
-  console.log(balance);
+  // const [balance, setBalance] = useState("");
+  // console.log(balance);
 
   useEffect(() => {
     const token = JSON.parse(localStorage.getItem("my-app-token"));
@@ -51,8 +51,8 @@ const UserProvider = ({ children }) => {
         userName,
         setUserName,
         setAuthenticated,
-        balance,
-        setBalance,
+        // balance,
+        // setBalance,
       }}
     >
       {children}

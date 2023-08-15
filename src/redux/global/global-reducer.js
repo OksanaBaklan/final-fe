@@ -1,13 +1,16 @@
 import { createReducer } from "@reduxjs/toolkit";
 
-import { openModal, closeModal } from "./global-action";
+import { openModal, closeModal,openEditModal,closeEditModal } from "./global-action";
 
 const setTrue = () => true;
 const setFalse = () => false;
 
-const modalTransaction = createReducer(false, {
+export const modalTransaction = createReducer(false, {
   [openModal]: setTrue,
   [closeModal]: setFalse,
 });
 
-export { modalTransaction };
+export const modalEditTransaction = createReducer(false, {
+  [openEditModal]: setTrue,
+  [closeEditModal]: setFalse,
+});

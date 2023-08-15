@@ -32,12 +32,17 @@ export const addTransaction = createAsyncThunk(
     }
   }
 );
+
 export const getAllTransactions = createAsyncThunk(
   "transaction/all",
 
   async (_, { rejectWithValue }) => {
     try {
-      const { data } = await axios.get("/transactions");
+      const { data } = await axios.get("/transactions",        {
+        headers: {
+          Authorization: `Bearer ${JSON.parse(localStorage.getItem("my-app-token"))}`,
+        },
+      },);
       return data.transactions;
     } catch (err) {
       if (err.response.status === 401) {
@@ -50,14 +55,72 @@ export const getAllTransactions = createAsyncThunk(
     }
   }
 );
+
 export const getBalanceTransactions = createAsyncThunk(
   "transaction/balance",
 
   async (_, { rejectWithValue }) => {
     try {
-      const { data } = await axios.get("/transactions");
+      const { data } = await axios.get("/transactions",        {
+        headers: {
+          Authorization: `Bearer ${JSON.parse(localStorage.getItem("my-app-token"))}`,
+        },
+      },);
 
       return data.balance;
+    } catch (err) {
+      return rejectWithValue(toast.error("No data"));
+    }
+  }
+);
+
+export const deleteTransaction = createAsyncThunk(
+  "transactions/delete",
+  async (_id, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.delete(`/transactions/${_id}`, {
+            headers:{
+              'Authorization': `Bearer ${JSON.parse(localStorage.getItem("my-app-token"))}`
+            }
+          });
+
+      return  { deletedId:_id, balance: data.data.balance };
+    } catch (err) {
+      return rejectWithValue(toast.error("No data"));
+    }
+  }
+)
+
+export const editTransaction = createAsyncThunk(
+  "transactions/edit",
+  async ({_id, updatedData},  { rejectWithValue }) => {
+
+    try {
+      const { data } = await axios.patch(`/transactions/${_id}`, updatedData, {
+            headers:{
+              'Authorization': `Bearer ${JSON.parse(localStorage.getItem("my-app-token"))}`
+            }
+          });
+          console.log(data);
+          return  { editId:_id, balance: data.data.userBalance, transaction: data.data.transaction};
+        } catch (err) {
+      return rejectWithValue(toast.error("No data"));
+    }
+  }
+)
+
+export const fetchDetailsTransaction = createAsyncThunk(
+  "transaction/detailsTransactions",
+
+  async (_id, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.get(`/transactions/${_id}`, {
+        headers:{
+          'Authorization': `Bearer ${JSON.parse(localStorage.getItem("my-app-token"))}`
+        }
+      });
+// console.log(data)
+      return data;
     } catch (err) {
       return rejectWithValue(toast.error("No data"));
     }

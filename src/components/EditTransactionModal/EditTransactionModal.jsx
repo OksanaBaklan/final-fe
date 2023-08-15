@@ -1,15 +1,16 @@
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import classNames from "classnames";
 import * as React from "react";
-import { addTransaction } from "../../redux/transactions/transaction-operations";
-
+import { editTransaction, fetchDetailsTransaction } from "../../redux/transactions/transaction-operations";
+import moment from 'moment';
 import { useEffect } from "react";
 import closeIcon from "../../images/modal-transaction/close.svg";
 import { transactionCategories } from "../TransactionTable/transactionCategories";
 
-import s from "./ModalAddTransaction.module.css";
+import s from "../EditTransactionModal/ModalAEditTransaction.module.css";
+import { getDetailTransaction } from "../../redux/transactions/transactions-selectors";
 
 const validationSchema = Yup.object().shape({
   amount: Yup.number()
@@ -18,12 +19,18 @@ const validationSchema = Yup.object().shape({
   comment: Yup.string(),
 });
 
-export default function ModalAddTransaction({ modalAction }) {
+export default function ModalEditTransaction({ modalAction, editId, transactionDetails }) {
+
 
   const dispatch = useDispatch();
-  
+
+  // console.log(transactionDetails.amount,editId);
+
   const handleSubmit = ({ date, isIncome, amount, comment, categoryId }) => {
-    dispatch(addTransaction({ date, isIncome, amount, comment, categoryId }));
+   dispatch(editTransaction({
+    _id: editId,
+    updatedData: { date, isIncome, amount, comment, categoryId }})
+      );
   };
 
   const handleKeyDown = (event) => {
@@ -46,20 +53,51 @@ export default function ModalAddTransaction({ modalAction }) {
     };
   });
 
-  return (
-    <Formik
+  function dateConverter(d) {
+    const date = new Date(d);
+  
+    const months = [
+      "01",
+      "02",
+      "03",
+      "04",
+      "05",
+      "06",
+      "07",
+      "08",
+      "09",
+      "10",
+      "11",
+      "12",
+    ];
+ 
+    const fullYear = String(date.getFullYear());
+    const shortYear = String(fullYear);
+  
+    const month = String(months[date.getMonth()]);
+    const day = date.getDate();
+
+if(isNaN(day)){return}
+else{const fullDate = `${shortYear}-${month}-${day}`;
+return fullDate;}
+    
+  }
+  
+  return (<>
+
+    {transactionDetails.amount!==undefined&&transactionDetails._id===editId && <Formik
       initialValues={{
-        date: new Date().toISOString().substr(0, 10),
-        isIncome: true,
-        amount: "",
-        comment: "",
-        categoryId: "",
+        date: `${dateConverter(transactionDetails.date)}`,
+        isIncome: !transactionDetails.isIncome,
+        amount: transactionDetails.amount,
+        comment: transactionDetails.comment,
+        categoryId: transactionDetails.categoryId,
       }}
       validateOnBlur
       onSubmit={({ date, isIncome, ...all }, { resetForm }) => {
         date = Date.parse(date);
-        console.log(date);
-        console.log(typeof date);
+        // console.log(date);
+        // console.log(typeof date);
         isIncome = !isIncome;
         handleSubmit({ date, isIncome, ...all });
         resetForm();
@@ -82,7 +120,7 @@ export default function ModalAddTransaction({ modalAction }) {
             </button>
             <Form>
               <div className={s.form}>
-                <b className={s.modalDescription}>Add transaction</b>
+                <b className={s.modalDescription}>Update transaction</b>
 
                 <div className={s.switch__container}>
                   <div className={s.switch__control}>
@@ -168,7 +206,7 @@ export default function ModalAddTransaction({ modalAction }) {
                   className={classNames(s.btn, s.btnAdd)}
                   type={`submit`}
                   disabled={!isValid || !dirty}>
-                  Add
+                  Update
                 </button>
                 <button
                   onClick={modalAction}
@@ -181,6 +219,8 @@ export default function ModalAddTransaction({ modalAction }) {
           </div>
         </div>
       )}
-    </Formik>
+    </Formik>}
+  
+    </>
   );
 }

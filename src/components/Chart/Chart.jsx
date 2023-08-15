@@ -6,6 +6,10 @@ import s from "./Chart.module.css";
 import DiagramTab from "../DiagrammTab/Donutchart";
 
 import { UserContext } from "../../storeContext/UserContext";
+import { useDispatch, useSelector } from "react-redux";
+import { getBalance, getTransactions } from "../../redux/transactions/transactions-selectors";
+import { useEffect } from "react";
+import { getBalanceTransactions } from "../../redux/transactions/transaction-operations";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -25,7 +29,15 @@ const obj = {
 };
 
 export default function Chart() {
-  const {balance}=useContext(UserContext)
+  // const {balance}=useContext(UserContext)
+
+
+  const balance = useSelector(getBalance);
+  const transactions = useSelector(getTransactions);
+  const dispatch = useDispatch();
+  
+  useEffect(() =>{ dispatch(getBalanceTransactions())}, [dispatch, transactions]);
+
 
   const [loader, setLoader] = useState(false);
   const [fetchDate, setFetchDate] = useState(obj);
