@@ -3,7 +3,7 @@ import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ButtonAddTransaction from "../ButtonAddTransactions/ButtonAddTransactions";
 
 // import { getTransactionCategories } from "../../redux/auth/auth-selectors";
@@ -21,6 +21,13 @@ import '@fortawesome/fontawesome-svg-core/styles.css'; // Make sure to import Fo
 
 // This configuration ensures proper behavior of the icon library
 import { library } from '@fortawesome/fontawesome-svg-core';
+import { deleteTransaction, fetchDetailsTransaction } from "../../redux/transactions/transaction-operations";
+import { globalAction, globalSelectors } from "../../redux/global";
+import { Fragment, useState } from "react";
+import { useEffect } from "react";
+import { getDetailTransaction } from "../../redux/transactions/transactions-selectors";
+import { useCallback } from "react";
+import ModalEditTransaction from "../EditTransactionModal/EditTransactionModal";
 
 library.add(faTrash);
 library.add(faEdit);
@@ -42,7 +49,28 @@ const theme = createTheme({
   },
 });
 
-export default function TransactionTableMobile({ transactions }) {
+export default function TransactionTableMobile({ transactions} ) {
+  const [editId, setEditId]=useState('')
+
+  const dispatch = useDispatch()
+
+  const transactionsDeleteHandler = id => {
+    dispatch(deleteTransaction(id));
+  };
+
+  const modal = useSelector(globalSelectors.getEditModalValue);
+
+  const transactionDetails = useSelector(getDetailTransaction);
+  const closeModal = useCallback(
+    () => dispatch(globalAction.closeEditModal()),
+    [dispatch]
+  );
+
+
+  useEffect(()=>{
+    dispatch(fetchDetailsTransaction(editId))
+  },[dispatch, editId])
+
   const column = transactions.map((trans) => {
     const isIncome = trans.isIncome ? "+" : "-";
     const fullDate = dateConverter(trans.date);
@@ -57,7 +85,8 @@ export default function TransactionTableMobile({ transactions }) {
       transactionName.name,
       trans.comment,
       trans.amount.toFixed(2),
-      trans.balance.toFixed(2)
+      trans.balance.toFixed(2),
+      trans._id
     );
 
     return arrCol;
@@ -129,13 +158,18 @@ export default function TransactionTableMobile({ transactions }) {
                   },
                 }}
               >
-                <TableCell align="left">balance</TableCell>
-                <TableCell align="right">{col.balance}</TableCell>
+                {/* <TableCell align="left">balance</TableCell> */}
+                {/* <TableCell align="right">{col.balance}</TableCell> */}
               </TableRow>
               <TableRow>
                 <TableCell align="left">delete transaction</TableCell>
                 <TableCell>
-                <button className={s.deletebtn}>
+                <button 
+                className={s.deletebtn}
+                onClick={()=>{
+                  console.log(col.id);
+                  transactionsDeleteHandler(col.id)}}
+                >
       <FontAwesomeIcon icon="trash" />
                 </button>
                 </TableCell>
@@ -145,9 +179,15 @@ export default function TransactionTableMobile({ transactions }) {
                 <TableCell>
                 <button
   className={s.updateIcon}
-  // onClick={() => navigate(`/update-transaction/${row.id}`)}
->   <FontAwesomeIcon icon="edit" />
+  onClick={  
+    () =>
+   { setEditId(col.id);
+    dispatch(globalAction.openEditModal()) }
+}>   <FontAwesomeIcon icon="edit" />
 </button>
+<Fragment>
+        {modal && <ModalEditTransaction modalValue={modal} editId={editId} transactionDetails={transactionDetails} modalAction={closeModal}></ModalEditTransaction>}
+      </Fragment>
                 </TableCell>
               </TableRow>
             </TableBody>

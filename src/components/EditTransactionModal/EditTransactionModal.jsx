@@ -26,22 +26,10 @@ export default function ModalEditTransaction({ modalAction, editId, transactionD
 
   // console.log(transactionDetails.amount,editId);
 
-  const handleSubmit = ({
-        amount,
-        comment,
-        date,
-        category,
-        isIncome,
-  }) => {
-   transactionDetails &&   dispatch(editTransaction({
+  const handleSubmit = ({ date, isIncome, amount, comment, categoryId }) => {
+   dispatch(editTransaction({
     _id: editId,
-    updatedData: {
-        // amount: values.value,
-        // comment: values.comment,
-        // date: values.date,
-        // category: values.category.label,
-        // isIncome: true,
-      }})
+    updatedData: { date, isIncome, amount, comment, categoryId }})
       );
   };
 

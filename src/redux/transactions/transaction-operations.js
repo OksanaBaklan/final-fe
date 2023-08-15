@@ -96,11 +96,7 @@ export const editTransaction = createAsyncThunk(
   async ({_id, updatedData},  { rejectWithValue }) => {
 
     try {
-      const { data } = await axios.patch(`/transactions/${_id}`,{ 
-        isIncome: true,
-        balance: 5,
-        amount: 1,
-        comment: 1,}, {
+      const { data } = await axios.patch(`/transactions/${_id}`, updatedData, {
             headers:{
               'Authorization': `Bearer ${JSON.parse(localStorage.getItem("my-app-token"))}`
             }

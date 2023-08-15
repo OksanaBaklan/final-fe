@@ -21,6 +21,7 @@ const validationSchema = Yup.object().shape({
 export default function ModalAddTransaction({ modalAction }) {
 
   const dispatch = useDispatch();
+  
   const handleSubmit = ({ date, isIncome, amount, comment, categoryId }) => {
     dispatch(addTransaction({ date, isIncome, amount, comment, categoryId }));
   };
