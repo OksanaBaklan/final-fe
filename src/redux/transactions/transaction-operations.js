@@ -93,32 +93,37 @@ export const deleteTransaction = createAsyncThunk(
 
 export const editTransaction = createAsyncThunk(
   "transactions/edit",
-  async ({_id,updateTransaction}, { rejectWithValue }) => {
+  async ({_id, updatedData},  { rejectWithValue }) => {
+
     try {
-      const { data } = await axios.patch(`/transactions/${_id}`,updateTransaction, {
+      const { data } = await axios.patch(`/transactions/${_id}`,{ 
+        isIncome: true,
+        balance: 5,
+        amount: 1,
+        comment: 1,}, {
             headers:{
               'Authorization': `Bearer ${JSON.parse(localStorage.getItem("my-app-token"))}`
             }
           });
-
-          return data;
+          console.log(data);
+          return  { editId:_id, balance: data.data.userBalance, transaction: data.data.transaction};
         } catch (err) {
       return rejectWithValue(toast.error("No data"));
     }
   }
 )
 
-export const getDetailsTransactions = createAsyncThunk(
+export const fetchDetailsTransaction = createAsyncThunk(
   "transaction/detailsTransactions",
 
   async (_id, { rejectWithValue }) => {
     try {
-      const { data } = await axios.delete(`/transactions/${_id}`, {
+      const { data } = await axios.get(`/transactions/${_id}`, {
         headers:{
           'Authorization': `Bearer ${JSON.parse(localStorage.getItem("my-app-token"))}`
         }
       });
-console.log(data)
+// console.log(data)
       return data;
     } catch (err) {
       return rejectWithValue(toast.error("No data"));

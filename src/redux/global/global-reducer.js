@@ -14,4 +14,3 @@ export const modalEditTransaction = createReducer(false, {
   [openEditModal]: setTrue,
   [closeEditModal]: setFalse,
 });
-// export { modalTransaction,modalEditTransaction };

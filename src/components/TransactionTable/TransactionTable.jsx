@@ -22,8 +22,8 @@ import '@fortawesome/fontawesome-svg-core/styles.css'; // Make sure to import Fo
 // This configuration ensures proper behavior of the icon library
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { useDispatch, useSelector } from "react-redux";
-import { getLoading, getTransactions } from "../../redux/transactions/transactions-selectors";
-import { getAllTransactions } from "../../redux/transactions/transaction-operations";
+import { getDetailTransaction, getLoading, getTransactions } from "../../redux/transactions/transactions-selectors";
+import { fetchDetailsTransaction, getAllTransactions } from "../../redux/transactions/transaction-operations";
 import { globalAction, globalSelectors } from "../../redux/global";
 import ModalEditTransaction from "../EditTransactionModal/EditTransactionModal";
 
@@ -51,21 +51,26 @@ const theme = createTheme({
 });
 
 export default function TransactionTable({transactions, transactionsDeleteHandler}) {
-
+  const [editId, setEditId]=useState('')
 
   const dispatch = useDispatch();
 
   const modal = useSelector(globalSelectors.getEditModalValue);
 
+  useEffect(()=>{
+    dispatch(fetchDetailsTransaction(editId))
+  },[dispatch, editId])
+
+  const transactionDetails = useSelector(getDetailTransaction);
   const closeModal = useCallback(
     () => dispatch(globalAction.closeEditModal()),
     [dispatch]
   );
 
-  const openModal = useCallback(
-    () => dispatch(globalAction.openEditModal()),
-    [dispatch]
-  );
+  // const openModal = useCallback(
+  //   () => dispatch(globalAction.openEditModal()),
+  //   [dispatch]
+  // );
 
 
   const rows = transactions?.map((trans) => {
@@ -164,11 +169,15 @@ export default function TransactionTable({transactions, transactionsDeleteHandle
   className={s.updateIcon}
   type="button"
   name="editOperation"
-  onClick={openModal}
+  onClick={  
+      () =>
+     { setEditId(row.id);
+      dispatch(globalAction.openEditModal()) }
+  }
 >   <FontAwesomeIcon icon="edit" />
 </button>
       <Fragment>
-        {modal && <ModalEditTransaction modalValue={modal} id = {row.id} modalAction={closeModal}></ModalEditTransaction>}
+        {modal && <ModalEditTransaction modalValue={modal} editId={editId} transactionDetails={transactionDetails} modalAction={closeModal}></ModalEditTransaction>}
       </Fragment>
 </TableCell>
                 </TableRow>
