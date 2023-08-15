@@ -102,7 +102,7 @@ export default function RegisterForm() {
             </div> */}
 
 
-            <input type="submit"   className={s.btn}  value="Register" />
+            {/* <input type="submit"   className={s.btn}  value="Register" /> */}
 
         <input type="submit" className={s.btn} value="Register" />
 
