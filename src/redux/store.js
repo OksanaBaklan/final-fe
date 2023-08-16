@@ -1,4 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
+import storage from "redux-persist/lib/storage";
+
 import {
     persistStore,
     persistReducer,
@@ -11,11 +13,17 @@ import {
   } from "redux-persist";
   import { modalTransaction, modalEditTransaction } from "./global/global-reducer";
   import transactionsReducer from "./transactions/transactions-reducer";
+  import authReducer from "./auth/auth-reducer";
 
+  const authPersistConfig = {
+    key: "auth",
+    storage,
+    whitelist: ["token"],
+  };
 
 export const store = configureStore({
     reducer: {
-    //   auth: persistReducer(authPersistConfig, authReducer),
+      auth: persistReducer(authPersistConfig, authReducer),
       transactions: transactionsReducer,
       modal: modalTransaction,
       modalEditTransaction: modalEditTransaction
