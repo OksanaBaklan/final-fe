@@ -1,10 +1,13 @@
 import { useState } from "react";
+import { useMediaQuery } from "react-responsive";
+
 import { ReactComponent as Logout } from "../../images/icon-logout/logout.svg";
 import ModalLogout from "../ModalLogout/ModalLogout";
 import s from "./UserMenu.module.css";
 
 export default function UserMenu() {
   const [showModal, setShowModal] = useState(false);
+  const isMobileOrTablet = useMediaQuery({ query: "(min-width: 768px)" });
 
   const onModalToggle = () => {
     setShowModal((prev) => !prev);
@@ -26,8 +29,12 @@ export default function UserMenu() {
           height="25px"
           alt="avatar"
         />
+        <span className={s.line}>{isMobileOrTablet ? "|" : ""}</span>
+
         <button onClick={onModalToggle} type="button" className={s.logout}>
           {<Logout />}
+          <span className={s.exit}>{isMobileOrTablet ? "Log out" : ""}</span>
+
         </button>
         {showModal && <ModalLogout onOverlayClose={onOverlayClose} />}
       </>

@@ -33,15 +33,12 @@ const SignupSchema = Yup.object().shape({
 export default function LoginForm() {
 
   // const [showError, setShowError] = useState(false);
-  const navigate = useNavigate();
 
   const dispatch = useDispatch();
   const handleSubmit = ({ email, password }) => {
   
     dispatch(loginUser({ email, password }));
-    setTimeout(() => {
-      navigate("/");     
-     }, 2500);
+
   };
 
   // const {

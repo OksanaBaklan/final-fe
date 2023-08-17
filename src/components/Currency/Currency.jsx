@@ -16,7 +16,7 @@ const Currency = () => {
       );
 
       const  rates  = response.data.conversion_rates;
-      console.log(rates);
+      // console.log(rates);
 
       if (rates) {
         const filteredRates = Object.entries(rates)

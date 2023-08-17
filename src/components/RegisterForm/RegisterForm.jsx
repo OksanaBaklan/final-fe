@@ -40,15 +40,10 @@ export default function RegisterForm() {
   const [userImage, setUserImage] = useState("");
 
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const handleSubmit = ({ userName, email, password }) => {
     try {
       dispatch(authUser({ userName, email, password }));
-      setTimeout(() => {
-        navigate("/login");     
-       }, 4000);
-     
     } catch (error) {
       setErrorMessage(error.request.response);
     }

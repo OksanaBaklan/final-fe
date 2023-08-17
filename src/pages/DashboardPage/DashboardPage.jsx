@@ -1,4 +1,5 @@
 import { Outlet, useLocation } from "react-router-dom";
+import { useMediaQuery } from "react-responsive";
 
 import s from "./DashboardPage.module.css";
 import Navigation from "../../components/Navigation";
@@ -11,6 +12,8 @@ import ButtonAddTransaction from "../../components/ButtonAddTransactions/ButtonA
 export default function DashboardPage() {
   const location = useLocation();
   const { pathname } = location;
+  const isMobileOrTablet = useMediaQuery({ query: "(min-width: 768px)" });
+
   return (
     <>
       <Header />
@@ -19,9 +22,11 @@ export default function DashboardPage() {
           <div className={s.flex}>
             <div className={s.navBox}>
               <Navigation />
-              <Balance />
+              {/* <Balance /> */}
+              {pathname !== "currency" && <Balance />}
+
+            {isMobileOrTablet && <Currency />}
             </div>
-            <Currency />
           </div>
           <Outlet />
           {pathname === "/table" && <ButtonAddTransaction />}

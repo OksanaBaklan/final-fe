@@ -8,9 +8,11 @@ axios.defaults.baseURL = "http://localhost:5555/api"
 const token = {
   set(token) {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-  },
+    localStorage.setItem("my-app-token", JSON.stringify(token))  },
   unset() {
     axios.defaults.headers.common.Authorization = "";
+    localStorage.removeItem("my-app-token");
+
   },
 };
 
@@ -85,6 +87,7 @@ export const fetchCurrentUser = createAsyncThunk(
   async (_, { getState, rejectWithValue }) => {
     const state = getState();
     const persistedToken = state.auth.token;
+    console.log(persistedToken);
     if (!persistedToken) {
       return rejectWithValue();
     }
