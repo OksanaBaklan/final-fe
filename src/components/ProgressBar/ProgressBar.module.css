@@ -1,0 +1,19 @@
+@import "../../stylesheet/var.css";
+.progress {
+  width: 280px;
+}
+@media screen and (min-width: 768px) {
+  .progress {
+    width: 409.5px;
+  }
+}
+.progres__wrap {
+  transition: width 500ms ease;
+}
+.progres__text {
+  padding: 5px;
+  color: var(--main-text-color);
+  font-weight: 700;
+  font-family: var(--main__font-family);
+  font-size: 12px;
+}

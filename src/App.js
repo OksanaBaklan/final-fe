@@ -18,6 +18,9 @@ import Statistic from "./components/Statistic/Statistic";
 import Chart from "./components/Chart/Chart";
 import UpdateTransaction from "./components/TransactionTable/UpdateTransaction";
 // import { UserContextProvider } from "./storeContext/authContext/UserContextProvider";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
+
 
 ChartJS.register(ArcElement, Tooltip);
 
@@ -27,6 +30,7 @@ function App() {
   console.log(authenticated);
   return (
     <div className="App">
+       <ToastContainer autoClose={6000} />
       <AppBackground>
         {' '}
         {/* <TransactionForm></TransactionForm> */}

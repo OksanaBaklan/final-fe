@@ -9,111 +9,250 @@ import classNames from "classnames";
 import { useState } from "react";
 import axios from "axios";
 import LogoComponent from "../LogoComponent/LogoComponent";
+import { useDispatch } from "react-redux";
+import { authUser } from "../../redux/auth/auth-operations";
+import { Formik, Form } from "formik";
+import InputField from "../InputField/InputField"
+import ProgressSwitch from "../RegisterForm/ProgressSwitch"
+
+const SignupSchema = Yup.object().shape({
+  email: Yup.string()
+    .email("Incorrect Email")
+    .min(6, "minimum 6 characters!")
+    .required("required"),
+  password: Yup.string()
+    .typeError("Must be a string")
+    .min(6, "minimum 6 characters!")
+    .max(12, "No more than 12 characters!")
+    .required("required"),
+  confirmPassword: Yup.string()
+    .oneOf([Yup.ref("password")], "Password mismatch")
+    .required("required"),
+  userName: Yup.string()
+    .typeError()
+    .min(2, "minimum 2 characters!")
+    .max(32, "No more than 32 characters!")
+    .required("required"),
+});
 
 export default function RegisterForm() {
   const [errorMessage, setErrorMessage] = useState("");
   const [userImage, setUserImage] = useState("");
 
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const submitHandler = async (e) => {
-    //   console.log("formData")
-
-    e.preventDefault();
-    const userProfile = {
-      userName: e.target["userName"].value,
-      password: e.target["password"].value,
-      confirmPassword: e.target["confirmPassword"].value,
-      email: e.target["email"].value,
-    };
-    //   const formData = new FormData()
-
-    //   for(let i = 0; i < e.target.elements.length -1 ; i++)
-    //   {
-    //     if(e.target.elements[i].name === 'avatar')
-    //     formData.append('image', e.target.elements[i].files[0])
-    //     else
-    //     formData.append(e.target.elements[i].name, e.target.elements[i].value)
-    //   }
+  const handleSubmit = ({ userName, email, password }) => {
     try {
-      const response = await axios.post(
-        `http://localhost:5555/api/users/signup`,
-        userProfile,
-      );
-      e.target.reset();
-      navigate("/login");
-    } catch (err) {
-      setErrorMessage(err.request.response);
+      dispatch(authUser({ userName, email, password }));
+      setTimeout(() => {
+        navigate("/login");     
+       }, 4000);
+     
+    } catch (error) {
+      setErrorMessage(error.request.response);
     }
-    console.log(userProfile);
   };
+
+
+  // const submitHandler = async (e) => {
+
+  //   e.preventDefault();
+  //   const userProfile = {
+  //     userName: e.target["userName"].value,
+  //     password: e.target["password"].value,
+  //     confirmPassword: e.target["confirmPassword"].value,
+  //     email: e.target["email"].value,
+  //   };
+    
+  //   try {
+  //     const response = await axios.post(
+  //       `http://localhost:5555/api/users/signup`,
+  //       userProfile,
+  //     );
+  //     e.target.reset();
+  //     navigate("/login");
+  //   } catch (err) {
+  //     setErrorMessage(err.request.response);
+  //   }
+  //   console.log(userProfile);
+  // };
+
   return (
     <>
-          <form className={s.formRegister} onSubmit={submitHandler}>
-            <LogoComponent />
-            <div className={classNames(s.input_wrap, s.inputTop)}>
-              <input
-                label={<Emailcon className={s.icon} />}
-                placeholder="E-mail"
-                className={s.input}
-                type="email"
-                name="email" 
-                required
-              />
-            </div>
-            <div className={s.input_wrap}>
-              <input
-                label={<Passwordcon className={s.icon} />}
-                className={s.input}
-                placeholder="password"
-                type="password"
-                name="password"
-                required
-              />
-            </div>
-            <div className={s.input_wrap}>
-              <input
-                label={<Passwordcon className={s.icon} />}
-                placeholder="confirm password "
-                className={s.input}
-                type="password"
-                name="confirmPassword"
-                // style={{ marginBottom: "5px" }}
-              />
-            </div>
-            {/* <ProgressSwitch value={values.password.length} /> */}
-            <div className={s.input_wrap}>
-              <input
-                label={<NameIcon className={s.icon} />}
-                placeholder="name"
-                className={s.input}
-                type="text"
-                name="userName"
-              />
-            </div>
-            {/* <div className={s.input_wrap}>
-            <input 
-                            className={s.input}
+    <Formik
+      initialValues={{
+        userName: "",
+        password: "",
+        confirmPassword: "",
+        email: "",
+      }}
+      validateOnBlur
+      onSubmit={(values, { resetForm }) => {
+        handleSubmit(values);
+        resetForm();
+      }}
+      validationSchema={SignupSchema}
+    >
+      {({
+        values,
+        errors,
+        touched,
+        handleChange,
+        handleBlur,
+        isValid,
+        dirty,
+      }) => (
+        <Form className={s.formRegister}>
+          <LogoComponent />
+          <div className={classNames(s.input_wrap, s.inputTop)}>
+            {touched.email && errors.email && (
+              <span className={s.error}>{errors.email}</span>
+            )}
+            <InputField
+              label={<Emailcon className={s.icon} />}
+              placeholder="E-mail"
+              className={s.input}
+              type="email"
+              name="email"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.email}
+            />
+          </div>
+          <div className={s.input_wrap}>
+            {touched.password && errors.password && (
+              <span className={s.error}>{errors.password}</span>
+            )}
+            <InputField
+              label={<Passwordcon className={s.icon} />}
+              className={s.input}
+              placeholder="password"
+              type="password"
+              name="password"
+              error={errors.password}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.password}
+            />
+          </div>
+          <div className={s.input_wrap}>
+            {touched.confirmPassword && errors.confirmPassword && (
+              <span className={s.error}>{errors.confirmPassword}</span>
+            )}
+            <InputField
+              label={<Passwordcon className={s.icon} />}
+              placeholder="Confirm the password"
+              className={s.input}
+              type="password"
+              name="confirmPassword"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.confirmPassword}
+              style={{ marginBottom: "5px" }}
+            />
+          </div>
+          <ProgressSwitch value={values.password.length} />
+          <div className={s.input_wrap}>
+            {touched.userName && errors.userName && (
+              <span className={s.error}>{errors.userName}</span>
+            )}
+            <InputField
+              label={<NameIcon className={s.icon} />}
+              placeholder="Your name"
+              className={s.input}
+              type="text"
+              name="userName"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.userName}
+            />
+          </div>
+          <button
+            className={s.btn}
+            disabled={!isValid || !dirty}
+            type="submit"
+          >
+            Registration
+          </button>
+          {/* {errorMessage&&<p style={{color:'red'}}>{errorMessage}</p>} */}
+          <NavLink
+            to="/login"
+            className={s.btn1}
+            style={{ textDecoration: "none" }}
+          >
+            Log in
+          </NavLink>
+        </Form>
+      )}
+    </Formik>
+  </>
+    // <>
+    //       <form className={s.formRegister} onSubmit={handleSubmit}>
+    //         <LogoComponent />
+    //         <div className={classNames(s.input_wrap, s.inputTop)}>
+    //           <input
+    //             label={<Emailcon className={s.icon} />}
+    //             placeholder="E-mail"
+    //             className={s.input}
+    //             type="email"
+    //             name="email" 
+    //             required
+    //           />
+    //         </div>
+    //         <div className={s.input_wrap}>
+    //           <input
+    //             label={<Passwordcon className={s.icon} />}
+    //             className={s.input}
+    //             placeholder="password"
+    //             type="password"
+    //             name="password"
+    //             required
+    //           />
+    //         </div>
+    //         <div className={s.input_wrap}>
+    //           <input
+    //             label={<Passwordcon className={s.icon} />}
+    //             placeholder="confirm password "
+    //             className={s.input}
+    //             type="password"
+    //             name="confirmPassword"
+    //             // style={{ marginBottom: "5px" }}
+    //           />
+    //         </div>
+    //         {/* <ProgressSwitch value={values.password.length} /> */}
+    //         <div className={s.input_wrap}>
+    //           <input
+    //             label={<NameIcon className={s.icon} />}
+    //             placeholder="name"
+    //             className={s.input}
+    //             type="text"
+    //             name="userName"
+    //           />
+    //         </div>
+    //         {/* <div className={s.input_wrap}>
+    //         <input 
+    //                         className={s.input}
 
-          type="file"
-          name="avatar"
-          onChange={(e)=>setUserImage(e.target.files[0])}
-        />
-            </div> */}
+    //       type="file"
+    //       name="avatar"
+    //       onChange={(e)=>setUserImage(e.target.files[0])}
+    //     />
+    //         </div> */}
 
 
-            {/* <input type="submit"   className={s.btn}  value="Register" /> */}
+    //         {/* <input type="submit"   className={s.btn}  value="Register" /> */}
 
-        <input type="submit" className={s.btn} value="Register" />
+    //     <input type="submit" className={s.btn} value="Register" />
 
-        <NavLink
-          to="/login"
-          className={s.btn1}
-          style={{ textDecoration: "none" }}
-        >
-          log in
-        </NavLink>
-      </form>
-    </>
+    //     <NavLink
+    //       to="/login"
+    //       className={s.btn1}
+    //       style={{ textDecoration: "none" }}
+    //     >
+    //       log in
+    //     </NavLink>
+    //   </form>
+    // </>
   );
 }
