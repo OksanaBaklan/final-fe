@@ -47,11 +47,14 @@ export const loginUser = createAsyncThunk(
   async (credentials, { rejectWithValue }) => {
     try {
       const { data } = await axios.post("/users/login", credentials);
-
-      token.set(data.data.token);
-      return data;
+      if (data) {
+        token.set(data.token);
+        toast.success("You are successfully logged in");
+      }
+      // console.log(data);
+        return data;
     } catch (err) {
-      if (err.response.status === 401) {
+      if (err.response.statusText === "Bad Request") {
         return rejectWithValue(
           toast.error("E-mail or the password is incorrect")
         );

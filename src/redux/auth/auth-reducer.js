@@ -13,15 +13,15 @@ const initialUserState = {
 };
 
 const user = createReducer(initialUserState, {
-  [authUser.fulfilled]: (_, { payload }) => payload.data,
-  [loginUser.fulfilled]: (_, { payload }) => payload.data,
+  [authUser.fulfilled]: (_, { payload }) => payload,
+  [loginUser.fulfilled]: (_, { payload }) => payload,
   [logOut.fulfilled]: () => initialUserState,
-  [fetchCurrentUser.fulfilled]: (_, { payload }) => payload.data,
+  [fetchCurrentUser.fulfilled]: (_, { payload }) => payload,
 });
 
 const token = createReducer(null, {
   // [authUser.fulfilled]: (_, { payload }) => {console.log(payload) return payload },
-  [loginUser.fulfilled]: (_, { payload }) => payload.data.token,
+  [loginUser.fulfilled]: (_, { payload }) =>  payload.token,
   [logOut.fulfilled]: () => null,
 });
 
