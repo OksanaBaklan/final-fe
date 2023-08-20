@@ -37,12 +37,17 @@ export default function Navigation() {
         <span className={s.text}>Statistic</span>
       </NavLink>
 
-        {isMobileOrTablet &&  <NavLink
-            to="/currency"
+        {/* {isMobileOrTablet &&  */}
+        <Media
+        query="(max-width: 767px)"
+        render={() => (
+         <NavLink
+            to="currency"
             className={({ isActive }) => (isActive ? s.activeLink : s.link)}
           >
             <PbImgMob className={s.navImgMob} />
-          </NavLink>}
+          </NavLink>)} />
+      
 
     </nav>
   );
