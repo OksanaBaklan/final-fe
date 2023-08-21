@@ -51,6 +51,7 @@ export default function UserMenu() {
 
   const onUserLogOut = () => {
     dispatch(logOut());
+    dispatch(globalAction.closeModalLogOut())
   };
 
   return (
