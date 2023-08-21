@@ -36,7 +36,7 @@ function App() {
   const isAuth = useSelector(getAuth);
   const isAuthRefresh = useSelector(getAuthRefresh);
   const dispatch = useDispatch();
-  console.log(isAuthRefresh);
+  // console.log(isAuthRefresh);
 
   useEffect(() => {
     dispatch(fetchCurrentUser());
@@ -52,8 +52,7 @@ function App() {
             <AppBackground>
               <Suspense fallback={<LoaderComponent />}>
                 <Routes>
-
-                  <Route path='/home' element={<LandingPage/> } />
+                  <Route path="/home" element={<LandingPage />} />
                   <Route path="/login" element={isAuth ? <Navigate to="/" /> : <LoginPage />} />
                   <Route
                     path="/register"

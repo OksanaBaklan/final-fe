@@ -67,33 +67,28 @@ export default function TransactionTable({transactions, transactionsDeleteHandle
     [dispatch]
   );
 
-  // const openModal = useCallback(
-  //   () => dispatch(globalAction.openEditModal()),
-  //   [dispatch]
-  // );
+const rows = transactions?.map((trans) => {
+  const isIncome = trans.isIncome ? "+" : "-";
+  const fullDate = dateConverter(trans.date);
+  const transactionCategorieName = transactionCategories.find(
+    (el) => el.id === trans.categoryId,
+  );
+
+  const arrRow = createData(
+    fullDate,
+    isIncome,
+    transactionCategorieName.name,
+    trans.comment,
+    trans.amount,
+    trans.balance,
+    trans._id
+  );
+
+  return arrRow;
+});
 
 
-  const rows = transactions?.map((trans) => {
-    const isIncome = trans.isIncome ? "+" : "-";
-    const fullDate = dateConverter(trans.date);
-    const transactionCategorieName = transactionCategories.find(
-      (el) => el.id === trans.categoryId,
-    );
-
-    const arrRow = createData(
-      fullDate,
-      isIncome,
-      transactionCategorieName.name,
-      trans.comment,
-      trans.amount,
-      trans.balance,
-      trans._id
-    );
-
-    return arrRow;
-  });
-
-  if (!rows) {
+  if (rows[0] === undefined) {
     return (
       <div className={s.tableWrapper}>
         <NoTransactions />
