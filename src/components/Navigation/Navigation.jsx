@@ -38,11 +38,12 @@ export default function Navigation() {
       </NavLink>
 
         {/* {isMobileOrTablet &&  */}
+        
         <Media
         query="(max-width: 767px)"
         render={() => (
          <NavLink
-            to="currency"
+            to="/currency"
             className={({ isActive }) => (isActive ? s.activeLink : s.link)}
           >
             <PbImgMob className={s.navImgMob} />

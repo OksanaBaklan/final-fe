@@ -50,7 +50,8 @@ const Currency = () => {
   return (
     <div className="currency">
     <div className="currencyCard">
-      <div style={cardStyle}>
+      {/* <div style={cardStyle}> */}
+      <div>
         {exchangeRates.length > 0 ? (
           <>
             <table style={{ borderCollapse: "collapse", width: "100%" }}>
@@ -82,17 +83,17 @@ const Currency = () => {
 };
 
 // Define card style
-const cardStyle = {
-  backgroundColor: "#4A56E2",
-  border: "1px solid #ccc",
-  borderRadius: "10px",
-  padding: "10px",
-  margin: "auto",
-  // width: "25%",
-  height: "fit-content", // Adjusts the height based on the content
-  display: "flex", // Displays as a flex container
-  flexDirection: "column", // Aligns content in a column layout
-};
+// const cardStyle = {
+//   backgroundColor: "#4A56E2",
+//   border: "1px solid #ccc",
+//   borderRadius: "10px",
+//   padding: "10px",
+//   margin: "auto",
+//   // width: "25%",
+//   height: "fit-content", // Adjusts the height based on the content
+//   display: "flex", // Displays as a flex container
+//   flexDirection: "column", // Aligns content in a column layout
+// };
 
 
 const tableHeaderStyle = {

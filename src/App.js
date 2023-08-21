@@ -36,48 +36,60 @@ function App() {
   const isAuth = useSelector(getAuth);
   const isAuthRefresh = useSelector(getAuthRefresh);
   const dispatch = useDispatch();
+  console.log(isAuthRefresh);
 
   useEffect(() => {
     dispatch(fetchCurrentUser());
     console.log(isAuth);
   }, [dispatch]);
   return (
-    <div className="App">
-      <ToastContainer autoClose={6000} />
-      <AppBackground>
-        <Suspense fallback={<LoaderComponent />}>
-          <Routes>
-            <Route path="/login" element={isAuth ? <Navigate to="/" /> : <LoginPage />} />
-            <Route path="/register" element={isAuth ? <Navigate to="/" /> : <LoginPage />} />
-            <Route path="/" element={isAuth ? <DashboardPage /> : <Navigate replace to="/login" />}>
-              <Route index element={<Navigate replace to="/table" />} />
+    <>
+      {!isAuthRefresh && (
+        <>
+          <div className="App">
+            <ToastContainer autoClose={6000} />
+            <AppBackground>
+              <Suspense fallback={<LoaderComponent />}>
+                <Routes>
+                  <Route path="/login" element={isAuth ? <Navigate to="/" /> : <LoginPage />} />
+                  <Route
+                    path="/register"
+                    element={isAuth ? <Navigate to="/" /> : <RegisterPage />}
+                  />
+                  <Route
+                    path="/"
+                    element={isAuth ? <DashboardPage /> : <Navigate replace to="/login" />}
+                  >
+                    <Route index element={<Navigate replace to="/table" />} />
 
-              <Route path="table" element={<Table />} />
-              <Route path="statistic" element={<Chart />} />
-              <Route path="currency" element={<Currency />} />
-            </Route>
-            <Route path="/update-transaction/:transactionId" element={<UpdateTransaction />} />
-
-            {/* <Route path="/donutchart" element={<Donutchart />} /> */}
-            {/* <Route path="diagram" element={<Chart />} /> */}
-
-            <Route path="/verify/:verificationToken" element={<VerifyPage />} />
-            <Route
-              path="*"
-              element={
-                <main style={{ padding: '1rem' }}>
-                  <span>There's nothing here!</span>
-                  <br />
-                  <span>
-                    <Link to={'/'}>Return</Link>
-                  </span>
-                </main>
-              }
-            />
-          </Routes>
-        </Suspense>
-      </AppBackground>
-    </div>
+                    <Route path="table" element={<Table />} />
+                    <Route path="statistic" element={<Chart />} />
+                    <Route path="currency" element={<Currency />} />
+                  </Route>
+                  <Route
+                    path="/update-transaction/:transactionId"
+                    element={<UpdateTransaction />}
+                  />
+                  <Route path="/verify/:verificationToken" element={<VerifyPage />} />
+                  <Route
+                    path="*"
+                    element={
+                      <main style={{ padding: '1rem' }}>
+                        <span>There's nothing here!</span>
+                        <br />
+                        <span>
+                          <Link to={'/'}>Return</Link>
+                        </span>
+                      </main>
+                    }
+                  />
+                </Routes>
+              </Suspense>
+            </AppBackground>
+          </div>
+        </>
+      )}
+    </>
   );
 }
 

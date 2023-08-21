@@ -2,7 +2,7 @@
   padding-top: 8px;
   padding-bottom: 12px;
   margin: 0 auto 30px;
-  padding-left: 30px;
+  /* padding-left: 30px; */
   max-width: 480px;
   height: 80px;
 
@@ -12,7 +12,7 @@
 @media screen and (min-width: 768px) {
   .balance {
     margin-bottom: 0;
-    padding-left: 40px;
+    /* padding-left: 40px; */
     width: 334px;
   }
 }

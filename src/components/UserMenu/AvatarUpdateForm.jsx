@@ -3,6 +3,7 @@ import s from "./AvatarUpdateForm.module.css";
 import closeIcon from "../../images/modal-transaction/close.svg";
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
+import classNames from "classnames";
 
 
 
@@ -52,7 +53,6 @@ const navigate = useNavigate()
 
 const formData = new FormData();
     formData.append('image', selectedFile);
-    console.log(selectedFile)
 
     try {
       const dataAvatar = await axios.patch(`http://localhost:5555/api/users/avatars`, formData, {
@@ -72,17 +72,18 @@ const formData = new FormData();
 
   return (
     <div  className={s.overlay} onClick={onBackdropClick} >
-              <button type='button' className={s.closeBtn} onClick={closeModal}>
-              <img src={closeIcon} alt='' />
-            </button>
+
       <div className={s.formBox}>
         
       <form onSubmit={handleSubmit}  className={s.form}>
-      <h2>Update Avatar</h2>
 
+      <button type='button' className={s.closeBtn} onClick={closeModal}>
+              <img src={closeIcon} alt='' />
+            </button>
         <div>
-          <label className={s.modalDescription} htmlFor="avatar">Choose new avatar:</label>
+          <label className={s.modalDescription} >Choose new avatar</label>
           <input
+          className={s.avatarInput}
             type="file"
             id="avatar"
             name="image"
@@ -90,7 +91,9 @@ const formData = new FormData();
             onChange={handleFileChange}
           />
         </div>
-        <button type="submit">Update Avatar</button>
+        <button 
+        className={classNames(s.btn, s.btnAdd)}
+        type="submit">Update Avatar</button>
       </form>
       </div>
     </div>
