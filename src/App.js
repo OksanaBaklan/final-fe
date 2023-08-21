@@ -25,6 +25,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAuth, getAuthRefresh } from './redux/auth/auth-selectors';
 import { fetchCurrentUser } from './redux/auth/auth-operations';
 import LoaderComponent from './components/LoaderComponent/LoaderComponent';
+import LandingPage from './components/LandingPage/LandingPage';
 
 ChartJS.register(ArcElement, Tooltip);
 
@@ -48,9 +49,12 @@ function App() {
         <>
           <div className="App">
             <ToastContainer autoClose={6000} />
+            {/* */}
             <AppBackground>
               <Suspense fallback={<LoaderComponent />}>
                 <Routes>
+
+                  <Route path='/home' element={<LandingPage/> } />
                   <Route path="/login" element={isAuth ? <Navigate to="/" /> : <LoginPage />} />
                   <Route
                     path="/register"
@@ -58,7 +62,7 @@ function App() {
                   />
                   <Route
                     path="/"
-                    element={isAuth ? <DashboardPage /> : <Navigate replace to="/login" />}
+                    element={isAuth ? <DashboardPage /> : <Navigate replace to="/home" />}
                   >
                     <Route index element={<Navigate replace to="/table" />} />
 
