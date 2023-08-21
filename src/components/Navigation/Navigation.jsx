@@ -12,8 +12,11 @@ import { ReactComponent as StatisticsImgTab } from "../../images/navigation/tabl
 
 import s from "./Navigation.module.css";
 import Media from "react-media";
+import { useMediaQuery } from "react-responsive";
 
 export default function Navigation() {
+  const isMobileOrTablet = useMediaQuery({ query: "(max-width: 767px)" });
+
   return (
     <nav className={s.nav}>
       <NavLink
@@ -34,17 +37,19 @@ export default function Navigation() {
         <span className={s.text}>Statistic</span>
       </NavLink>
 
-      <Media
+        {/* {isMobileOrTablet &&  */}
+        
+        <Media
         query="(max-width: 767px)"
         render={() => (
-          <NavLink
-            to="/exchangeRates"
+         <NavLink
+            to="/currency"
             className={({ isActive }) => (isActive ? s.activeLink : s.link)}
           >
             <PbImgMob className={s.navImgMob} />
-          </NavLink>
-        )}
-      />
+          </NavLink>)} />
+      
+
     </nav>
   );
 }

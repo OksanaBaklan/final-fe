@@ -56,7 +56,7 @@
     position: absolute;
     right: 0;
     width: 55vw;
-    height: 100vh;
+    height: 125vh;
     background-color: #fff;
     opacity: 0.4;
   }
@@ -74,7 +74,7 @@
   }
 
   .content_container {
-    position: relative;
+    /* position: relative; */
     width: 720px;
     height: 720px;
     background-position: right 0;

@@ -1,4 +1,4 @@
-import ProgressBar from "../ProgressBar";
+import ProgressBar from "../ProgressBar/ProgressBar";
 
 export default function ProgressSwitch({ value }) {
   if (value >= 0 && value < 6) {
