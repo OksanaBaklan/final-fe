@@ -27,6 +27,7 @@ export default function ModalEditTransaction({ modalAction, editId, transactionD
   // console.log(transactionDetails.amount,editId);
 
   const handleSubmit = ({ date, isIncome, amount, comment, categoryId }) => {
+    console.log(date)
    dispatch(editTransaction({
     _id: editId,
     updatedData: { date, isIncome, amount, comment, categoryId }})
@@ -85,7 +86,8 @@ return fullDate;}
   
   return (<>
 
-    {transactionDetails.amount!==undefined&&transactionDetails._id===editId && <Formik
+    {transactionDetails.amount!==undefined&&transactionDetails._id===editId && 
+    <Formik
       initialValues={{
         date: `${dateConverter(transactionDetails.date)}`,
         isIncome: !transactionDetails.isIncome,
@@ -94,12 +96,12 @@ return fullDate;}
         categoryId: transactionDetails.categoryId,
       }}
       validateOnBlur
-      onSubmit={({ date, isIncome, ...all }, { resetForm }) => {
+      onSubmit={({ date, isIncome, amount, comment, categoryId }, { resetForm }) => {
         date = Date.parse(date);
         // console.log(date);
         // console.log(typeof date);
         isIncome = !isIncome;
-        handleSubmit({ date, isIncome, ...all });
+        handleSubmit({ date, isIncome, amount, comment, categoryId });
         resetForm();
         modalAction();
       }}
@@ -109,6 +111,7 @@ return fullDate;}
         errors,
         touched,
         handleChange,
+        
         handleBlur,
         isValid,
         dirty,

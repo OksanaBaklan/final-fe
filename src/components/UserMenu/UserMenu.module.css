@@ -1,12 +1,10 @@
 @import '../../stylesheet/var.css';
 
-
-/* .image-container {
-  width: 5rem;
-  height: 50px;
-  border-radius: 20%;
-  object-fit: 'cover';
-} */
+.imageContainer:hover,
+.imageContainer:focus {
+  background-color: var(--accent-btn-color);
+  stroke: var(--accent-btn-color);
+}
 .header__user {
   display: inline-flex;
   align-items: center;

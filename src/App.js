@@ -40,7 +40,7 @@ function App() {
 
   useEffect(() => {
     dispatch(fetchCurrentUser());
-    console.log(isAuth);
+    // console.log(isAuth);
   }, [dispatch]);
   return (
     <>
@@ -52,7 +52,7 @@ function App() {
             <AppBackground>
               <Suspense fallback={<LoaderComponent />}>
                 <Routes>
-                  <Route path="/home" element={<LandingPage />} />
+                  <Route path="/home" element={isAuth ? <Navigate to="/" /> : <LandingPage />} />
                   <Route path="/login" element={isAuth ? <Navigate to="/" /> : <LoginPage />} />
                   <Route
                     path="/register"
@@ -65,7 +65,12 @@ function App() {
                     <Route index element={<Navigate replace to="/table" />} />
                     <Route path="table" element={<Table />} />
                     <Route path="statistic" element={<Chart />} />
-                    <Route path="currency" element={<Currency />} />
+                    <Route
+                      path="currency"
+                      element={
+                        isMobileOrTablet ? <Currency /> : <Navigate replace to="/table" />
+                      }
+                    />
                   </Route>
                   <Route
                     path="/update-transaction/:transactionId"
