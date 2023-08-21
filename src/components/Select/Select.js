@@ -1,17 +1,17 @@
 /** @format */
 
-import React, { useState, useEffect } from "react";
-import Select from "react-select";
-import { format } from "date-fns";
-import { enAU } from "date-fns/locale";
+import React, { useState, useEffect } from 'react';
+import Select from 'react-select';
+import { format } from 'date-fns';
+import { enAU } from 'date-fns/locale';
 
-import { selectStyles } from "../Select/selectStyles";
-import s from "../Select/select.module.css";
+import { selectStyles } from '../Select/selectStyles';
+import s from '../Select/select.module.css';
 
 const currentMonth = new Date().getMonth() + 1;
 
 const months = Array.from({ length: 12 }, (_, i) => {
-  return format(new Date(0, i), "LLLL", {
+  return format(new Date(0, i), 'LLLL', {
     locale: enAU,
   });
 });
@@ -47,13 +47,13 @@ function SelectDate({ fetchDate, loader }) {
     year: currentYear,
   });
 
-  const token = JSON.parse(localStorage.getItem("my-app-token"));
+  const token = JSON.parse(localStorage.getItem('my-app-token'));
 
   async function fetchData(token, date) {
     const response = await fetch(
       `http://localhost:5555/api/statistics?year=${date.year}&month=${date.month}`,
       {
-        method: "GET",
+        method: 'GET',
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -86,21 +86,21 @@ function SelectDate({ fetchDate, loader }) {
         styles={selectStyles}
         options={monthOptions}
         placeholder="month"
-        onChange={(option) => {
-          updateDate("month", option.value);
+        onChange={option => {
+          updateDate('month', option.value);
         }}
         isSearchable={false}
-        defaultValue={monthOptions.find((month) => month.value === date.month)}
+        defaultValue={monthOptions.find(month => month.value === date.month)}
       />
       <Select
         styles={selectStyles}
         options={years}
-        placeholder="Год"
-        onChange={(option) => {
-          updateDate("year", option.value);
+        placeholder="year"
+        onChange={option => {
+          updateDate('year', option.value);
         }}
         isSearchable={false}
-        defaultValue={years.find((year) => year.value === date.year)}
+        defaultValue={years.find(year => year.value === date.year)}
       />
     </div>
   );

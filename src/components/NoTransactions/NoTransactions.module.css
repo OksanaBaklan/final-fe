@@ -1,4 +1,9 @@
 .style {
-  color: #ff6596;
+  margin: 5rem 0 0 0;
+  color: var(--amount-expenses-text-color);
   text-align: center;
+}
+.text {
+  color: var(--accent-btn-color);
+  margin: 0 auto;
 }

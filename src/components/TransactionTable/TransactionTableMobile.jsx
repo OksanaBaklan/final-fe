@@ -161,29 +161,37 @@ export default function TransactionTableMobile({ transactions} ) {
                 {/* <TableCell align="left">balance</TableCell> */}
                 {/* <TableCell align="right">{col.balance}</TableCell> */}
               </TableRow>
-              <TableRow>
+              {/* <TableRow>
                 <TableCell align="left">delete transaction</TableCell>
-                <TableCell>
-                <button 
+                <TableCell> */}
+                {/* <button 
                 className={s.deletebtn}
                 onClick={()=>{
                   console.log(col.id);
                   transactionsDeleteHandler(col.id)}}
                 >
       <FontAwesomeIcon icon="trash" />
-                </button>
-                </TableCell>
-              </TableRow>
+                </button> */}
+                {/* </TableCell>
+              </TableRow> */}
               <TableRow>
-                <TableCell align="left">edit transaction</TableCell>
-                <TableCell>
-                <button
+                <TableCell align="left">  <button 
+                className={s.deletebtn}
+                onClick={()=>{
+                  console.log(col.id);
+                  transactionsDeleteHandler(col.id)}}
+                >
+      <span style={{marginRight:"1em"}}>delete</span>
+      <FontAwesomeIcon icon="trash" />
+                </button></TableCell>
+                <TableCell align="right">   <button
   className={s.updateIcon}
   onClick={  
     () =>
    { setEditId(col.id);
     dispatch(globalAction.openEditModal()) }
 }>   <FontAwesomeIcon icon="edit" />
+<span style={{marginLeft:"1em"}}>edit</span>  
 </button>
 <Fragment>
         {modal && <ModalEditTransaction modalValue={modal} editId={editId} transactionDetails={transactionDetails} modalAction={closeModal}></ModalEditTransaction>}
