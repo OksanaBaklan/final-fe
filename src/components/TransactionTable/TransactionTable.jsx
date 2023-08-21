@@ -4,7 +4,7 @@ import TableCell from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { faTrash, faPen } from "@fortawesome/free-solid-svg-icons";
+// import { faTrash, faPen } from "@fortawesome/free-solid-svg-icons";
 
 import s from "./TransactionTable.module.css";
 import NoTransactions from "../NoTransactions";
@@ -14,7 +14,7 @@ import { transactionCategories } from "./transactionCategories";
 import createData from "../../services/createData";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../storeContext/UserContext";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
 
 const theme = createTheme({
@@ -167,14 +167,15 @@ export default function TransactionTable() {
     } catch (error) {
       console.log(error.message)
     }}}>
-  <FontAwesomeIcon icon={faTrash} />
+  {/* <FontAwesomeIcon icon={faTrash} /> */} <p>Delete</p>
 </button>
 </TableCell>
 <TableCell align="center">
 <button
   className={s.updateIcon}
   onClick={() => navigate(`/update-transaction/${row.id}`)}
->  <FontAwesomeIcon icon={faPen} />
+> 
+ {/* <FontAwesomeIcon icon={faPen} /> */} <p>Update</p>
 </button>
 </TableCell>
                 </TableRow>

@@ -2,20 +2,22 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Decimal from "decimal.js";
 import "./currency.css";
+import background from "../../images/Currency/currency_desk.png";
 
 const Currency = () => {
   const [exchangeRates, setExchangeRates] = useState([]);
 
   const fetchData = async () => {
-    const access_key = "33f17c9d131c752a6bac77cc7c11580f";
-    const endpoint = "latest";
+    // const access_key = "33f17c9d131c752a6bac77cc7c11580f";
+    // const endpoint = "latest";
 
     try {
       const response = await axios.get(
-        `http://data.fixer.io/api/${endpoint}?access_key=${access_key}`,
+        `https://v6.exchangerate-api.com/v6/8278746a42b16c9d29c494c9/latest/USD`,
       );
 
-      const { rates } = response.data;
+      const rates = response.data.conversion_rates;
+      console.log(rates);
 
       if (rates) {
         const filteredRates = Object.entries(rates)
@@ -51,14 +53,14 @@ const Currency = () => {
       <div style={cardStyle}>
         {exchangeRates.length > 0 ? (
           <>
-            <table style={{ borderCollapse: "collapse", width: "100%" }}>
+            <table style={{ borderCollapse: "collapse", width: "100%", backgroundImage: `url(${background})`, backgroundRepeat: "no-repeat", backgroundSize: "100%", backgroundPosition: "bottom" }}>
               <thead>
-                <tr>
-                  <th style={tableHeaderStyle}>Currency</th>
-                  <th style={tableHeaderStyle}>Rate</th>
+                <tr style={tableHeaderStyle}>
+                  <th >Currency</th>
+                  <th >Rate</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody style={tbodyStyle}>
                 {exchangeRates.map((rate) => (
                   <tr key={rate.currency}>
                     <td style={tableCellStyle}>{rate.currency}</td>
@@ -78,29 +80,35 @@ const Currency = () => {
 
 // Define card style
 const cardStyle = {
-  backgroundColor: "#4A56E2",
-  border: "1px solid #ccc",
-  borderRadius: "10px",
-  padding: "10px",
+  backgroundColor: "rgba(74, 86, 226, 1)",
+  borderRadius: "30px",
+  // padding: "10px",
+  color: "white",
   margin: "auto",
   width: "25%",
-  height: "fit-content", // Adjusts the height based on the content
+  height: "250px",
   display: "flex", // Displays as a flex container
   flexDirection: "column", // Aligns content in a column layout
 };
 
 const tableHeaderStyle = {
+  paddingBottom: "30px",
+  borderRadius: "30px",
   padding: "10px",
   textAlign: "center",
   width: "auto",
-  margin: "15px",
-  borderBottom: "1px solid #ddd",
-  color: "#f2f2f2",
+  height: "60px",
+  margin: "0px",
+  backgroundColor: "rgba(255, 255, 255, 0.25)",
 };
 
 const tableCellStyle = {
-  padding: "10px",
+  padding: "12px",
   color: "#f2f2f2",
 };
+
+const tbodyStyle = {
+  paddingTop: "20px",
+}
 
 export default Currency;

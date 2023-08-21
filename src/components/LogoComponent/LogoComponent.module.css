@@ -14,6 +14,16 @@
   line-height: 40px;
   margin-left: 15.56px;
 }
+
+.logoutStyle {
+  font-family: var(--logo__font-family);
+  font-style: normal;
+  font-weight: 100;
+  font-size: 4px;
+  line-height: 40px;
+  margin-left: 15.56px;
+}
+
 @media screen and (min-width: 768px) {
   .logo__text {
     font-family: var(--logo__font-family);
