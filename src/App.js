@@ -4,6 +4,7 @@ import { Suspense, useContext, useEffect } from 'react';
 import { Link, Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
 import { useMediaQuery } from 'react-responsive';
+import classNames from 'classnames';
 
 import AppBackground from './components/AppBackground/AppBackground';
 import LoginPage from './pages/LoginPage/LoginPage';
@@ -25,14 +26,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAuth, getAuthRefresh } from './redux/auth/auth-selectors';
 import { fetchCurrentUser } from './redux/auth/auth-operations';
 import LoaderComponent from './components/LoaderComponent/LoaderComponent';
+import NothingPage from './pages/NothingPage/NothingPage';
 import LandingPage from './components/LandingPage/LandingPage';
 
 ChartJS.register(ArcElement, Tooltip);
 
 function App() {
-  // const { authenticated } = useContext(UserContext);
-
-  // console.log(authenticated);
   const isMobileOrTablet = useMediaQuery({ query: '(max-width: 767px)' });
   const isAuth = useSelector(getAuth);
   const isAuthRefresh = useSelector(getAuthRefresh);
@@ -65,7 +64,6 @@ function App() {
                     element={isAuth ? <DashboardPage /> : <Navigate replace to="/home" />}
                   >
                     <Route index element={<Navigate replace to="/table" />} />
-
                     <Route path="table" element={<Table />} />
                     <Route path="statistic" element={<Chart />} />
                     <Route path="currency" element={<Currency />} />
@@ -75,18 +73,7 @@ function App() {
                     element={<UpdateTransaction />}
                   />
                   <Route path="/verify/:verificationToken" element={<VerifyPage />} />
-                  <Route
-                    path="*"
-                    element={
-                      <main style={{ padding: '1rem' }}>
-                        <span>There's nothing here!</span>
-                        <br />
-                        <span>
-                          <Link to={'/'}>Return</Link>
-                        </span>
-                      </main>
-                    }
-                  />
+                  <Route path="*" element={<NothingPage />} />
                 </Routes>
               </Suspense>
             </AppBackground>
