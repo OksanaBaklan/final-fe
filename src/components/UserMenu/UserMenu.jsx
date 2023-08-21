@@ -74,7 +74,7 @@ export default function UserMenu() {
           <span className={s.exit}>{isMobileOrTablet ? "Log out" : ""}</span>
         </button>
       <Fragment>
-        {modalLogOut && <ModalLogoutWithRedux closeModal={closeModalLogOut} ></ModalLogoutWithRedux>}
+        {modalLogOut && <ModalLogoutWithRedux closeModal={closeModalLogOut} onUserLogOut={onUserLogOut}></ModalLogoutWithRedux>}
       </Fragment>
 
       <Fragment>

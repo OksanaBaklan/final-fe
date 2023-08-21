@@ -5,7 +5,7 @@ import closeIcon from "../../images/modal-transaction/close.svg";
 
 
 
-function ModalLogoutWithRedux({ closeModal }) {
+function ModalLogoutWithRedux({ closeModal, onUserLogOut }) {
 
   const handleKeyDown = (event) => {
     if (event.code === "Escape") {
@@ -34,7 +34,16 @@ function ModalLogoutWithRedux({ closeModal }) {
         <button type='button' className={s.closeBtn} onClick={closeModal}>
               <img src={closeIcon} alt='' />
             </button>
-          <h1>ModalLogout</h1>
+            <div className={s.modal}>
+        <p className={s.title}>Do you really want to log out?</p>
+        <button className={s.cansellBtn} type='button' onClick={closeModal}>
+          NO
+        </button>
+        <button className={s.agreeBtn} type='button' onClick={onUserLogOut}>
+          YES
+        </button>
+
+      </div>
         </div>
       </div>
     </>

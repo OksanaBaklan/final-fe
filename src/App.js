@@ -31,9 +31,6 @@ import NothingPage from './pages/NothingPage/NothingPage';
 ChartJS.register(ArcElement, Tooltip);
 
 function App() {
-  // const { authenticated } = useContext(UserContext);
-
-  // console.log(authenticated);
   const isMobileOrTablet = useMediaQuery({ query: '(max-width: 767px)' });
   const isAuth = useSelector(getAuth);
   const isAuthRefresh = useSelector(getAuthRefresh);
@@ -63,7 +60,6 @@ function App() {
                     element={isAuth ? <DashboardPage /> : <Navigate replace to="/login" />}
                   >
                     <Route index element={<Navigate replace to="/table" />} />
-
                     <Route path="table" element={<Table />} />
                     <Route path="statistic" element={<Chart />} />
                     <Route path="currency" element={<Currency />} />
@@ -73,10 +69,7 @@ function App() {
                     element={<UpdateTransaction />}
                   />
                   <Route path="/verify/:verificationToken" element={<VerifyPage />} />
-                  <Route
-                    path="*"
-                    element={<NothingPage/>}
-                  />
+                  <Route path="*" element={<NothingPage />} />
                 </Routes>
               </Suspense>
             </AppBackground>
