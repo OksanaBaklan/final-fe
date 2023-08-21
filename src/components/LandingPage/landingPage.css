@@ -1,0 +1,55 @@
+@import "../../stylesheet/var.css";
+
+.header {
+  box-shadow: 0 0 10px #bdbdbd;
+  position: relative;
+}
+
+
+.header .logo {
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* background-color: aquamarine; */
+}
+
+.header .main-nav {
+  display: flex;
+  /* background-color: forestgreen; */
+  align-items: center;
+}
+
+.header .main-nav>li>a {
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  height: 40px;
+  position: relative;
+  padding: 0 40px;
+  transition: 0.3s;
+  overflow: hidden;
+  color: var(--accent-text-color);
+  font-size: var(--font-size__main);
+  /* background-color: red !important; */
+}
+
+.header .main-nav>li>a::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  background-color: var(--border-color);
+  top: 0;
+  left: -100%;
+}
+
+.header .main-nav>li>a:hover {
+  color: var(--main-color);
+  background-color: var(--accent-btn-color);
+}
+
+.header .main-nav>li>a:hover::before {
+  left: 0;
+  transition: var( --light-bcg-color );
+}
