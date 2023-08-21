@@ -79,7 +79,8 @@ export default function ModalEditTransaction({ modalAction, editId, transactionD
     const day = date.getDate();
 
 if(isNaN(day)){return}
-else{const fullDate = `${shortYear}-${month}-${day}`;
+else{const fullDate = `${shortYear}-${month}${day<10?"-0":"-"}${day}`;
+console.log(fullDate);
 return fullDate;}
     
   }
