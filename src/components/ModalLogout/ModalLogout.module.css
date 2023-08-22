@@ -1,0 +1,22 @@
+/** @format */
+
+.overlay {
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(20px);
+}
+.closeBtn {
+  display: block;
+  position: absolute;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  outline: none;
+  top: 20px;
+  right: 20px;
+}

@@ -1,45 +1,53 @@
-
-// import s from "./ModalLogout.module.css";
-// import { useDispatch } from "react-redux";
-// import { useEffect } from "react";
-// import closeIcon from "../../images/modal-transaction/close.svg";
-
+import s from "./ModalLogout.module.css";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import closeIcon from "../../images/modal-transaction/close.svg";
 
 
-// function ModalLogoutWithRedux({ closeModal }) {
 
-//   const handleKeyDown = (event) => {
-//     if (event.code === "Escape") {
-//       closeModal();
-//     }
-//   };
+function ModalLogoutWithRedux({ closeModal, onUserLogOut }) {
 
-//   const onBackdropClick = (event) => {
-//     if (event.target === event.currentTarget) {
-//       closeModal();
-//     }
-//   };
+  const handleKeyDown = (event) => {
+    if (event.code === "Escape") {
+      closeModal();
+    }
+  };
 
-//   useEffect(() => {
-//     window.addEventListener("keydown", handleKeyDown);
+  const onBackdropClick = (event) => {
+    if (event.target === event.currentTarget) {
+      closeModal();
+    }
+  };
 
-//     return () => {
-//       window.removeEventListener("keydown", handleKeyDown);
-//     };
-//   });
+  useEffect(() => {
+    window.addEventListener("keydown", handleKeyDown);
 
-//   return (
-//     <>
-//       <div className={s.overlay} onClick={onBackdropClick}>
-//         <div>
-//         <button type='button' className={s.closeBtn} onClick={closeModal}>
-//               <img src={closeIcon} alt='' />
-//             </button>
-//           <h1>ModalLogout</h1>
-//         </div>
-//       </div>
-//     </>
-//   );
-// }
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  });
 
-// export default ModalLogoutWithRedux;
+  return (
+    <>
+      <div className={s.overlay} onClick={onBackdropClick}>
+        <div>
+        <button type='button' className={s.closeBtn} onClick={closeModal}>
+              <img src={closeIcon} alt='' />
+            </button>
+            <div className={s.modal}>
+        <p className={s.title}>Do you really want to log out?</p>
+        <button className={s.cansellBtn} type='button' onClick={closeModal}>
+          NO
+        </button>
+        <button className={s.agreeBtn} type='button' onClick={onUserLogOut}>
+          YES
+        </button>
+
+      </div>
+        </div>
+      </div>
+    </>
+  );
+}
+
+export default ModalLogoutWithRedux;

@@ -10,6 +10,7 @@ import s from "./UserMenu.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import AvatarUpdateForm from "./AvatarUpdateForm";
 import { globalAction, globalSelectors } from "../../redux/global";
+import ModalLogoutWithRedux from "../ModalLogout/ModalLogoutWithRedux";
 
 export default function UserMenu() {
   // const [showModal, setShowModal] = useState(false);
@@ -80,9 +81,9 @@ export default function UserMenu() {
         </button>
       <Fragment>
 
-        {modalLogOut && <ModalLogout closeModal={closeModalLogOut} ></ModalLogout>}
+        {modalLogOut && <ModalLogout closeModal={closeModalLogOut}  onUserLogOut={onUserLogOut}></ModalLogout>}
 
-{/* //      {modalLogOut && <ModalLogoutWithRedux closeModal={closeModalLogOut} onUserLogOut={onUserLogOut}></ModalLogoutWithRedux>} */}
+ {/* {modalLogOut && <ModalLogoutWithRedux closeModal={closeModalLogOut} onUserLogOut={onUserLogOut}></ModalLogoutWithRedux>} */}
 
       </Fragment>
 
