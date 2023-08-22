@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import { getUserAvatar } from "../../redux/auth/auth-selectors";
 
 const ModalLogout = ({ closeModal, onUserLogOut }) => {
-  
+
   const avatar = useSelector(getUserAvatar)
 
   const handleKeyDown = (event) => {
@@ -30,6 +30,7 @@ const ModalLogout = ({ closeModal, onUserLogOut }) => {
 
 
   const paperStyle = {
+    marginTop: "200px",
     alignItems: "center",
     display: 'flex',
     textAline: 'center',
@@ -47,7 +48,6 @@ const ModalLogout = ({ closeModal, onUserLogOut }) => {
     justifyContent: "center",
     alignItems: "center",
     margin: "auto",
-    fontFamily: 'Cicle',
     marginTop: "40px"
   };
 
@@ -66,35 +66,43 @@ const ModalLogout = ({ closeModal, onUserLogOut }) => {
     height: "60px"
   }
 
+  const textStyle = {
+    fontFamily: "Circe, sans-serif",
+    fontStyle: "normal",
+    fontWeight: "100",
+    fontSize: "18px",
+    lineHeight: "24px",
+  }
+
   return (
 
-    <div className ="overlay" onClick ={onBackdropClick}>
+    <div className="overlay" onClick={onBackdropClick}>
       <>
-<Paper style={paperStyle}>
-          <Grid container  spacing={2}>
-            <ClearIcon style={clearIconStyle} onClick ={closeModal}></ClearIcon>
+        <Paper style={paperStyle}>
+          <Grid container spacing={2}>
+            <ClearIcon style={clearIconStyle} onClick={closeModal}></ClearIcon>
 
             <Grid style={logoStyle}>
-              <LogoComponent/>
+              <LogoComponent />
             </Grid>
 
             <Grid style={avaStyle}>
-              <Avatar src={avatar ? avatar : "/broken-image.jpg"} sx={{ width: 52, height: 52 }}/>
+              <Avatar src={avatar ? avatar : "/broken-image.jpg"} sx={{ width: 52, height: 52 }} />
             </Grid>
 
-          <Grid style={ButtonStyle}>
-            <p>Do you really want to log out?</p>
+            <Grid style={ButtonStyle}>
+              <p style={textStyle}>Do you really want to log out?</p>
               <Button type="submit" className="buttonStyle" variant="outlined" onClick={onUserLogOut}>
                 Logout
               </Button>
-              <Button className="buttonStyle" variant="outlined" onClick = {closeModal}>
+              <Button className="buttonStyle" variant="outlined" onClick={closeModal}>
                 No
               </Button>
+            </Grid>
+
           </Grid>
-    
-          </Grid>
-  
-    </Paper>
+
+        </Paper>
       </>
     </div>
 

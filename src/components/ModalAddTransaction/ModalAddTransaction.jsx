@@ -4,12 +4,11 @@ import { useDispatch } from "react-redux";
 import classNames from "classnames";
 import * as React from "react";
 import { addTransaction } from "../../redux/transactions/transaction-operations";
-
+import s from "./ModalAddTransaction.module.css";
 import { useEffect } from "react";
 import closeIcon from "../../images/modal-transaction/close.svg";
 import { transactionCategories } from "../TransactionTable/transactionCategories";
 
-import s from "./ModalAddTransaction.module.css";
 
 const validationSchema = Yup.object().shape({
   amount: Yup.number()
