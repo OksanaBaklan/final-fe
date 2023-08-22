@@ -68,7 +68,7 @@ export const getBalanceTransactions = createAsyncThunk(
       return data.balance;
     } catch (err) {
       return rejectWithValue(
-        toast.error('No info about your balance, you are logout, login please')
+        toast.error('No info about your balance, you are logout, refresh your page')
       );
     }
   }
@@ -122,7 +122,7 @@ export const fetchDetailsTransaction = createAsyncThunk(
       return data;
     } catch (err) {
       return rejectWithValue(
-        toast.error('No information about your transaction, you are logout, login please')
+        toast.error('No information about your transaction, you are logout, refresh your page')
       );
     }
   }
