@@ -3,12 +3,14 @@ import Container from '../Container/Container'
 import { Link } from 'react-router-dom'
 import LogoComponent from '../LogoComponent/LogoComponent'
 import './landingPage.css'
+// import gifAnimation from './isometric-idea-for-business-success-1.gif';
+
 
 const LandingPage = () => {
   return (
     <>
-      <header className="header" id="header">
         <Container>
+      <header className="header" id="header">
         <div  className="logo">
             <Link to='/'>
               <LogoComponent />
@@ -23,9 +25,11 @@ const LandingPage = () => {
               </li>
             </ul>
             </div>
-        </Container>
       </header>
+      {/* <img src={gifAnimation} alt="Animated GIF" style={{ width: '250px' }} /> */}
+        </Container>
     </>
+    
   )
 }
 
