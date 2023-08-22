@@ -82,7 +82,7 @@ export default function UserMenu() {
 
         {modalLogOut && <ModalLogout closeModal={closeModalLogOut} ></ModalLogout>}
 
-//      {modalLogOut && <ModalLogoutWithRedux closeModal={closeModalLogOut} onUserLogOut={onUserLogOut}></ModalLogoutWithRedux>}
+{/* //      {modalLogOut && <ModalLogoutWithRedux closeModal={closeModalLogOut} onUserLogOut={onUserLogOut}></ModalLogoutWithRedux>} */}
 
       </Fragment>
 

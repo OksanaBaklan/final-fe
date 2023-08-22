@@ -73,15 +73,15 @@ const ModalLogout = ({ closeModal, onUserLogOut }) => {
     lineHeight: "24px",
   }
 
-  const center = {
-    marginTop: "200px"
-  }
+  // const center = {
+  //   marginTop: "200px"
+  // }
 
   return (
 
     <div className="overlay" onClick={onBackdropClick}>
-      <>
-        <div style={center}>
+
+        {/* <div style={center}> */}
         <Paper style={paperStyle}>
           <Grid container spacing={2}>
             <ClearIcon style={clearIconStyle} onClick={closeModal}></ClearIcon>
@@ -96,7 +96,7 @@ const ModalLogout = ({ closeModal, onUserLogOut }) => {
 
             <Grid style={ButtonStyle}>
               <p style={textStyle}>Do you really want to log out?</p>
-              <Button type="submit" className="buttonStyle" variant="outlined" onClick={onUserLogOut}>
+              <Button className="buttonStyle" variant="outlined" onClick={onUserLogOut}>
                 Logout
               </Button>
               <Button className="buttonStyle" variant="outlined" onClick={closeModal}>
@@ -107,8 +107,8 @@ const ModalLogout = ({ closeModal, onUserLogOut }) => {
           </Grid>
 
           </Paper>
-          </div>
-      </>
+          {/* </div> */}
+ 
     </div>
 
   );
