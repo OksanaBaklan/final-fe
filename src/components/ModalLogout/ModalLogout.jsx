@@ -30,7 +30,6 @@ const ModalLogout = ({ closeModal, onUserLogOut }) => {
 
 
   const paperStyle = {
-    marginTop: "200px",
     alignItems: "center",
     display: 'flex',
     textAline: 'center',
@@ -74,10 +73,15 @@ const ModalLogout = ({ closeModal, onUserLogOut }) => {
     lineHeight: "24px",
   }
 
+  const center = {
+    marginTop: "200px"
+  }
+
   return (
 
     <div className="overlay" onClick={onBackdropClick}>
       <>
+        <div style={center}>
         <Paper style={paperStyle}>
           <Grid container spacing={2}>
             <ClearIcon style={clearIconStyle} onClick={closeModal}></ClearIcon>
@@ -102,7 +106,8 @@ const ModalLogout = ({ closeModal, onUserLogOut }) => {
 
           </Grid>
 
-        </Paper>
+          </Paper>
+          </div>
       </>
     </div>
 
