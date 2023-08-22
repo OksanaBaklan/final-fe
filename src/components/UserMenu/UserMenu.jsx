@@ -5,8 +5,7 @@ import { ReactComponent as Logout } from "../../images/icon-logout/logout.svg";
 
 import { getUsername, getUserAvatar } from "../../redux/auth/auth-selectors";
 import { logOut } from "../../redux/auth/auth-operations";
-
-import ModalLogoutWithRedux from "../ModalLogout/ModalLogoutWithRedux";
+import ModalLogout from "../ModalLogout/ModalLogout";
 import s from "./UserMenu.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import AvatarUpdateForm from "./AvatarUpdateForm";
@@ -74,7 +73,7 @@ export default function UserMenu() {
           <span className={s.exit}>{isMobileOrTablet ? "Log out" : ""}</span>
         </button>
       <Fragment>
-        {modalLogOut && <ModalLogoutWithRedux closeModal={closeModalLogOut} ></ModalLogoutWithRedux>}
+        {modalLogOut && <ModalLogout closeModal={closeModalLogOut} ></ModalLogout>}
       </Fragment>
 
       <Fragment>
