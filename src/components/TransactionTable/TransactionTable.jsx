@@ -26,9 +26,13 @@ import { getDetailTransaction, getLoading, getTransactions } from "../../redux/t
 import { fetchDetailsTransaction, getAllTransactions } from "../../redux/transactions/transaction-operations";
 import { globalAction, globalSelectors } from "../../redux/global";
 import ModalEditTransaction from "../EditTransactionModal/EditTransactionModal";
+import { getAuth } from "../../redux/auth/auth-selectors";
 
 library.add(faTrash);
 library.add(faEdit);
+
+
+
 
 const theme = createTheme({
   components: {
@@ -51,11 +55,14 @@ const theme = createTheme({
 });
 
 export default function TransactionTable({transactions, transactionsDeleteHandler}) {
+
   const [editId, setEditId]=useState('')
 
   const dispatch = useDispatch();
 
   const modal = useSelector(globalSelectors.getEditModalValue);
+
+  const isAuth = useSelector(getAuth);
 
   useEffect(()=>{
     dispatch(fetchDetailsTransaction(editId))
@@ -97,7 +104,8 @@ const rows = transactions?.map((trans) => {
   }
 
   return (
-    <div className={s.tableWrapper}>
+    <>
+    {isAuth &&  <div className={s.tableWrapper}>
       <div className={s.table}>
         <ThemeProvider theme={theme}>
           <Table aria-label="transacti table" sx={{ position: "relative" }}>
@@ -181,6 +189,7 @@ const rows = transactions?.map((trans) => {
           </Table>
         </ThemeProvider>
       </div>
-    </div>
+    </div>}
+    </>
   );
 }

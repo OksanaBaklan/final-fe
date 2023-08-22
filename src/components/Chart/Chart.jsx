@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getBalance, getTransactions } from "../../redux/transactions/transactions-selectors";
 import { useEffect } from "react";
 import { getBalanceTransactions } from "../../redux/transactions/transaction-operations";
+import { getAuth } from "../../redux/auth/auth-selectors";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -29,9 +30,8 @@ const obj = {
 };
 
 export default function Chart() {
-  // const {balance}=useContext(UserContext)
 
-
+  // const isAuth = useSelector(getAuth);
   const balance = useSelector(getBalance);
   const transactions = useSelector(getTransactions);
   const dispatch = useDispatch();
@@ -73,7 +73,7 @@ export default function Chart() {
   };
   return (
     <>
-      <div className={s.wrapper}>
+     {fetchDate? <div className={s.wrapper}>
         <p className={s.mainTitle}>Statistics</p>
 
         <div className={s.rightContainer}>
@@ -107,7 +107,8 @@ export default function Chart() {
             />
           </div>
         </div>
-      </div>
+      </div>:
+      <h2 style={{color: "red", textAlign: "center", margin:"2em auto"}}>something went wrong <br/> refresh your page</h2>}
     </>
   );
 }

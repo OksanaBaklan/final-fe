@@ -16,7 +16,6 @@ import VerifyPage from './pages/VerifyPage/VerifyPage';
 import { UserContext } from './storeContext/UserContext';
 import DashboardPage from './pages/DashboardPage/DashboardPage';
 import Table from './components/TransactionTable/Table';
-import Statistic from './components/Statistic/Statistic';
 import Chart from './components/Chart/Chart';
 import UpdateTransaction from './components/TransactionTable/UpdateTransaction';
 // import { UserContextProvider } from "./storeContext/authContext/UserContextProvider";
