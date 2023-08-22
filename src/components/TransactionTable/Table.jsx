@@ -10,6 +10,8 @@ import { getLoading } from "../../redux/transactions/transactions-selectors";
 
 import TransactionTable from "./TransactionTable";
 import TransactionTableMobile from "./TransactionTableMobile";
+import NoTransactions from "../NoTransactions";
+import s from "./TransactionTable.module.css";
 
 export default function Table() {
   const dispatch = useDispatch()
@@ -20,10 +22,13 @@ export default function Table() {
   },[dispatch])
 
   const transactions = useSelector(getTransactions);
-
-  if (!transactions) {
-    return null;
-  }
+  const transactionType = typeof transactions;
+  // console.log(transactionType);
+const text = "something went wrong, please refresh your page"
+  if (transactionType!=='object') {
+    return (<div className={s.tableWrapper}>
+    <NoTransactions text={text}/>
+  </div> ) }
 
   const transactionsDeleteHandler = id => {
     dispatch(deleteTransaction(id));
@@ -32,6 +37,7 @@ export default function Table() {
   return isLoading ? (
     <LoaderComponent />
   ) : (
+    // if(transactionType==='object'){}else{ <h2 style={{color: "red", textAlign: "center", margin:"2em auto"}}>something went wrong <br/> refresh your page</h2>}
     <Media query={{ minWidth: 768 }}>
       {(matches) =>
         matches ? (

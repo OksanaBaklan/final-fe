@@ -4,6 +4,11 @@
   justify-content: center;
 }
 
+.tableWrapper {
+  width: 100%;
+  min-height: 640px;
+}
+
 .link {
   display: flex;
   justify-content: center;

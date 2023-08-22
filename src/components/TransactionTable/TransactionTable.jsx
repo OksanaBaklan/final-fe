@@ -73,8 +73,9 @@ export default function TransactionTable({transactions, transactionsDeleteHandle
     () => dispatch(globalAction.closeEditModal()),
     [dispatch]
   );
+  // console.log(transactions);
 
-const rows = transactions?.map((trans) => {
+ const rows = transactions?.map((trans) => {
   const isIncome = trans.isIncome ? "+" : "-";
   const fullDate = dateConverter(trans.date);
   const transactionCategorieName = transactionCategories.find(
@@ -94,8 +95,7 @@ const rows = transactions?.map((trans) => {
   return arrRow;
 });
 
-
-  if (rows[0] === undefined) {
+  if (rows[0] === undefined||transactions===null) {
     return (
       <div className={s.tableWrapper}>
         <NoTransactions />
@@ -105,7 +105,7 @@ const rows = transactions?.map((trans) => {
 
   return (
     <>
-    {isAuth &&  <div className={s.tableWrapper}>
+    {  transactions  &&  <div className={s.tableWrapper}>
       <div className={s.table}>
         <ThemeProvider theme={theme}>
           <Table aria-label="transacti table" sx={{ position: "relative" }}>
