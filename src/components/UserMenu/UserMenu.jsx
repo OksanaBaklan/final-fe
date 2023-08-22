@@ -50,20 +50,26 @@ export default function UserMenu() {
 
   const onUserLogOut = () => {
     dispatch(logOut());
+    dispatch(globalAction.closeModalLogOut())
   };
 
   return (
     <div className={s.header__user}>
      
       <button type="button" className={s.logout} onClick={openModalAvatar}>
-
+        <div className={s.imageContainer}>
         <img
-          style={{ borderRadius: "20%" , width : "50px", height:'50px'}}
+        
+          style={{    width: '5rem',
+                      height: '50px',
+                      borderRadius: '20%',
+                      objectFit: 'cover',}}
           src={updatedNewAvatar?updatedNewAvatar:avatar}
           width="25px"
           height="25px"
           alt="avatar"
         />
+        </div>
         </button>
         <span className={s.header__text}>{name}</span>
         <span className={s.line}>{isMobileOrTablet ? "|" : ""}</span>
@@ -73,7 +79,11 @@ export default function UserMenu() {
           <span className={s.exit}>{isMobileOrTablet ? "Log out" : ""}</span>
         </button>
       <Fragment>
+
         {modalLogOut && <ModalLogout closeModal={closeModalLogOut} ></ModalLogout>}
+
+//      {modalLogOut && <ModalLogoutWithRedux closeModal={closeModalLogOut} onUserLogOut={onUserLogOut}></ModalLogoutWithRedux>}
+
       </Fragment>
 
       <Fragment>

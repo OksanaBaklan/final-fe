@@ -1,5 +1,10 @@
-@import "../../stylesheet/var.css";
+@import '../../stylesheet/var.css';
 
+.imageContainer:hover,
+.imageContainer:focus {
+  background-color: var(--accent-btn-color);
+  stroke: var(--accent-btn-color);
+}
 .header__user {
   display: inline-flex;
   align-items: center;

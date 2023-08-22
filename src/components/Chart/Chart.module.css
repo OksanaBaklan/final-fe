@@ -118,6 +118,21 @@
     height: 320px;
   }
   .chart {
-    /* margin-left: 30px; */
+    /* margin: left 50px; */
+  }
+  .rightContainer {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    width: auto;
+    margin-left: 5em;
+    /* max-height: 320px; */
+  }
+  .containerDiagram {
+    width: 350px;
+    margin: 0;
+  }
+  .wrapper {
+    width: 900px;
   }
 }

@@ -13,29 +13,32 @@ import { ReactComponent as StatisticsImgTab } from "../../images/navigation/tabl
 import s from "./Navigation.module.css";
 import Media from "react-media";
 import { useMediaQuery } from "react-responsive";
+import { useSelector } from "react-redux";
+import { getAuth } from "../../redux/auth/auth-selectors";
 
 export default function Navigation() {
   const isMobileOrTablet = useMediaQuery({ query: "(max-width: 767px)" });
+  const isAuth = useSelector(getAuth);
 
   return (
     <nav className={s.nav}>
-      <NavLink
+      {isAuth && <NavLink
         to="/table"
         className={({ isActive }) => (isActive ? s.activeLink : s.link)}
       >
         <HomeImgMob className={s.navImgMob} />
         <HomeImgTab className={s.navImgTab} />
         <span className={s.text}>Home</span>
-      </NavLink>
+      </NavLink>}
 
-      <NavLink
+      {isAuth &&<NavLink
         to="/statistic"
         className={({ isActive }) => (isActive ? s.activeLink : s.link)}
       >
         <StatisticsImgMob className={s.navImgMob} />
         <StatisticsImgTab className={s.navImgTab} />
         <span className={s.text}>Statistic</span>
-      </NavLink>
+      </NavLink>}
 
         {/* {isMobileOrTablet &&  */}
         

@@ -4,6 +4,7 @@ import closeIcon from "../../images/modal-transaction/close.svg";
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import classNames from "classnames";
+import LoaderComponent from '../LoaderComponent/LoaderComponent';
 
 
 
@@ -11,7 +12,8 @@ import classNames from "classnames";
 const AvatarUpdateForm = ({closeModal, setUpdatedNewAvatar}) => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [errorMessage, setErrorMessage] = useState("")
-  console.log(selectedFile)
+  // console.log(selectedFile)
+  const [isLoading, setIsLoading] = useState(false)
 
 const navigate = useNavigate()
 
@@ -53,7 +55,7 @@ const navigate = useNavigate()
 
 const formData = new FormData();
     formData.append('image', selectedFile);
-
+    setIsLoading(true)
     try {
       const dataAvatar = await axios.patch(`http://localhost:5555/api/users/avatars`, formData, {
         headers: {
@@ -61,7 +63,10 @@ const formData = new FormData();
         },
       });
       // console.log('Avatar uploaded successfully', dataAvatar.data.data.avatar);
+
       setUpdatedNewAvatar(dataAvatar.data.data.avatar)
+      setIsLoading(false)
+
       e.target.reset()
       navigate("/")
       closeModal();
@@ -76,7 +81,9 @@ const formData = new FormData();
       <div className={s.formBox}>
         
       <form onSubmit={handleSubmit}  className={s.form}>
-
+{isLoading && (      <div className={s.loaderContainer}>
+        <div className={s.loader}></div>
+      </div>)}
       <button type='button' className={s.closeBtn} onClick={closeModal}>
               <img src={closeIcon} alt='' />
             </button>

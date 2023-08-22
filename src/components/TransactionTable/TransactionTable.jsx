@@ -26,9 +26,13 @@ import { getDetailTransaction, getLoading, getTransactions } from "../../redux/t
 import { fetchDetailsTransaction, getAllTransactions } from "../../redux/transactions/transaction-operations";
 import { globalAction, globalSelectors } from "../../redux/global";
 import ModalEditTransaction from "../EditTransactionModal/EditTransactionModal";
+import { getAuth } from "../../redux/auth/auth-selectors";
 
 library.add(faTrash);
 library.add(faEdit);
+
+
+
 
 const theme = createTheme({
   components: {
@@ -51,11 +55,14 @@ const theme = createTheme({
 });
 
 export default function TransactionTable({transactions, transactionsDeleteHandler}) {
+
   const [editId, setEditId]=useState('')
 
   const dispatch = useDispatch();
 
   const modal = useSelector(globalSelectors.getEditModalValue);
+
+  const isAuth = useSelector(getAuth);
 
   useEffect(()=>{
     dispatch(fetchDetailsTransaction(editId))
@@ -67,33 +74,28 @@ export default function TransactionTable({transactions, transactionsDeleteHandle
     [dispatch]
   );
 
-  // const openModal = useCallback(
-  //   () => dispatch(globalAction.openEditModal()),
-  //   [dispatch]
-  // );
+const rows = transactions?.map((trans) => {
+  const isIncome = trans.isIncome ? "+" : "-";
+  const fullDate = dateConverter(trans.date);
+  const transactionCategorieName = transactionCategories.find(
+    (el) => el.id === trans.categoryId,
+  );
+
+  const arrRow = createData(
+    fullDate,
+    isIncome,
+    transactionCategorieName.name,
+    trans.comment,
+    trans.amount,
+    trans.balance,
+    trans._id
+  );
+
+  return arrRow;
+});
 
 
-  const rows = transactions?.map((trans) => {
-    const isIncome = trans.isIncome ? "+" : "-";
-    const fullDate = dateConverter(trans.date);
-    const transactionCategorieName = transactionCategories.find(
-      (el) => el.id === trans.categoryId,
-    );
-
-    const arrRow = createData(
-      fullDate,
-      isIncome,
-      transactionCategorieName.name,
-      trans.comment,
-      trans.amount,
-      trans.balance,
-      trans._id
-    );
-
-    return arrRow;
-  });
-
-  if (!rows) {
+  if (rows[0] === undefined) {
     return (
       <div className={s.tableWrapper}>
         <NoTransactions />
@@ -102,7 +104,8 @@ export default function TransactionTable({transactions, transactionsDeleteHandle
   }
 
   return (
-    <div className={s.tableWrapper}>
+    <>
+    {isAuth &&  <div className={s.tableWrapper}>
       <div className={s.table}>
         <ThemeProvider theme={theme}>
           <Table aria-label="transacti table" sx={{ position: "relative" }}>
@@ -186,6 +189,7 @@ export default function TransactionTable({transactions, transactionsDeleteHandle
           </Table>
         </ThemeProvider>
       </div>
-    </div>
+    </div>}
+    </>
   );
 }
