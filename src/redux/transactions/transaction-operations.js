@@ -101,7 +101,7 @@ export const editTransaction = createAsyncThunk(
           Authorization: `Bearer ${JSON.parse(localStorage.getItem('my-app-token'))}`,
         },
       });
-      console.log(data);
+      console.log("res from server",data);
       return { editId: _id, balance: data.data.userBalance, transaction: data.data.transaction };
     } catch (err) {
       return rejectWithValue(toast.error("Can't update, you are logout"));

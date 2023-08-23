@@ -27,7 +27,7 @@ export default function ModalEditTransaction({ modalAction, editId, transactionD
   // console.log(transactionDetails.amount,editId);
 
   const handleSubmit = ({ date, isIncome, amount, comment, categoryId }) => {
-    console.log(date)
+    console.log("payload with new data from editModal",date, isIncome, amount, comment, categoryId)
    dispatch(editTransaction({
     _id: editId,
     updatedData: { date, isIncome, amount, comment, categoryId }})
@@ -96,12 +96,15 @@ return fullDate;}
         categoryId: transactionDetails.categoryId,
       }}
       validateOnBlur
-      onSubmit={({ date, isIncome, amount, comment, categoryId }, { resetForm }) => {
+      onSubmit={({ date, isIncome, categoryId, ...all }, { resetForm }) => {
         date = Date.parse(date);
-        // console.log(date);
-        // console.log(typeof date);
+
         isIncome = !isIncome;
-        handleSubmit({ date, isIncome, amount, comment, categoryId });
+        handleSubmit({ date, isIncome, categoryId, ...all });
+
+        // console.log("date",date);
+        // console.log("categoryId",categoryId);
+        
         resetForm();
         modalAction();
       }}

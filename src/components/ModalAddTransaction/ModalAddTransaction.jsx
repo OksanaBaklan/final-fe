@@ -57,8 +57,7 @@ export default function ModalAddTransaction({ modalAction }) {
       validateOnBlur
       onSubmit={({ date, isIncome, ...all }, { resetForm }) => {
         date = Date.parse(date);
-        console.log(date);
-        console.log(typeof date);
+
         isIncome = !isIncome;
         handleSubmit({ date, isIncome, ...all });
         resetForm();
