@@ -9,7 +9,6 @@ const FeatureCard = ({ features }) => {
             <div className='box' key={feature._id} >
               <img src={feature.imageSrc} alt="" />
               <h3>{feature.title}</h3>
-              <hr />
               <p>{feature.description}</p>
             </div>
           ))}
