@@ -11,7 +11,7 @@ export default function dateConverter(d) {
   if (isNaN(day)) {
     return;
   } else {
-    const fullDate = `${shortYear}-${month}${day < 10 ? '-0' : '-'}${day}`;
+    const fullDate = `${day}.${month}.${shortYear}`;
     return fullDate;
   }
 }
