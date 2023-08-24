@@ -1,6 +1,5 @@
 @import '../../stylesheet/var.css';
 
-/* Header styles... */
 
 .header {
   box-shadow: 0 0 5px rgba(108, 107, 107, 0.627);
@@ -104,9 +103,7 @@
 }
 
 .cards .box img {
-  /* display: block; */
   margin: 0 auto;
-  /* width: 100%; */
 }
 
 .cards .box h3 {
