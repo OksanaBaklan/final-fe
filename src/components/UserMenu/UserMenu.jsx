@@ -13,6 +13,7 @@ import AvatarUpdateForm from "./AvatarUpdateForm";
 import { globalAction, globalSelectors } from "../../redux/global";
 import ModalLogoutWithRedux from "../ModalLogout/ModalLogoutWithRedux";
 import { getToggleTheme } from "../../redux/global/global-selectors";
+import {LogoutModalPortal} from "../ModalLogout/modalLogOutPortal";
 
 export default function UserMenu() {
   // const [showModal, setShowModal] = useState(false);
@@ -97,11 +98,9 @@ console.log(darkTheme)
           <span className={s.exit}>{isMobileOrTablet ? "Log out" : ""}</span>
         </button>
       <Fragment>
-
-        {modalLogOut && <ModalLogout closeModal={closeModalLogOut}  onUserLogOut={onUserLogOut}></ModalLogout>}
-
- {/* {modalLogOut && <ModalLogoutWithRedux closeModal={closeModalLogOut} onUserLogOut={onUserLogOut}></ModalLogoutWithRedux>} */}
-
+      {modalLogOut && <LogoutModalPortal closeModal={closeModalLogOut}  onUserLogOut={onUserLogOut}></LogoutModalPortal>} 
+      {/* {modalLogOut && <ModalLogout closeModal={closeModalLogOut}  onUserLogOut={onUserLogOut}></ModalLogout>} */}
+      {/* {modalLogOut && <ModalLogoutWithRedux closeModal={closeModalLogOut} onUserLogOut={onUserLogOut}></ModalLogoutWithRedux>} */}
       </Fragment>
 
       <Fragment>
