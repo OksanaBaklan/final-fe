@@ -2,11 +2,16 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import './landingPage.css'
 import LogoComponent from '../LogoComponent/LogoComponent'
+import Container from "../Container/Container";
 
 
 const Header = () => {
   return (
     <header className="header" id="header">
+      <Container>
+
+      <div className="headerContainer">
+
     <div className="logo">
       <Link to='/'>
         <LogoComponent />
@@ -21,6 +26,8 @@ const Header = () => {
         </li>
       </ul>
     </div>
+      </div>
+      </Container>
   </header>
   )
 }

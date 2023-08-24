@@ -9,6 +9,7 @@ import {
   closeModalAvatar,
   openModalLogOut,
   closeModalLogOut,
+  toggleTheme
 } from './global-action';
 
 const setTrue = () => true;
@@ -34,9 +35,18 @@ const setFalse = () => false;
   [closeModalLogOut]: setFalse,
 });
 
+const toggleThemeReducer = createReducer({
+  darkTheme: false,
+},{
+  
+[toggleTheme]:(state, {payload})=>{
+  return { darkTheme: !payload.darkTheme };
+},})
+
 export default combineReducers({
   modalTransaction,
   modalEditTransaction,
   modalAvatar,
   modalLogOut,
+  toggleThemeReducer
 });

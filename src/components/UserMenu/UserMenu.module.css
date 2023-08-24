@@ -70,3 +70,45 @@
     object-fit: cover;
   }
 }
+
+.darkmode {
+  display: flex;
+  justify-content: center;
+}
+
+.darkmode .dark {
+  background-color: var(--secondary-text-color);
+}
+.darkmode .checkbox {
+  opacity: 0;
+  position: absolute;
+}
+
+.darkmode .label {
+  width: 40px;
+  height: 20px;
+  background-color: var(--accent-bcg-color);
+  display: flex;
+  border-radius: 50px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+  position: relative;
+  transform: scale(1.5);
+  cursor: pointer;
+}
+
+.darkmode .ball {
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  position: absolute;
+  /* top: 2px; */
+  left:0;
+  border-radius: 50%;
+  transition: transform 0.2s linear;
+}
+
+.darkmode .checkbox:checked + .label .ball {
+  transform: translateX(24px);
+}

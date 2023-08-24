@@ -4,9 +4,11 @@
 
 .header {
   box-shadow: 0 0 5px rgba(108, 107, 107, 0.627);
-  width: 100%;
+  /* width: 100%; */
   background-color: white;
   z-index: 100;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 
 .header .logo {
@@ -27,8 +29,10 @@
   justify-content: center;
   align-items: center;
   height: 70px;
+  width: 6rem;
+
   position: relative;
-  padding: 0 40px;
+  padding: 0 20px;
   transition: 0.3s;
   overflow: hidden;
   color: var(--accent-text-color);
@@ -39,7 +43,7 @@
 .header .main-nav > li > a::before {
   content: '';
   position: absolute;
-  width: 100%;
+  width: 6rem;
   height: 5px;
   background-color: var(--accent-svg-color);
   top: 0;

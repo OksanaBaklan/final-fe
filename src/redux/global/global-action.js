@@ -9,6 +9,8 @@ const closeModalAvatar = createAction('global/closeEModalAvatar');
 const openModalLogOut = createAction('global/openModalLogOut');
 const closeModalLogOut = createAction('global/closeModalLogOut');
 
+const toggleTheme = createAction('global/toggleTheme')
+
 export {
   openModalLogOut,
   closeModalLogOut,
@@ -18,4 +20,5 @@ export {
   closeEditModal,
   openModalAvatar,
   closeModalAvatar,
+  toggleTheme
 };

@@ -2,6 +2,7 @@ import { Fragment, useCallback, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 
 import { ReactComponent as Logout } from "../../images/icon-logout/logout.svg";
+import { BsMoonStarsFill, BsFillSunFill } from "react-icons/bs";
 
 import { getUsername, getUserAvatar } from "../../redux/auth/auth-selectors";
 import { logOut } from "../../redux/auth/auth-operations";
@@ -11,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import AvatarUpdateForm from "./AvatarUpdateForm";
 import { globalAction, globalSelectors } from "../../redux/global";
 import ModalLogoutWithRedux from "../ModalLogout/ModalLogoutWithRedux";
+import { getToggleTheme } from "../../redux/global/global-selectors";
 
 export default function UserMenu() {
   // const [showModal, setShowModal] = useState(false);
@@ -20,7 +22,8 @@ export default function UserMenu() {
 
   const dispatch = useDispatch();
 
-  
+  const {darkTheme} = useSelector(getToggleTheme);
+console.log(darkTheme)
   
   const name = useSelector(getUsername);
   const avatar = useSelector(getUserAvatar);
@@ -55,8 +58,26 @@ export default function UserMenu() {
   };
 
   return (
-    <div className={s.header__user}>
-     
+    <div className={s.header__user}  >
+
+      <div className={s.darkmode}>
+          <input
+          type="checkbox"
+          className={s.checkbox}
+          id="checkbox"
+          // onChange prop to fire our internal function for changing the dark mode value
+          // onChange={switchDarkMode}
+          // checking checked prop with dark mode state
+          // checked={isdarkMode}
+        />
+        <label htmlFor="checkbox" className={s.label}>
+          <BsMoonStarsFill color="white" />
+          <BsFillSunFill color="yellow" />
+          <div className={s.ball}></div>
+        </label>
+      </div>
+
+
       <button type="button" className={s.logout} onClick={openModalAvatar}>
         <div >
         <img
@@ -67,6 +88,7 @@ export default function UserMenu() {
         />
         </div>
         </button>
+
         <span className={s.header__text}>{name}</span>
         <span className={s.line}>{isMobileOrTablet ? "|" : ""}</span>
 
