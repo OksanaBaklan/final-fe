@@ -1,5 +1,10 @@
 @import '../../stylesheet/var.css';
-
+.imageContainer {
+  width: auto;
+  height: 2.5rem;
+  /* border-radius: 1rem; */
+  object-fit: cover;
+}
 .imageContainer:hover,
 .imageContainer:focus {
   background-color: var(--accent-btn-color);
@@ -15,7 +20,7 @@
   font-style: normal;
   font-weight: normal;
   font-size: var(--font-size__accent);
-  line-height: 27px;
+  /* line-height: 27px; */
   text-align: right;
   margin-right: 10px;
   margin-left: 10px;
@@ -57,5 +62,11 @@
     font-size: var(--font-size__btn);
     line-height: 27px;
     text-align: right;
+  }
+  .imageContainer {
+    width: auto;
+    height: 4rem;
+    border-radius: 1rem;
+    object-fit: cover;
   }
 }

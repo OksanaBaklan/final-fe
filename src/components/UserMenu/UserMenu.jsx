@@ -58,16 +58,11 @@ export default function UserMenu() {
     <div className={s.header__user}>
      
       <button type="button" className={s.logout} onClick={openModalAvatar}>
-        <div className={s.imageContainer}>
+        <div >
         <img
-        
-          style={{    width: '5rem',
-                      height: '50px',
-                      borderRadius: '20%',
-                      objectFit: 'cover',}}
+          className={s.imageContainer}
           src={updatedNewAvatar?updatedNewAvatar:avatar}
-          width="25px"
-          height="25px"
+
           alt="avatar"
         />
         </div>

@@ -11,9 +11,13 @@ export default function LogoComponent() {
     <>
       {isMobileOrTablet ? (
         <div className={s.logo}>
-          <Link to="/" style={{ textDecoration: "none", color: "unset" }}>
+          <div className={s.header__logo }>
+          <Link to="/" 
+          style={{ textDecoration: "none", color: "unset" }}
+          >
             <Logo /> <span className={s.logo__text}> MyMoneyMinder</span>
           </Link>
+          </div>
         </div>
       ) : (
         <div className={s.logo}>
