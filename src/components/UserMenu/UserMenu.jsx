@@ -14,6 +14,8 @@ import { globalAction, globalSelectors } from "../../redux/global";
 import ModalLogoutWithRedux from "../ModalLogout/ModalLogoutWithRedux";
 import { getToggleTheme } from "../../redux/global/global-selectors";
 import {LogoutModalPortal} from "../ModalLogout/modalLogOutPortal";
+import { toggleTheme } from "../../redux/global/global-action";
+import DarkMode from "../DarkMode/DarkMode";
 
 export default function UserMenu() {
   // const [showModal, setShowModal] = useState(false);
@@ -23,9 +25,10 @@ export default function UserMenu() {
 
   const dispatch = useDispatch();
 
-  const {darkTheme} = useSelector(getToggleTheme);
-console.log(darkTheme)
-  
+
+const switchDarkMode = ()=>{dispatch(toggleTheme(false))}
+
+
   const name = useSelector(getUsername);
   const avatar = useSelector(getUserAvatar);
   
@@ -61,13 +64,13 @@ console.log(darkTheme)
   return (
     <div className={s.header__user}  >
 
-      <div className={s.darkmode}>
+      {/* <div className={s.darkmode}>
           <input
           type="checkbox"
           className={s.checkbox}
           id="checkbox"
           // onChange prop to fire our internal function for changing the dark mode value
-          // onChange={switchDarkMode}
+          onChange={switchDarkMode}
           // checking checked prop with dark mode state
           // checked={isdarkMode}
         />
@@ -76,7 +79,9 @@ console.log(darkTheme)
           <BsFillSunFill color="yellow" />
           <div className={s.ball}></div>
         </label>
-      </div>
+      </div> */}
+
+<div><DarkMode/></div>
 
 
       <button type="button" className={s.logout} onClick={openModalAvatar}>

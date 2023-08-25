@@ -9,44 +9,50 @@ import {
   closeModalAvatar,
   openModalLogOut,
   closeModalLogOut,
-  toggleTheme
+  toggleTheme,
 } from './global-action';
 
 const setTrue = () => true;
 const setFalse = () => false;
 
- const modalTransaction = createReducer(false, {
+const modalTransaction = createReducer(false, {
   [openModal]: setTrue,
   [closeModal]: setFalse,
 });
 
- const modalEditTransaction = createReducer(false, {
+const modalEditTransaction = createReducer(false, {
   [openEditModal]: setTrue,
   [closeEditModal]: setFalse,
 });
 
- const modalAvatar = createReducer(false, {
+const modalAvatar = createReducer(false, {
   [openModalAvatar]: setTrue,
   [closeModalAvatar]: setFalse,
 });
 
- const modalLogOut = createReducer(false, {
+const modalLogOut = createReducer(false, {
   [openModalLogOut]: setTrue,
   [closeModalLogOut]: setFalse,
 });
 
-const toggleThemeReducer = createReducer({
-  darkTheme: false,
-},{
-  
-[toggleTheme]:(state, {payload})=>{
-  return { darkTheme: !payload.darkTheme };
-},})
+const initialState = {
+  isDarkMode:false
+  // checking mode from local storage, if falsey (e.g. 0, null, undefined, etc.), it will be false, otherwise true
+  // isDarkMode: !!JSON.parse(localStorage.getItem("darkmode")),
+};
+
+const toggleThemeReducer = createReducer(initialState, {
+  [toggleTheme]: (state) => {
+    localStorage.setItem("darkmode", JSON.stringify(!state.isDarkMode)); // Update local storage
+    return { ...state, isDarkMode: !state.isDarkMode };
+  },
+});
+
 
 export default combineReducers({
   modalTransaction,
   modalEditTransaction,
   modalAvatar,
   modalLogOut,
-  toggleThemeReducer
+  toggleThemeReducer,
 });
