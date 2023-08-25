@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import './landingPage.css'
 import LogoComponent from '../LogoComponent/LogoComponent'
 import Container from "../Container/Container";
-import DarkMoode from '../DarkMoode/DarkMoode';
+import DarkMode from '../DarkMode/DarkMode';
 
 
 const Header = () => {
@@ -18,7 +18,7 @@ const Header = () => {
         <LogoComponent />
       </Link>
       <ul className="main-nav">
-        <li><DarkMoode/></li>
+        <li><DarkMode/></li>
         <li>
           <Link to='/register'>
             Register</Link>

@@ -15,7 +15,7 @@ import ModalLogoutWithRedux from "../ModalLogout/ModalLogoutWithRedux";
 import { getToggleTheme } from "../../redux/global/global-selectors";
 import {LogoutModalPortal} from "../ModalLogout/modalLogOutPortal";
 import { toggleTheme } from "../../redux/global/global-action";
-import DarkMoode from "../DarkMoode/DarkMoode";
+import DarkMode from "../DarkMode/DarkMode";
 
 export default function UserMenu() {
   // const [showModal, setShowModal] = useState(false);
@@ -81,7 +81,7 @@ const switchDarkMode = ()=>{dispatch(toggleTheme(false))}
         </label>
       </div> */}
 
-<div><DarkMoode/></div>
+<div><DarkMode/></div>
 
 
       <button type="button" className={s.logout} onClick={openModalAvatar}>
