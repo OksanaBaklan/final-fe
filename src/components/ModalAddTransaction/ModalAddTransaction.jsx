@@ -8,16 +8,20 @@ import s from "./ModalAddTransaction.module.css";
 import { useEffect } from "react";
 import closeIcon from "../../images/modal-transaction/close.svg";
 import { transactionCategories } from "../TransactionTable/transactionCategories";
+import ProgressAddAmound from "./ProgressAdd";
 
 
 const validationSchema = Yup.object().shape({
   amount: Yup.number()
     .typeError("Must be a number")
-    .required("required"),
-  comment: Yup.string(),
+    .required("Must be a number, required"),
+  comment: Yup.string()   
+  .typeError("Must be a string")
+  .required("Comment required"),
 });
 
 export default function ModalAddTransaction({ modalAction }) {
+  const [errorMessage, setErrorMessage] = React.useState("");
 
   const dispatch = useDispatch();
   
@@ -148,10 +152,7 @@ export default function ModalAddTransaction({ modalAction }) {
                     required
                   />
                 </div>
-
-                {touched.comment && errors.comment && (
-                  <span className={s.error}>{errors.comment}</span>
-                )}
+                <div className={s.subBox}>
                 <input
                   className={s.comment}
                   name={`comment`}
@@ -161,7 +162,11 @@ export default function ModalAddTransaction({ modalAction }) {
                   onBlur={handleBlur}
                   value={values.comment}
                 />
-
+                <br/>
+                {touched.comment && errors.comment && (
+                  <span className={s.errorComment}>{errors.comment}</span>
+                )}
+                </div>
                 <button
                   className={classNames(s.btn, s.btnAdd)}
                   type={`submit`}

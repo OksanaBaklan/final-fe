@@ -110,6 +110,12 @@
   color: red;
 }
 
+.errorComment {
+  position: absolute;
+  left: 20px;
+  top: 67px;
+  color: red;
+}
 .date {
   font-weight: 400;
   font-size: 18px;

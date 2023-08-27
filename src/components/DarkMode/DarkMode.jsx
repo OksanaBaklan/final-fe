@@ -3,7 +3,7 @@ import { toggleTheme } from "../../redux/global/global-action";
 import s from "../DarkMode/DarkMode.module.css"
 import { BsMoonStarsFill, BsFillSunFill } from "react-icons/bs";
 
-export default function DarkMode (){
+export default function DarkMode ({isDarkMode}){
   const dispatch = useDispatch();
 
   const switchDarkMode = ()=>{dispatch(toggleTheme(false))}
@@ -21,7 +21,7 @@ export default function DarkMode (){
           // checking checked prop with dark mode state
           // checked={isdarkMode}
         />
-        <label htmlFor="checkbox" className={s.label}>
+        <label htmlFor="checkbox" className={s.label} >
           <BsMoonStarsFill color="white" />
           <BsFillSunFill color="yellow" />
           <div className={s.ball}></div>

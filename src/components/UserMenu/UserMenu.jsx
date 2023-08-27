@@ -81,7 +81,7 @@ export default function UserMenu({isDarkMode}) {
         </label>
       </div> */}
 
-<div><DarkMode/></div>
+<div><DarkMode isDarkMode={isDarkMode}/></div>
 
 
       <button type="button" className={s.logout} onClick={openModalAvatar}>
