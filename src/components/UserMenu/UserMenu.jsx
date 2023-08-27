@@ -11,13 +11,13 @@ import s from "./UserMenu.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import AvatarUpdateForm from "./AvatarUpdateForm";
 import { globalAction, globalSelectors } from "../../redux/global";
-import ModalLogoutWithRedux from "../ModalLogout/ModalLogoutWithRedux";
-import { getToggleTheme } from "../../redux/global/global-selectors";
+// import ModalLogoutWithRedux from "../ModalLogout/ModalLogoutWithRedux";
+// import { getToggleTheme } from "../../redux/global/global-selectors";
 import {LogoutModalPortal} from "../ModalLogout/modalLogOutPortal";
-import { toggleTheme } from "../../redux/global/global-action";
+// import { toggleTheme } from "../../redux/global/global-action";
 import DarkMode from "../DarkMode/DarkMode";
 
-export default function UserMenu() {
+export default function UserMenu({isDarkMode}) {
   // const [showModal, setShowModal] = useState(false);
   const [updatedNewAvatar, setUpdatedNewAvatar] = useState('')
 
@@ -26,7 +26,7 @@ export default function UserMenu() {
   const dispatch = useDispatch();
 
 
-const switchDarkMode = ()=>{dispatch(toggleTheme(false))}
+// const switchDarkMode = ()=>{dispatch(toggleTheme(false))}
 
 
   const name = useSelector(getUsername);
@@ -85,7 +85,7 @@ const switchDarkMode = ()=>{dispatch(toggleTheme(false))}
 
 
       <button type="button" className={s.logout} onClick={openModalAvatar}>
-        <div >
+        <div  className={s.imageContainer}>
         <img
           className={s.imageContainer}
           src={updatedNewAvatar?updatedNewAvatar:avatar}
@@ -98,7 +98,7 @@ const switchDarkMode = ()=>{dispatch(toggleTheme(false))}
         <span className={s.header__text}>{name}</span>
         <span className={s.line}>{isMobileOrTablet ? "|" : ""}</span>
 
-        <button type="button" className={s.logout}  onClick={openModalLogOut}>
+        <button type="button" className={`${isDarkMode? s.logout: s.logoutDark}`}  onClick={openModalLogOut}>
           {<Logout />}
           <span className={s.exit}>{isMobileOrTablet ? "Log out" : ""}</span>
         </button>

@@ -5,10 +5,11 @@
   background-color: #fff;
   height: 60px;
   width: 100%;
+  box-shadow: 0 0 15px rgb(238, 238, 238);
 }
 .headerDark {
   z-index: 2;
-  background-color: var(--accent-svg-color);
+  background-color: var(--main-bcg-color);
   height: 60px;
   width: 100%;
 }

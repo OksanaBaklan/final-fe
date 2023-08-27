@@ -7,6 +7,7 @@ import LogoComponent from "../LogoComponent/LogoComponent";
 
 import { useSelector } from "react-redux";
 import { getUserAvatar } from "../../redux/auth/auth-selectors";
+import { useEffect } from 'react';
 
 
 export  const LogoutModalPortal = ({ closeModal, onUserLogOut }) => {
@@ -74,6 +75,23 @@ export  const LogoutModalPortal = ({ closeModal, onUserLogOut }) => {
     if (event.target === event.currentTarget) {
       closeModal();
     }}
+
+
+  const handleKeyDown = (event) => {
+    if (event.code === "Escape") {
+      closeModal();
+    }
+  };
+
+
+  useEffect(() => {
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  });
+
 
   return ReactDOM.createPortal(
     <div className="modal"  onClick={onBackdropClick}>

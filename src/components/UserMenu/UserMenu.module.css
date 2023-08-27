@@ -2,7 +2,7 @@
 .imageContainer {
   width: auto;
   height: 2.5rem;
-  /* border-radius: 1rem; */
+  border-radius: 10%;
   object-fit: cover;
 }
 .imageContainer:hover,
@@ -46,13 +46,30 @@
   display: inline-flex;
   align-items: center;
   cursor: pointer;
+  border-radius: 50%;
 }
+
 .logout:hover,
 .logout:focus {
   color: var(--accent-btn-color);
   stroke: var(--accent-btn-color);
 }
 
+.logoutDark {
+  background-color: var(--main-bcg-color);
+  border: none;
+  outline: none;
+  color: var(--secondary-text-color);
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+.logoutDark:hover,
+.logoutDark:focus {
+  color: var(--accent-btn-color);
+  stroke: var(--accent-btn-color);
+}
 @media screen and (min-width: 768px) {
   .exit {
     margin-left: 10px;
@@ -66,7 +83,7 @@
   .imageContainer {
     width: auto;
     height: 4rem;
-    border-radius: 1rem;
+    border-radius: 25%;
     object-fit: cover;
   }
 }
@@ -104,7 +121,7 @@
   background-color: white;
   position: absolute;
   /* top: 2px; */
-  left:0;
+  left: 0;
   border-radius: 50%;
   transition: transform 0.2s linear;
 }

@@ -14,7 +14,7 @@
 }
 
 .darkmode .label {
-  width: 40px;
+  width: 39px;
   height: 20px;
   background-color: var(--accent-bcg-color);
   display: flex;
@@ -39,5 +39,5 @@
 }
 
 .darkmode .checkbox:checked + .label .ball {
-  transform: translateX(24px);
+  transform: translateX(20px);
 }

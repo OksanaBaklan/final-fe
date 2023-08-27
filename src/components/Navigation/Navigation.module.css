@@ -77,6 +77,21 @@
     transition: color 250ms linear;
   }
 
+  .activeLinkDark{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+
+    font-family: var(--logo__font-family);
+    font-size: 18px;
+    line-height: 26px;
+    font-weight: 700;
+    color: var(--accent-svg-color);
+    fill: var(--main-text-color);
+    transition: color 250ms linear;
+
+  }
+
   .link {
     display: flex;
     align-items: center;
@@ -91,6 +106,20 @@
     color: var(--main-text-color);
 
     transition: color 250ms linear;
+  }
+  .linkDark {
+        display: flex;
+    align-items: center;
+    justify-content: left;
+
+    font-family: var(--logo__font-family);
+    font-size: 18px;
+    line-height: 27px;
+    font-weight: 400;
+    fill: var(--main-text-color);
+    color: var(--unselected-svg-color);
+    transition: color 250ms linear;
+
   }
 
   .link:first-child {
