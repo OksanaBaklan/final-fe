@@ -54,18 +54,18 @@ const Currency = () => {
       <div>
         {exchangeRates.length > 0 ? (
           <>
-            <table style={{ borderCollapse: "collapse", width: "100%" }}>
+            <table style={{ borderCollapse: "collapse", width: "100%", height: "210px" }}>
               <thead>
-                <tr>
-                  <th style={tableHeaderStyle}>Currency</th>
-                  <th style={tableHeaderStyle}>Rate</th>
+                <tr style={tableHeaderStyle}>
+                  <th>Currency</th>
+                  <th>Rate</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody style={tbodyStyle}>
                 {exchangeRates?.map((rate) => (
-                  <tr key={rate.currency}>
-                    <td style={tableCellStyle}>{rate.currency}</td>
-                    <td style={tableCellStyle}>{rate.rate}</td>
+                  <tr key={rate.currency} style={tableCellStyle}>
+                    <td >{rate.currency}</td>
+                    <td >{rate.rate}</td>
                   </tr>
                 ))}
               </tbody>
@@ -97,17 +97,24 @@ const Currency = () => {
 
 
 const tableHeaderStyle = {
-  padding: "10px",
-  textAlign: "center",
-  width: "auto",
-  margin: "15px",
-  borderBottom: "1px solid #ddd",
+paddingBottom: "30px",
+borderRadius: "30px",
+padding: "10px",
+textAlign: "center",
+width: "auto",
+height: "60px",
+margin: "0px",
+backgroundColor: "rgba(255, 255, 255, 0.25)",
+};
+
+
+const tableCellStyle = {
+  padding: "20px",
   color: "#f2f2f2",
 };
 
-const tableCellStyle = {
-  padding: "10px",
-  color: "#f2f2f2",
-};
+const tbodyStyle = {
+paddingTop: "20px",
+}
 
 export default Currency;
