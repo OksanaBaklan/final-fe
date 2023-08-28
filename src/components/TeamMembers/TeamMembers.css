@@ -70,6 +70,7 @@
 
 .imgBx {
   position: relative;
+  margin: 0 auto;
   width: 180px;
   height: 180px;
   border-radius: 50%;

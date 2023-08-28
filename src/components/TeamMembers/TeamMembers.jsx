@@ -1,9 +1,9 @@
 import './TeamMembers.css'
-import Alvaro from '../../components/TeamMembers/teamImg/Alvaro.png'
-import Hamza from '../../components/TeamMembers/teamImg/Hamza.jpeg'
-import Natalia from '../../components/TeamMembers/teamImg/Natalia.png'
-import Oksana from '../../components/TeamMembers/teamImg/Oksana.jpeg'
-import Simin from '../../components/TeamMembers/teamImg/Simin.jpeg'
+import Alvaro from './teamImg/Alvaro.png'
+import Hamza from './teamImg/Hamza.jpeg'
+import Natalia from './teamImg/Natalia.png'
+import Oksana from './teamImg/Oksana.jpeg'
+import Simin from './teamImg/Simin.jpeg'
 import closeIcon from "../../images/modal-transaction/close.svg";
 import Container from '../Container/Container'
 import { FaEnvelope, FaGithub, FaLinkedin } from 'react-icons/fa';
@@ -17,7 +17,8 @@ const TeamMembers = ({onModalClose, onOverlayClose}) => {
         email:"oksana.molesha@gmail.com",
         linkedin: "https://www.linkedin.com/in/oksana-baklan/",
         github: "https://github.com/OksanaBaklan"
-      }, {
+      }, 
+      {
         id: 2,
         imageSrc: Hamza,
         title: "Hamza Nachawati",
