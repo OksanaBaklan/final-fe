@@ -108,6 +108,8 @@ export default function LoginForm() {
             >
               register
             </NavLink>
+            <p style={{color:"yellowgreen"}}>Forgot your password? <NavLink to="/password-reset">Click Here!</NavLink></p>
+
           </Form>
         )}
       </Formik>

@@ -1,7 +1,7 @@
 /** @format */
 
 import { Suspense, useContext, useEffect } from 'react';
-import {  Navigate, Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
 import { useMediaQuery } from 'react-responsive';
 
@@ -24,6 +24,8 @@ import { fetchCurrentUser } from './redux/auth/auth-operations';
 import LoaderComponent from './components/LoaderComponent/LoaderComponent';
 import NothingPage from './pages/NothingPage/NothingPage';
 import LandingPage from './components/LandingPage/LandingPage';
+import PasswordRecovery from './components/LoginForm/PasswordRecovery';
+import PasswordReset from './components/LoginForm/PasswordReset';
 
 ChartJS.register(ArcElement, Tooltip);
 
@@ -42,7 +44,7 @@ function App() {
         <>
           <div className="App">
             <ToastContainer autoClose={6000} />
-            
+
             <AppBackground>
               <Suspense fallback={<LoaderComponent />}>
                 <Routes>
@@ -61,9 +63,7 @@ function App() {
                     <Route path="statistic" element={<Chart />} />
                     <Route
                       path="currency"
-                      element={
-                        isMobileOrTablet ? <Currency /> : <Navigate replace to="/table" />
-                      }
+                      element={isMobileOrTablet ? <Currency /> : <Navigate replace to="/table" />}
                     />
                   </Route>
                   <Route
@@ -72,6 +72,8 @@ function App() {
                   />
                   <Route path="/verify/:verificationToken" element={<VerifyPage />} />
                   <Route path="*" element={<NothingPage />} />
+                  <Route path="/password-reset/:email/:token" element={<PasswordRecovery />} />
+                  <Route path="/password-reset" element={<PasswordReset />} />
                 </Routes>
               </Suspense>
             </AppBackground>
