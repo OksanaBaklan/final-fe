@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink,} from "react-router-dom";
 import * as Yup from "yup";
 // import LogoComponent from "../LogoComponent";
 import s from "./RegisterForm.module.css";
@@ -7,7 +7,6 @@ import { ReactComponent as Emailcon } from "../../images/icon-form/email.svg";
 import { ReactComponent as Passwordcon } from "../../images/icon-form/password.svg";
 import classNames from "classnames";
 import { useState } from "react";
-import axios from "axios";
 import LogoComponent from "../LogoComponent/LogoComponent";
 import { useDispatch } from "react-redux";
 import { authUser } from "../../redux/auth/auth-operations";
@@ -37,7 +36,6 @@ const SignupSchema = Yup.object().shape({
 
 export default function RegisterForm() {
   const [errorMessage, setErrorMessage] = useState("");
-  const [userImage, setUserImage] = useState("");
 
   const dispatch = useDispatch();
 
@@ -49,29 +47,6 @@ export default function RegisterForm() {
     }
   };
 
-
-  // const submitHandler = async (e) => {
-
-  //   e.preventDefault();
-  //   const userProfile = {
-  //     userName: e.target["userName"].value,
-  //     password: e.target["password"].value,
-  //     confirmPassword: e.target["confirmPassword"].value,
-  //     email: e.target["email"].value,
-  //   };
-    
-  //   try {
-  //     const response = await axios.post(
-  //       `http://localhost:5555/api/users/signup`,
-  //       userProfile,
-  //     );
-  //     e.target.reset();
-  //     navigate("/login");
-  //   } catch (err) {
-  //     setErrorMessage(err.request.response);
-  //   }
-  //   console.log(userProfile);
-  // };
 
   return (
     <>
@@ -191,7 +166,7 @@ export default function RegisterForm() {
     //             placeholder="E-mail"
     //             className={s.input}
     //             type="email"
-    //             name="email" 
+    //             name="email"
     //             required
     //           />
     //         </div>
@@ -226,7 +201,7 @@ export default function RegisterForm() {
     //           />
     //         </div>
     //         {/* <div className={s.input_wrap}>
-    //         <input 
+    //         <input
     //                         className={s.input}
 
     //       type="file"

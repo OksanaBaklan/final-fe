@@ -5,7 +5,6 @@ import { ReactComponent as Logout } from "../../images/icon-logout/logout.svg";
 
 import { getUsername, getUserAvatar } from "../../redux/auth/auth-selectors";
 import { logOut } from "../../redux/auth/auth-operations";
-// import ModalLogout from "../ModalLogout/ModalLogout";
 import s from "./UserMenu.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import AvatarUpdateForm from "./AvatarUpdateForm";
@@ -25,7 +24,7 @@ export default function UserMenu({isDarkMode}) {
 
   const name = useSelector(getUsername);
   const avatar = useSelector(getUserAvatar);
-  
+
   const modalLogOut = useSelector(globalSelectors.getModalLogOut);
   const modalAvatar = useSelector(globalSelectors.getModalAvatar)
 
@@ -58,22 +57,7 @@ export default function UserMenu({isDarkMode}) {
   return (
     <div className={s.header__user}  >
 
-      {/* <div className={s.darkmode}>
-          <input
-          type="checkbox"
-          className={s.checkbox}
-          id="checkbox"
-          // onChange prop to fire our internal function for changing the dark mode value
-          onChange={switchDarkMode}
-          // checking checked prop with dark mode state
-          // checked={isdarkMode}
-        />
-        <label htmlFor="checkbox" className={s.label}>
-          <BsMoonStarsFill color="white" />
-          <BsFillSunFill color="yellow" />
-          <div className={s.ball}></div>
-        </label>
-      </div> */}
+  
 
 <div  className={s.darkMode}><DarkMode isDarkMode={isDarkMode}/></div>
 
@@ -97,7 +81,7 @@ export default function UserMenu({isDarkMode}) {
           <span className={s.exit}>{isMobileOrTablet ? "Log out" : ""}</span>
         </button>
       <Fragment>
-      {modalLogOut && <LogoutModalPortal closeModal={closeModalLogOut}  onUserLogOut={onUserLogOut}></LogoutModalPortal>} 
+      {modalLogOut && <LogoutModalPortal closeModal={closeModalLogOut}  onUserLogOut={onUserLogOut}></LogoutModalPortal>}
 
       </Fragment>
 

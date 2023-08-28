@@ -8,23 +8,21 @@ import s from "./ModalAddTransaction.module.css";
 import { useEffect } from "react";
 import closeIcon from "../../images/modal-transaction/close.svg";
 import { transactionCategories } from "../TransactionTable/transactionCategories";
-import ProgressAddAmound from "./ProgressAdd";
 
 
 const validationSchema = Yup.object().shape({
   amount: Yup.number()
     .typeError("Must be a number")
     .required("Must be a number, required"),
-  comment: Yup.string()   
+  comment: Yup.string()
   .typeError("Must be a string")
   .required("Comment required"),
 });
 
 export default function ModalAddTransaction({ modalAction }) {
-  const [errorMessage, setErrorMessage] = React.useState("");
 
   const dispatch = useDispatch();
-  
+
   const handleSubmit = ({ date, isIncome, amount, comment, categoryId }) => {
     dispatch(addTransaction({ date, isIncome, amount, comment, categoryId }));
   };

@@ -4,15 +4,12 @@ import closeIcon from "../../images/modal-transaction/close.svg";
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import classNames from "classnames";
-import LoaderComponent from '../LoaderComponent/LoaderComponent';
 
 
 
 
 const AvatarUpdateForm = ({closeModal, setUpdatedNewAvatar}) => {
   const [selectedFile, setSelectedFile] = useState(null);
-  const [errorMessage, setErrorMessage] = useState("")
-  // console.log(selectedFile)
   const [isLoading, setIsLoading] = useState(false)
 
 const navigate = useNavigate()
@@ -37,7 +34,7 @@ const navigate = useNavigate()
       window.removeEventListener("keydown", handleKeyDown);
     };
   });
-  
+
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
   };
@@ -48,10 +45,6 @@ const navigate = useNavigate()
       return;
     }
 
-    // const formData = new FormData()
-
-    // formData.append('avatar', e.target.elements[0].files[0])
-// http://localhost:5555/api/users/avatars
 
 const formData = new FormData();
     formData.append('image', selectedFile);
@@ -62,7 +55,6 @@ const formData = new FormData();
           'Content-Type': 'multipart/form-data',
         },
       });
-      // console.log('Avatar uploaded successfully', dataAvatar.data.data.avatar);
 
       setUpdatedNewAvatar(dataAvatar.data.data.avatar)
       setIsLoading(false)
@@ -79,7 +71,7 @@ const formData = new FormData();
     <div  className={s.overlay} onClick={onBackdropClick} >
 
       <div className={s.formBox}>
-        
+
       <form onSubmit={handleSubmit}  className={s.form}>
 {isLoading && (      <div className={s.loaderContainer}>
         <div className={s.loader}></div>
@@ -98,7 +90,7 @@ const formData = new FormData();
             onChange={handleFileChange}
           />
         </div>
-        <button 
+        <button
         className={classNames(s.btn, s.btnAdd)}
         type="submit">Update Avatar</button>
       </form>
