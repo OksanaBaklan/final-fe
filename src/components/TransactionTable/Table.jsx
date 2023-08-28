@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import LoaderComponent from "../LoaderComponent/LoaderComponent";
 
 import { getTransactions } from "../../redux/transactions/transactions-selectors";
-import { getAllTransactions,deleteTransaction } from "../../redux/transactions/transaction-operations";
+import { getAllTransactions, deleteTransaction } from "../../redux/transactions/transaction-operations";
 import { getLoading } from "../../redux/transactions/transactions-selectors";
 
 import TransactionTable from "./TransactionTable";
@@ -17,27 +17,26 @@ export default function Table() {
   const dispatch = useDispatch()
   const isLoading = useSelector(getLoading)
 
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(getAllTransactions())
-  },[dispatch])
+  }, [dispatch])
 
   const transactions = useSelector(getTransactions);
   const transactionType = typeof transactions;
-  // console.log(transactionType);
-const text = "something went wrong, please refresh your page"
-  if (transactionType!=='object') {
+  const text = "something went wrong, please refresh your page"
+  if (transactionType !== 'object') {
     return (<div className={s.tableWrapper}>
-    <NoTransactions text={text}/>
-  </div> ) }
+      <NoTransactions text={text} />
+    </div>)
+  }
 
   const transactionsDeleteHandler = id => {
     dispatch(deleteTransaction(id));
   };
-  
+
   return isLoading ? (
     <LoaderComponent />
   ) : (
-    // if(transactionType==='object'){}else{ <h2 style={{color: "red", textAlign: "center", margin:"2em auto"}}>something went wrong <br/> refresh your page</h2>}
     <Media query={{ minWidth: 768 }}>
       {(matches) =>
         matches ? (

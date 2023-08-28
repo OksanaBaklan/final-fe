@@ -10,16 +10,14 @@ export default function DarkMode ({isDarkMode}){
 
     return(
         <>
-        
+
       <div className={s.darkmode}>
           <input
           type="checkbox"
           className={s.checkbox}
           id="checkbox"
-          // onChange prop to fire our internal function for changing the dark mode value
           onChange={switchDarkMode}
-          // checking checked prop with dark mode state
-          // checked={isdarkMode}
+      
         />
         <label htmlFor="checkbox" className={s.label} >
           <BsMoonStarsFill color="white" />

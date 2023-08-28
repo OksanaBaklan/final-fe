@@ -67,14 +67,12 @@
     height: 720px;
     padding-left: 114px;
     padding-right: 114px;
-    /* background-image: url(images/login/desktop/frame.png); */
     background-image: url(../../images/login/desktop/frame.png);
     background-repeat: no-repeat;
     background-position: left 76px top 150px;
   }
 
   .content_container {
-    /* position: relative; */
     width: 720px;
     height: 720px;
     background-position: right 0;

@@ -1,16 +1,13 @@
-import React, { useContext } from "react";
 import { useState } from "react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 import s from "./Chart.module.css";
 import DiagramTab from "../DiagrammTab/Donutchart";
 
-import { UserContext } from "../../storeContext/UserContext";
 import { useDispatch, useSelector } from "react-redux";
 import { getBalance, getTransactions } from "../../redux/transactions/transactions-selectors";
 import { useEffect } from "react";
 import { getBalanceTransactions } from "../../redux/transactions/transaction-operations";
-import { getAuth } from "../../redux/auth/auth-selectors";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -35,7 +32,7 @@ export default function Chart() {
   const balance = useSelector(getBalance);
   const transactions = useSelector(getTransactions);
   const dispatch = useDispatch();
-  
+
   useEffect(() =>{ dispatch(getBalanceTransactions())}, [dispatch, transactions]);
 
 

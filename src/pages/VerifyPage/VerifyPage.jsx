@@ -10,7 +10,6 @@ axios.defaults.baseURL = "http://localhost:5555/api/";
 export default function VerifyPage() {
   let { verificationToken } = useParams();
   console.log(verificationToken);
-  //  axios.get(`users/verify/${verificationToken}`);
   const verify = async (token) => {
     try {
       const response = await axios.get(`users/verify/${token}`);

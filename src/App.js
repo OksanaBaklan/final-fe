@@ -1,19 +1,16 @@
 /** @format */
 
 import { Suspense, useContext, useEffect } from 'react';
-import { Link, Navigate, Route, Routes } from 'react-router-dom';
+import {  Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
 import { useMediaQuery } from 'react-responsive';
-import classNames from 'classnames';
 
 import AppBackground from './components/AppBackground/AppBackground';
 import LoginPage from './pages/LoginPage/LoginPage';
-import { Doughnut } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip } from 'chart.js';
 import Currency from './components/Currency/Currency';
 import RegisterPage from './pages/RegisterPage';
 import VerifyPage from './pages/VerifyPage/VerifyPage';
-import { UserContext } from './storeContext/UserContext';
 import DashboardPage from './pages/DashboardPage/DashboardPage';
 import Table from './components/TransactionTable/Table';
 import Chart from './components/Chart/Chart';
@@ -35,11 +32,9 @@ function App() {
   const isAuth = useSelector(getAuth);
   const isAuthRefresh = useSelector(getAuthRefresh);
   const dispatch = useDispatch();
-  // console.log(isAuthRefresh);
 
   useEffect(() => {
     dispatch(fetchCurrentUser());
-    // console.log(isAuth);
   }, [dispatch]);
   return (
     <>
@@ -47,7 +42,7 @@ function App() {
         <>
           <div className="App">
             <ToastContainer autoClose={6000} />
-            {/* */}
+            
             <AppBackground>
               <Suspense fallback={<LoaderComponent />}>
                 <Routes>

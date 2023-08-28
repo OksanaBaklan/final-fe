@@ -22,10 +22,9 @@ export default function DashboardPage() {
           <div className={s.flex}>
             <div className={s.navBox}>
               <Navigation />
-              {/* <Balance /> */}
-              {pathname !== "/currency" && <Balance />}
+              {/* {pathname !== "/currency" && <Balance />}
 
-            {isMobileOrTablet && <Currency />}
+            {isMobileOrTablet && <Currency />} */}
             </div>
           </div>
           <Outlet />

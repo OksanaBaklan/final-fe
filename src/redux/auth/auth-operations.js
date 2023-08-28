@@ -1,7 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { toast } from "react-toastify";
-// axios.defaults.baseURL = "https://goit-34-wallet.herokuapp.com/api";
 axios.defaults.baseURL = "http://localhost:5555/api"
 
 
@@ -53,7 +52,6 @@ export const loginUser = createAsyncThunk(
         token.set(data.token);
         toast.success("You are successfully logged in");
       }
-      // console.log(data);
         return data;
     } catch (err) {
       if (err.response.statusText === "Bad Request") {
