@@ -1,12 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './landingPage.css'
 import LogoComponent from '../LogoComponent/LogoComponent'
 import Container from "../Container/Container";
 import DarkMode from '../DarkMode/DarkMode';
+import TeamMembers from '../TeamMembers/TeamMembers';
 
 
 const Header = () => {
+  const [showModal, setShowModal] = useState(false);
+
+  const onModalToggle = () => {
+    setShowModal((prev) => !prev);
+  };
+
+  const onOverlayClose = (event) => {
+    if (event.target === event.currentTarget) {
+      onModalToggle();
+    }
+  };
   return (
     <header className="header" id="header">
       <Container>
@@ -26,7 +38,20 @@ const Header = () => {
         <li>
           <Link to="/login">Login</Link>
         </li>
+        <li onClick={onModalToggle}>
+        <Link>Contact
+        </Link>
+        {/* <button  type='button' > */}
+         {/* TeamMembers */}
+        {/* </button> */}
+        </li>
       </ul>
+      {showModal && (
+        <TeamMembers
+          onModalClose={onModalToggle}
+          onOverlayClose={onOverlayClose}
+        />
+      )}
     </div>
       </div>
       </Container>
