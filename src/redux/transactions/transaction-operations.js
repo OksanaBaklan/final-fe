@@ -41,7 +41,6 @@ export const getAllTransactions = createAsyncThunk(
           Authorization: `Bearer ${JSON.parse(localStorage.getItem('my-app-token'))}`,
         },
       });
-      // console.log(data);
       return data.transactions;
     } catch (err) {
       if (err.response.status === 401) {
@@ -119,7 +118,6 @@ export const fetchDetailsTransaction = createAsyncThunk(
           Authorization: `Bearer ${JSON.parse(localStorage.getItem('my-app-token'))}`,
         },
       });
-      // console.log(data)
       return data;
     } catch (err) {
       return rejectWithValue(

@@ -39,8 +39,7 @@ export  const LogoutModalPortal = ({ closeModal, onUserLogOut }) => {
   };
 
   const clearIconStyle = {
-    // marginLeft: "340px",
-    // marginTop:"30px"
+
     display: "block",
     position: "absolute",
     cursor: "pointer",
@@ -56,7 +55,6 @@ export  const LogoutModalPortal = ({ closeModal, onUserLogOut }) => {
   }
 
   const avaStyle = {
-    // marginLeft: "170px",
     margin: "32px auto",
     width: "60px",
     height: "60px"

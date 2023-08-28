@@ -1,7 +1,6 @@
 import { NavLink } from "react-router-dom";
 
 // mobile
-// import { ReactComponent as HomeImgMob } from "images/navigation/mobile/home.svg";
 import { ReactComponent as HomeImgMob } from "../../images/navigation/mobile/home.svg";
 import { ReactComponent as PbImgMob } from "../../images/navigation/mobile/pb.svg";
 import { ReactComponent as StatisticsImgMob } from "../../images/navigation/mobile/statistics.svg";
@@ -15,12 +14,10 @@ import Media from "react-media";
 import { useMediaQuery } from "react-responsive";
 import { useSelector } from "react-redux";
 import { getAuth } from "../../redux/auth/auth-selectors";
-import { getToggleTheme } from "../../redux/global/global-selectors";
 
 export default function Navigation() {
   const isMobileOrTablet = useMediaQuery({ query: "(max-width: 767px)" });
   const isAuth = useSelector(getAuth);
-  const theme = useSelector(getToggleTheme)
 
   return (
     <nav className={s.nav}>
@@ -28,8 +25,7 @@ export default function Navigation() {
         to="/table"
         className={({ isActive }) => (isActive ? s.activeLink : s.link)}
       >
-{/* (`${!theme.isDarkMode ? s.linkDark : s.link}) */}
-        
+
         <HomeImgMob className={s.navImgMob} />
         <HomeImgTab className={s.navImgTab} />
         <span className={s.text}>Home</span>
@@ -45,7 +41,7 @@ export default function Navigation() {
       </NavLink>}
 
         {/* {isMobileOrTablet &&  */}
-        
+
         <Media
         query="(max-width: 767px)"
         render={() => (
@@ -55,7 +51,7 @@ export default function Navigation() {
           >
             <PbImgMob className={s.navImgMob} />
           </NavLink>)} />
-      
+
 
     </nav>
   );

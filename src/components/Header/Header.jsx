@@ -11,7 +11,6 @@ export default function Header() {
 
   return (
     <header className={`${!theme.isDarkMode ? s.headerDark : s.header}`}>
-    {/* <header className={s.header}> */}
       <Container>
         <div className={s.headerContainer}>
           <LogoComponent />
