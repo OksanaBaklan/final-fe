@@ -1,4 +1,8 @@
 @import '../../stylesheet/var.css';
+
+.darkMode {
+  margin-right: 2rem;
+}
 .imageContainer {
   width: auto;
   height: 2.5rem;

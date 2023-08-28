@@ -28,8 +28,10 @@
   height: 100%;
   z-index: -1;
   overflow: hidden;
+  /* background-color: #333333; */
   background-color: var(--unselected-svg-color);
 }
+/* background-color: #212225} */
 .ellipse1 {
   position: absolute;
   top: 62%;
