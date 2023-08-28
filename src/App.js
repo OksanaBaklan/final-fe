@@ -72,7 +72,7 @@ function App() {
                   />
                   <Route path="/verify/:verificationToken" element={<VerifyPage />} />
                   <Route path="*" element={<NothingPage />} />
-                  <Route path="/password-reset/:email/:token" element={<PasswordRecovery />} />
+                  <Route path="/home/password-reset/:email/:token" element={<PasswordRecovery />} />
                   <Route path="/password-reset" element={<PasswordReset />} />
                 </Routes>
               </Suspense>

@@ -108,7 +108,7 @@ export default function LoginForm() {
             >
               register
             </NavLink>
-            <p style={{color:"yellowgreen"}}>Forgot your password? <NavLink to="/password-reset">Click Here!</NavLink></p>
+            <p style={{color:"black", marginTop:"1rem"}}>Forgot your password? <NavLink to="/password-reset">Click Here!</NavLink></p>
 
           </Form>
         )}
