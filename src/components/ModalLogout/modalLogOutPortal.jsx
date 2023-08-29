@@ -55,9 +55,11 @@ export  const LogoutModalPortal = ({ closeModal, onUserLogOut }) => {
   }
 
   const avaStyle = {
-    margin: "32px auto",
-    width: "60px",
-    height: "60px"
+
+    // marginLeft: "170px",
+    margin: "10px auto",
+ 
+
   }
 
   const textStyle = {
@@ -103,7 +105,7 @@ export  const LogoutModalPortal = ({ closeModal, onUserLogOut }) => {
             </Grid>
 
             <Grid style={avaStyle}>
-              <Avatar src={avatar ? avatar : "/broken-image.jpg"} sx={{ width: 100, height: 100 }} />
+              <Avatar src={avatar ? avatar : "/broken-image.jpg"} sx={{ width: 95, height: 95 }} />
             </Grid>
 
             <Grid style={ButtonStyle}>
