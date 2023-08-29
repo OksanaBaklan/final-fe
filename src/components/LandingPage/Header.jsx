@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import './landingPage.css'
 import LogoComponent from '../LogoComponent/LogoComponent'
 import Container from "../Container/Container";
-import DarkMode from '../DarkMode/DarkMode';
 import TeamMembers from '../TeamMembers/TeamMembers';
 
 
@@ -30,7 +29,6 @@ const Header = () => {
         <LogoComponent />
       </Link>
       <ul className="main-nav">
-        {/* <li><DarkMode/></li> */}
         <li>
           <Link to='/register'>
             Register</Link>
@@ -41,9 +39,6 @@ const Header = () => {
         <li onClick={onModalToggle}>
         <Link>Contact
         </Link>
-        {/* <button  type='button' > */}
-         {/* TeamMembers */}
-        {/* </button> */}
         </li>
       </ul>
       {showModal && (
