@@ -28,7 +28,7 @@
   height: 100%;
   z-index: -1;
   overflow: hidden;
-  background-color: #000000;
+  background-image: linear-gradient(30deg, rgb(46, 49, 46), rgb(35, 39, 35), rgb(20, 19, 19), rgb(27, 25, 25));
   /* background-color: var(--unselected-svg-color); */
 }
 /* background-color: #212225} */
