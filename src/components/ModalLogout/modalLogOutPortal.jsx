@@ -5,14 +5,14 @@ import { Grid, Paper, Button, Avatar } from "@mui/material";
 import ClearIcon from '@mui/icons-material/Clear';
 import LogoComponent from "../LogoComponent/LogoComponent";
 
-import { useSelector } from "react-redux";
-import { getUserAvatar } from "../../redux/auth/auth-selectors";
+// import { useSelector } from "react-redux";
+// import { getUserAvatar } from "../../redux/auth/auth-selectors";
 import { useEffect } from 'react';
 
 
-export  const LogoutModalPortal = ({ closeModal, onUserLogOut }) => {
+export  const LogoutModalPortal = ({ closeModal, onUserLogOut, avatar}) => {
 
-    const avatar = useSelector(getUserAvatar)
+    // const avatar = useSelector(getUserAvatar)
 
 
   const paperStyle = {

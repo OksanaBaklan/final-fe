@@ -6,7 +6,7 @@ const FeatureCard = ({ features }) => {
       <div className='cards'>
         <div className='container'>
           {features.map(feature => (
-            <div className='box' key={feature._id} >
+            <div className='box' key={feature.id} >
               <img src={feature.imageSrc} alt="" />
               <h3>{feature.title}</h3>
               <p>{feature.description}</p>

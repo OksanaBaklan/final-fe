@@ -16,7 +16,6 @@ import s from "./TransactionTable.module.css";
 export default function Table() {
   const dispatch = useDispatch()
   const isLoading = useSelector(getLoading)
-
   useEffect(() => {
     dispatch(getAllTransactions())
   }, [dispatch])

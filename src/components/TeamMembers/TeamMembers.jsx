@@ -13,7 +13,7 @@ const TeamMembers = ({ onModalClose, onOverlayClose }) => {
     id: 1,
     imageSrc: Oksana,
     title: "Oksana Baklan",
-    description: "Fullstack developer",
+    // description: "Fullstack developer",
     email: "oksana.molesha@gmail.com",
     linkedin: "https://www.linkedin.com/in/oksana-baklan/",
     github: "https://github.com/OksanaBaklan"
@@ -22,7 +22,7 @@ const TeamMembers = ({ onModalClose, onOverlayClose }) => {
     id: 2,
     imageSrc: Hamza,
     title: "Hamza Nachawati",
-    description: "Tutor / Fullstack developer",
+    // description: "Fullstack developer",
     email: "Hamza.nachawati77@gmail.com",
 
     linkedin: "https://www.linkedin.com/in/hamza-nachawati-4b807924a",
@@ -32,7 +32,7 @@ const TeamMembers = ({ onModalClose, onOverlayClose }) => {
     id: 3,
     imageSrc: Natalia,
     title: "Nataliya Rodionova",
-    description: "Fullstack developer",
+    // description: "Fullstack developer",
     email: "nataliyarodionova26@gmail.com",
     linkedin: "https://www.linkedin.com/in/nataliya-rodionova-7ba53669",
     github: "https://github.com/006080"
@@ -41,7 +41,7 @@ const TeamMembers = ({ onModalClose, onOverlayClose }) => {
     id: 4,
     imageSrc: Simin,
     title: "Simin",
-    description: "Fullstack developer",
+    // description: "Fullstack developer",
     email: "simincmin@gmail.com",
     linkedin: "https://www.linkedin.com",
     github: "https://github.com/siminmousavi"
@@ -49,8 +49,8 @@ const TeamMembers = ({ onModalClose, onOverlayClose }) => {
   {
     id: 5,
     imageSrc: Alvaro,
-    title: "Alvaro",
-    description: "Fullstack developer",
+    title: "Alvarez Valle",
+    // description: "Fullstack developer",
     email: "alvaroalvarezvalle@gmail.com",
     linkedin: "https://www.linkedin.com/in/alvaro-alvarez-valle-199653a6/?originalSubdomain=cu",
     github: "https://github.com/AlvaroAV7"
@@ -71,12 +71,12 @@ const TeamMembers = ({ onModalClose, onOverlayClose }) => {
             {team.map(feature => (
               <div className='card'>
                 <div className='card__content'>
-                  <div key={feature._id} >
+                  <div key={team.id} >
                     <div className='imgBx'>
                       <img src={feature.imageSrc} alt={feature.title} />
                     </div>
                     <h3 className='contentBx__title'>{feature.title}</h3>
-                    <p className='contentBx__subtitle'> {feature.description}</p>
+                    {/* <p className='contentBx__subtitle'> {feature.description}</p> */}
                     <ul className="sci">
                       <li className="sci__item"><a className='sci__link' href={`mailto:${feature.email}`} ><FaEnvelope /></a></li>
                       <li className="sci__item"><a className='sci__link' href={feature.github} rel='noreferrer noopener' target="_blank"><FaGithub /></a></li>
