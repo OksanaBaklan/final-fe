@@ -36,18 +36,17 @@ const modalLogOut = createReducer(false, {
 });
 
 const initialState = {
-  isDarkMode:false
+  isDarkMode: true,
   // checking mode from local storage, if falsey (e.g. 0, null, undefined, etc.), it will be false, otherwise true
   // isDarkMode: !!JSON.parse(localStorage.getItem("darkmode")),
 };
 
 const toggleThemeReducer = createReducer(initialState, {
-  [toggleTheme]: (state) => {
-    localStorage.setItem("darkmode", JSON.stringify(!state.isDarkMode)); // Update local storage
+  [toggleTheme]: state => {
+    localStorage.setItem('darkmode', JSON.stringify(!state.isDarkMode)); // Update local storage
     return { ...state, isDarkMode: !state.isDarkMode };
   },
 });
-
 
 export default combineReducers({
   modalTransaction,

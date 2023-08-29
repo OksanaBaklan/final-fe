@@ -30,7 +30,7 @@ const Header = () => {
         <LogoComponent />
       </Link>
       <ul className="main-nav">
-        <li><DarkMode/></li>
+        {/* <li><DarkMode/></li> */}
         <li>
           <Link to='/register'>
             Register</Link>
