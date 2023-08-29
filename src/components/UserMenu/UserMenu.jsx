@@ -1,30 +1,25 @@
 import { Fragment, useCallback, useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
-
 import { ReactComponent as Logout } from "../../images/icon-logout/logout.svg";
-
 import { getUsername, getUserAvatar } from "../../redux/auth/auth-selectors";
 import { logOut } from "../../redux/auth/auth-operations";
 import s from "./UserMenu.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import AvatarUpdateForm from "./AvatarUpdateForm";
 import { globalAction, globalSelectors } from "../../redux/global";
-
 import {LogoutModalPortal} from "../ModalLogout/modalLogOutPortal";
 import DarkMode from "../DarkMode/DarkMode";
 
-export default function UserMenu({isDarkMode}) {
+export default function UserMenu({isDarkMode, }) {
   const [updatedNewAvatar, setUpdatedNewAvatar] = useState('')
 
   const isMobileOrTablet = useMediaQuery({ query: "(min-width: 768px)" });
 
   const dispatch = useDispatch();
-
-
+  const avatar = useSelector(getUserAvatar);
 
   const name = useSelector(getUsername);
-  const avatar = useSelector(getUserAvatar);
-useEffect(()=>{setUpdatedNewAvatar(updatedNewAvatar)},[])
+
   const modalLogOut = useSelector(globalSelectors.getModalLogOut);
   const modalAvatar = useSelector(globalSelectors.getModalAvatar)
 
@@ -37,8 +32,6 @@ useEffect(()=>{setUpdatedNewAvatar(updatedNewAvatar)},[])
     () => dispatch(globalAction.closeModalAvatar()),
     [dispatch]
   );
-
-
   const closeModalLogOut = useCallback(
     () => dispatch(globalAction.closeModalLogOut()),
     [dispatch]
@@ -56,18 +49,12 @@ useEffect(()=>{setUpdatedNewAvatar(updatedNewAvatar)},[])
 
   return (
     <div className={s.header__user}  >
-
-  
-
-<div  className={s.darkMode}><DarkMode isDarkMode={isDarkMode}/></div>
-
-
+<div className={s.darkMode}><DarkMode isDarkMode={isDarkMode}/></div>
       <button type="button" className={s.logout} onClick={openModalAvatar}>
         <div  className={s.imageContainer}>
-        <img
+ <img
           className={s.imageContainer}
-          src={avatar}
-
+          src={updatedNewAvatar?updatedNewAvatar:avatar}
           alt="avatar"
         />
         </div>
@@ -81,7 +68,7 @@ useEffect(()=>{setUpdatedNewAvatar(updatedNewAvatar)},[])
           <span className={s.exit}>{isMobileOrTablet ? "Log out" : ""}</span>
         </button>
       <Fragment>
-      {modalLogOut && <LogoutModalPortal closeModal={closeModalLogOut}  onUserLogOut={onUserLogOut}></LogoutModalPortal>}
+      {modalLogOut && <LogoutModalPortal closeModal={closeModalLogOut} avatar = {updatedNewAvatar} onUserLogOut={onUserLogOut}></LogoutModalPortal>}
 
       </Fragment>
 

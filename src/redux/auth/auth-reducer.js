@@ -12,7 +12,15 @@ const user = createReducer(initialUserState, {
   [loginUser.fulfilled]: (_, { payload }) => payload,
   [logOut.fulfilled]: () => initialUserState,
   [fetchCurrentUser.fulfilled]: (_, { payload }) => payload.data,
-  [avatarUpdate.fulfilled]: (_, { payload }) => payload,
+  [avatarUpdate.fulfilled]: (state, { payload }) => {
+    return {
+      ...state,
+      data: {
+        ...state.data,
+        avatar: payload,
+      },
+    };
+  },
 });
 
 const token = createReducer(null, {
@@ -33,9 +41,16 @@ const isAuthRefresh = createReducer(false, {
   [fetchCurrentUser.rejected]: () => false,
 });
 
+const isLoadingAvatar = createReducer(false, {
+  [avatarUpdate.pending]: () => true,
+  [avatarUpdate.fulfilled]: () => false,
+  [avatarUpdate.rejected]: () => false,
+});
+
 export default combineReducers({
   user,
   token,
   isAuth,
   isAuthRefresh,
+  isLoadingAvatar,
 });
