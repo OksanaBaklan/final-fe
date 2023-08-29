@@ -71,9 +71,10 @@ function App() {
                     element={<UpdateTransaction />}
                   />
                   <Route path="/verify/:verificationToken" element={<VerifyPage />} />
-                  <Route path="*" element={<NothingPage />} />
-                  <Route path="/home/password-reset/:email/:token" element={<PasswordRecovery />} />
+                  <Route path="/password-reset/:email/:token" element={<PasswordRecovery />} />
+
                   <Route path="/password-reset" element={<PasswordReset />} />
+                  <Route path="*" element={<NothingPage />} />
                 </Routes>
               </Suspense>
             </AppBackground>
