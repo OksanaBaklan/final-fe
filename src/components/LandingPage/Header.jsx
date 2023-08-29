@@ -21,17 +21,14 @@ const Header = () => {
   return (
     <header className="header" id="header">
       <Container>
-
       <div className="headerContainer">
-
     <div className="logo">
       <Link to='/'>
         <LogoComponent />
       </Link>
       <ul className="main-nav">
         <li>
-          <Link to='/register'>
-            Register</Link>
+          <Link to='/register'>Register</Link>
         </li>
         <li>
           <Link to="/login">Login</Link>

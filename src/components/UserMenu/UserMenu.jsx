@@ -1,4 +1,4 @@
-import { Fragment, useCallback, useState } from "react";
+import { Fragment, useCallback, useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 
 import { ReactComponent as Logout } from "../../images/icon-logout/logout.svg";
@@ -24,7 +24,7 @@ export default function UserMenu({isDarkMode}) {
 
   const name = useSelector(getUsername);
   const avatar = useSelector(getUserAvatar);
-
+useEffect(()=>{setUpdatedNewAvatar(updatedNewAvatar)},[])
   const modalLogOut = useSelector(globalSelectors.getModalLogOut);
   const modalAvatar = useSelector(globalSelectors.getModalAvatar)
 
@@ -66,7 +66,7 @@ export default function UserMenu({isDarkMode}) {
         <div  className={s.imageContainer}>
         <img
           className={s.imageContainer}
-          src={updatedNewAvatar?updatedNewAvatar:avatar}
+          src={avatar}
 
           alt="avatar"
         />

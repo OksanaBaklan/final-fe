@@ -4,6 +4,8 @@ import closeIcon from "../../images/modal-transaction/close.svg";
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import classNames from "classnames";
+import { useDispatch } from 'react-redux';
+import { avatarUpdate } from '../../redux/auth/auth-operations';
 
 
 
@@ -38,6 +40,7 @@ const navigate = useNavigate()
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
   };
+  const dispatch = useDispatch();
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -49,22 +52,23 @@ const navigate = useNavigate()
 const formData = new FormData();
     formData.append('image', selectedFile);
     setIsLoading(true)
-    try {
-      const dataAvatar = await axios.patch(`http://localhost:5555/api/users/avatars`, formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
+    dispatch(avatarUpdate(formData))
+    // try {
+    //   const dataAvatar = await axios.patch(`http://localhost:5555/api/users/avatars`, formData, {
+    //     headers: {
+    //       'Content-Type': 'multipart/form-data',
+    //     },
+    //   });
 
-      setUpdatedNewAvatar(dataAvatar.data.data.avatar)
+      // setUpdatedNewAvatar(dataAvatar.data.data.avatar)
       setIsLoading(false)
 
       e.target.reset()
       navigate("/")
       closeModal();
-    } catch (error) {
-      console.error('Error uploading avatar:', error);
-    }
+    // } catch (error) {
+    //   console.error('Error uploading avatar:', error);
+    // }
   }
 
   return (
