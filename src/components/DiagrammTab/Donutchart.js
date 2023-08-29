@@ -8,17 +8,17 @@ import Category from '../Сategory/Category';
 export default function DiagramTab({ fetchDate, data, loader, theme }) {
   const styleSelect = theme.isDarkMode ? s.text : s.dark;
   const styleText = !theme.isDarkMode ? s.textDark : s.textLight;
+  const styleCategory = theme.isDarkMode ? s.text : s.darkCategory;
 
   return (
     <>
-      <div className={styleSelect}>
-        {' '}
-        <SelectDate fetchDate={fetchDate} loader={loader} theme={theme} />
-      </div>
+      {/* <div className={styleSelect}> */}{' '}
+      <SelectDate fetchDate={fetchDate} loader={loader} theme={theme} styleSelect={styleSelect} />
+      {/* </div> */}
       <div className={s.container}>
         <p className={s.title}>Category</p> <p className={s.title}>Amount</p>
       </div>
-      <div className={styleSelect}>
+      <div className={styleCategory}>
         {data.total.Expense !== 0 && <Category data={data} theme={theme} />}
       </div>
       <div className={s.containerSum}>

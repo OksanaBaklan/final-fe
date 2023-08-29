@@ -4,7 +4,6 @@ import TableCell from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-
 import s from "./TransactionTable.module.css";
 import NoTransactions from "../NoTransactions";
 import dateConverter from "../../services/dateConverter";
@@ -24,6 +23,7 @@ import { fetchDetailsTransaction } from "../../redux/transactions/transaction-op
 import { globalAction, globalSelectors } from "../../redux/global";
 import ModalEditTransaction from "../EditTransactionModal/EditTransactionModal";
 import { getAuth } from "../../redux/auth/auth-selectors";
+import { getToggleTheme } from "../../redux/global/global-selectors";
 
 library.add(faTrash);
 library.add(faEdit);
@@ -59,6 +59,7 @@ export default function TransactionTable({ transactions, transactionsDeleteHandl
 
   const modal = useSelector(globalSelectors.getEditModalValue);
 
+  const themeMode = useSelector(getToggleTheme)
 
   useEffect(() => {
     dispatch(fetchDetailsTransaction(editId))
@@ -97,7 +98,11 @@ export default function TransactionTable({ transactions, transactionsDeleteHandl
       </div>
     );
   }
-const styleTableCell = !theme.isDarkMode ? s.tableCellDark : s.tableCell
+
+
+const styleTableCell = !themeMode.isDarkMode ? s.tableCellDark : s.tableCell
+
+console.log(themeMode.isDarkMode )
   return (
     <>
       {transactions && <div className={s.tableWrapper}>

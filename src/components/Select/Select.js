@@ -26,7 +26,7 @@ for (let i = currentYear; i >= 2021; i--) {
   years.push({ value: i, label: i.toString() });
 }
 
-function SelectDate({ fetchDate, loader, theme }) {
+function SelectDate({ fetchDate, loader, theme, styleSelect }) {
   const [date, setDate] = useState({
     month: currentMonth,
     year: currentYear,
@@ -68,26 +68,30 @@ function SelectDate({ fetchDate, loader, theme }) {
 
   return (
     <div className={styleText}>
-      <Select
-        styles={selectStyles}
-        options={monthOptions}
-        placeholder="month"
-        onChange={option => {
-          updateDate('month', option.value);
-        }}
-        isSearchable={false}
-        defaultValue={monthOptions.find(month => month.value === date.month)}
-      />
-      <Select
-        styles={selectStyles}
-        options={years}
-        placeholder="year"
-        onChange={option => {
-          updateDate('year', option.value);
-        }}
-        isSearchable={false}
-        defaultValue={years.find(year => year.value === date.year)}
-      />
+      <div className={styleSelect}>
+        <Select
+          styles={selectStyles}
+          options={monthOptions}
+          placeholder="month"
+          onChange={option => {
+            updateDate('month', option.value);
+          }}
+          isSearchable={false}
+          defaultValue={monthOptions.find(month => month.value === date.month)}
+        />
+      </div>
+      <div className={styleSelect}>
+        <Select
+          styles={selectStyles}
+          options={years}
+          placeholder="year"
+          onChange={option => {
+            updateDate('year', option.value);
+          }}
+          isSearchable={false}
+          defaultValue={years.find(year => year.value === date.year)}
+        />
+      </div>
     </div>
   );
 }

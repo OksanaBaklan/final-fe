@@ -17,10 +17,16 @@
   color: var(--main-text-color);
 }
 .dark {
-  /* padding-top: 5%; */
   color: var(--main-text-color);
   background-color: white;
-  border-radius: 10%;
+  border-radius: 30px;
+}
+.darkCategory {
+  margin-top: 2px;
+  padding-top: 5%;
+  color: var(--main-text-color);
+  background-color: white;
+  border-radius: 30px;
 }
 .text {
   background-color: transparent;
