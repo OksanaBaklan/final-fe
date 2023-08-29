@@ -102,7 +102,6 @@ export default function TransactionTable({ transactions, transactionsDeleteHandl
 
 const styleTableCell = !themeMode.isDarkMode ? s.tableCellDark : s.tableCell
 
-// console.log(themeMode.isDarkMode )
   return (
     <>
       {transactions && <div className={s.tableWrapper}>

@@ -14,7 +14,6 @@ import VerifyPage from './pages/VerifyPage/VerifyPage';
 import DashboardPage from './pages/DashboardPage/DashboardPage';
 import Table from './components/TransactionTable/Table';
 import Chart from './components/Chart/Chart';
-// import UpdateTransaction from './components/TransactionTable/UpdateTransaction';
 // import { UserContextProvider } from "./storeContext/authContext/UserContextProvider";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
@@ -66,10 +65,7 @@ function App() {
                       element={isMobileOrTablet ? <Currency /> : <Navigate replace to="/table" />}
                     />
                   </Route>
-                  {/* <Route
-                    path="/update-transaction/:transactionId"
-                    element={<UpdateTransaction />}
-                  /> */}
+      
                   <Route path="/verify/:verificationToken" element={<VerifyPage />} />
                   <Route path="/password-reset/:email/:token" element={<PasswordRecovery />} />
                   <Route path="/password-reset" element={<PasswordReset />} />

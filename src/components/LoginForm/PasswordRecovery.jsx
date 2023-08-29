@@ -5,7 +5,6 @@ import axios from "axios"
 import s from "./LoginForm.module.css";
 import LogoComponent from "../LogoComponent/LogoComponent";
 import { Formik, Form } from "formik";
-import * as Yup from "yup";
 import classNames from "classnames";
 import InputField from "../InputField/InputField";
 import { ReactComponent as Emailcon } from "../../images/icon-form/email.svg";
@@ -13,31 +12,15 @@ import { ReactComponent as Passwordcon } from "../../images/icon-form/password.s
 
 import { NavLink } from "react-router-dom";
 
-const RSchema = Yup.object().shape({
-  email: Yup.string()
-    .email("Invalid email")
-    .min(6, "minimum 6 characters!")
-    .max(50, "No more than 50 characters!!")
-    .required("required"),
-  password: Yup.string()
-    .typeError("Must be a string")
-    .min(6, "minimum 6 characters!")
-    .max(12, "No more than 12 characters!")
-    .required("required"),
-});
-
 function PasswordRecovery() {
   const navigate = useNavigate();
 
   const [errorMessage, setErrorMessage] = useState("")
   const [message, setMessage] = useState("")
 
-  const {token, email} = useParams()
+  const {token} = useParams()
 
   const submitHandler = async({password,confirmPassword, email})=>{
-    // e.preventDefault()
-    // const password = e.target["password"].value
-    // const confirmPassword = e.target["confirmPassword"].value
 
 if (password !== confirmPassword) return setErrorMessage("passwords not match")
 
@@ -70,7 +53,6 @@ setErrorMessage(err.response.data)
       submitHandler(values);
       resetForm();
     }}
-    // validationSchema={RSchema}
   >
     {({
           values,
@@ -147,19 +129,6 @@ setErrorMessage(err.response.data)
       {message && <p style={{color:"green"}}>{message}</p>}
 
       </Form>)}
-
-      {/* <form onSubmit={submitHandler}>
-        <input type="password" name="password" placeholder="password" required />
-        <input type="password" name="confirmPassword" placeholder="confirmPassword" required />
-
-        <input type="submit" value="Reset" />
-        <input
-          type="button"
-          value="Cancel"
-          onClick={() => navigate("/login")}
-        />
-      </form> */}
-
       </Formik>
     </div>
 
