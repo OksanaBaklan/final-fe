@@ -11,7 +11,26 @@
   padding-bottom: 110px;
   background: var(--light-bcg-color);
 }
+.formReset {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  width: 280px;
 
+  padding-top: 110px;
+  padding-bottom: 110px;
+  background: var(--light-bcg-color);
+}
+.container {
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+}
+.content_container {
+  width: 100%;
+  height: 960px;
+}
 @media screen and (min-width: 768px) {
   .formRegister {
     position: absolute;
@@ -23,6 +42,18 @@
     border-radius: 20px;
     top: 360px;
     right: 114px;
+  }
+  .formReset {
+    position: absolute;
+    /* margin: unset; */
+    width: 45%;
+    min-height: 468px;
+    padding-top: 40px;
+    padding-bottom: 60px;
+    border-radius: 20px;
+    /* bottom: 100%; */
+    right: 30%;
+    top: 10rem;
   }
 }
 
@@ -122,8 +153,7 @@ label {
   border: 1px solid var(--accent-btn-color);
   color: var(--accent-btn-color);
   background-color: var(--btn-color);
-  transition:
-    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
     color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -163,8 +193,7 @@ label {
   color: var(--light-text-color);
   background-color: var(--accent-bcg-color);
   border: 1px solid var(--accent-svg-color);
-  transition:
-    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
     color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 

@@ -8,7 +8,7 @@ const Currency = () => {
   const [exchangeRates, setExchangeRates] = useState([]);
   const fetchData = async () => {
 ;
-    const url = "https://v6.exchangerate-api.com/v6/e9b41e884028839570838fc4/latest/USD";
+    const url = "https://v6.exchangerate-api.com/v6/";
 
     try {
       const response = await axios.get(url);

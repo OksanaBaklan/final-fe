@@ -31,10 +31,9 @@ export default function LoginForm() {
 
 
   const dispatch = useDispatch();
+  
   const handleSubmit = ({ email, password }) => {
-
     dispatch(loginUser({ email, password }));
-
   };
 
 
