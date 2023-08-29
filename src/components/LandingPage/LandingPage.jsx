@@ -8,7 +8,12 @@ import chart from './imgs/work-hard-woman-presenting-analytics-online-1.png'
 import secondImg from './imgs/work-hard-man-starts-a-new-project-online.png'
 import firstImg from './imgs/work-hard-woman-is-puzzled-by-some-big-question.png'
 import manFly from './imgs/work-hard-man-flying-on-a-rocket.png'
+import { useSelector } from 'react-redux'
+import { getToggleTheme } from '../../redux/global/global-selectors'
+
 const LandingPage = () => {
+  const theme = useSelector(getToggleTheme)
+
   const feature = [{
     id: 1,
     imageSrc:firstImg,
@@ -35,9 +40,10 @@ const LandingPage = () => {
     <>
         <Header />
       <Container>
-        <MainCard />
+        <MainCard theme={theme}/>
         <FeatureCard
         features={feature}
+        theme={theme}
         />
       </Container>
     </>
