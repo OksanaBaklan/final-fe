@@ -1,23 +1,20 @@
 /** @format */
 
 import { Suspense, useContext, useEffect } from 'react';
-import { Link, Navigate, Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
 import { useMediaQuery } from 'react-responsive';
-import classNames from 'classnames';
 
 import AppBackground from './components/AppBackground/AppBackground';
 import LoginPage from './pages/LoginPage/LoginPage';
-import { Doughnut } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip } from 'chart.js';
 import Currency from './components/Currency/Currency';
 import RegisterPage from './pages/RegisterPage';
 import VerifyPage from './pages/VerifyPage/VerifyPage';
-import { UserContext } from './storeContext/UserContext';
 import DashboardPage from './pages/DashboardPage/DashboardPage';
 import Table from './components/TransactionTable/Table';
 import Chart from './components/Chart/Chart';
-import UpdateTransaction from './components/TransactionTable/UpdateTransaction';
+// import UpdateTransaction from './components/TransactionTable/UpdateTransaction';
 // import { UserContextProvider } from "./storeContext/authContext/UserContextProvider";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
@@ -27,6 +24,8 @@ import { fetchCurrentUser } from './redux/auth/auth-operations';
 import LoaderComponent from './components/LoaderComponent/LoaderComponent';
 import NothingPage from './pages/NothingPage/NothingPage';
 import LandingPage from './components/LandingPage/LandingPage';
+import PasswordRecovery from './components/LoginForm/PasswordRecovery';
+import PasswordReset from './components/LoginForm/PasswordReset';
 
 ChartJS.register(ArcElement, Tooltip);
 
@@ -35,11 +34,9 @@ function App() {
   const isAuth = useSelector(getAuth);
   const isAuthRefresh = useSelector(getAuthRefresh);
   const dispatch = useDispatch();
-  // console.log(isAuthRefresh);
 
   useEffect(() => {
     dispatch(fetchCurrentUser());
-    // console.log(isAuth);
   }, [dispatch]);
   return (
     <>
@@ -47,7 +44,7 @@ function App() {
         <>
           <div className="App">
             <ToastContainer autoClose={6000} />
-            {/* */}
+
             <AppBackground>
               <Suspense fallback={<LoaderComponent />}>
                 <Routes>
@@ -66,16 +63,16 @@ function App() {
                     <Route path="statistic" element={<Chart />} />
                     <Route
                       path="currency"
-                      element={
-                        isMobileOrTablet ? <Currency /> : <Navigate replace to="/table" />
-                      }
+                      element={isMobileOrTablet ? <Currency /> : <Navigate replace to="/table" />}
                     />
                   </Route>
-                  <Route
+                  {/* <Route
                     path="/update-transaction/:transactionId"
                     element={<UpdateTransaction />}
-                  />
+                  /> */}
                   <Route path="/verify/:verificationToken" element={<VerifyPage />} />
+                  <Route path="/password-reset/:email/:token" element={<PasswordRecovery />} />
+                  <Route path="/password-reset" element={<PasswordReset />} />
                   <Route path="*" element={<NothingPage />} />
                 </Routes>
               </Suspense>

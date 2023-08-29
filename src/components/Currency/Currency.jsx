@@ -6,17 +6,14 @@ import LoaderComponent from "../LoaderComponent/LoaderComponent";
 
 const Currency = () => {
   const [exchangeRates, setExchangeRates] = useState([]);
-// console.log(exchangeRates);
   const fetchData = async () => {
-    // const access_key = "33f17c9d131c752a6bac77cc7c11580f";
-    // const endpoint = "latest";
+;
     const url = "https://v6.exchangerate-api.com/v6/e9b41e884028839570838fc4/latest/USD";
 
     try {
       const response = await axios.get(url);
 
       const  rates  = response.data.conversion_rates;
-      // console.log(response.data);
 
       if (rates) {
         const filteredRates = Object.entries(rates)
@@ -50,7 +47,6 @@ const Currency = () => {
   return (
     <div className="currency">
     <div className="currencyCard">
-      {/* <div style={cardStyle}> */}
       <div>
         {exchangeRates.length > 0 ? (
           <>

@@ -1,6 +1,5 @@
 @import '../../stylesheet/var.css';
 
-
 .header {
   box-shadow: 0 0 5px rgba(108, 107, 107, 0.627);
   /* width: 100%; */
@@ -29,7 +28,8 @@
   align-items: center;
   height: 70px;
   width: 6rem;
-
+  border-radius: 20px !important;
+  text-transform: uppercase;
   position: relative;
   padding: 0 20px;
   transition: 0.3s;
@@ -47,10 +47,11 @@
   background-color: var(--accent-svg-color);
   top: 0;
   left: -100%;
+  border-radius: 20px !important;
 }
 
 .header .main-nav > li > a:hover {
-  color: var(--main-color);
+  color: var(--light-text-color);
   background-color: var(--accent-btn-color);
 }
 
@@ -169,4 +170,3 @@
     height: 6.5em;
   }
 }
-

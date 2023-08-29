@@ -4,9 +4,7 @@ import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useDispatch, useSelector } from "react-redux";
-import ButtonAddTransaction from "../ButtonAddTransactions/ButtonAddTransactions";
 
-// import { getTransactionCategories } from "../../redux/auth/auth-selectors";
 import { transactionCategories } from "./transactionCategories";
 
 import NoTransactions from "../NoTransactions/NoTransactions";
@@ -49,8 +47,8 @@ const theme = createTheme({
   },
 });
 
-export default function TransactionTableMobile({ transactions} ) {
-  const [editId, setEditId]=useState('')
+export default function TransactionTableMobile({ transactions }) {
+  const [editId, setEditId] = useState('')
 
   const dispatch = useDispatch()
 
@@ -67,9 +65,9 @@ export default function TransactionTableMobile({ transactions} ) {
   );
 
 
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(fetchDetailsTransaction(editId))
-  },[dispatch, editId])
+  }, [dispatch, editId])
 
   const column = transactions.map((trans) => {
     const isIncome = trans.isIncome ? "+" : "-";
@@ -158,44 +156,33 @@ export default function TransactionTableMobile({ transactions} ) {
                   },
                 }}
               >
-                {/* <TableCell align="left">balance</TableCell> */}
-                {/* <TableCell align="right">{col.balance}</TableCell> */}
+
               </TableRow>
-              {/* <TableRow>
-                <TableCell align="left">delete transaction</TableCell>
-                <TableCell> */}
-                {/* <button 
-                className={s.deletebtn}
-                onClick={()=>{
-                  console.log(col.id);
-                  transactionsDeleteHandler(col.id)}}
-                >
-      <FontAwesomeIcon icon="trash" />
-                </button> */}
-                {/* </TableCell>
-              </TableRow> */}
+
               <TableRow>
-                <TableCell align="left">  <button 
-                className={s.deletebtn}
-                onClick={()=>{
-                  console.log(col.id);
-                  transactionsDeleteHandler(col.id)}}
+                <TableCell align="left">  <button
+                  className={s.deletebtn}
+                  onClick={() => {
+                    console.log(col.id);
+                    transactionsDeleteHandler(col.id)
+                  }}
                 >
-      <span style={{marginRight:"1em"}}>delete</span>
-      <FontAwesomeIcon icon="trash" />
+                  <span style={{ marginRight: "1em" }}>delete</span>
+                  <FontAwesomeIcon icon="trash" />
                 </button></TableCell>
                 <TableCell align="right">   <button
-  className={s.updateIcon}
-  onClick={  
-    () =>
-   { setEditId(col.id);
-    dispatch(globalAction.openEditModal()) }
-}>   <FontAwesomeIcon icon="edit" />
-<span style={{marginLeft:"1em"}}>edit</span>  
-</button>
-<Fragment>
-        {modal && <ModalEditTransaction modalValue={modal} editId={editId} transactionDetails={transactionDetails} modalAction={closeModal}></ModalEditTransaction>}
-      </Fragment>
+                  className={s.updateIcon}
+                  onClick={
+                    () => {
+                      setEditId(col.id);
+                      dispatch(globalAction.openEditModal())
+                    }
+                  }>   <FontAwesomeIcon icon="edit" />
+                  <span style={{ marginLeft: "1em" }}>edit</span>
+                </button>
+                  <Fragment>
+                    {modal && <ModalEditTransaction modalValue={modal} editId={editId} transactionDetails={transactionDetails} modalAction={closeModal}></ModalEditTransaction>}
+                  </Fragment>
                 </TableCell>
               </TableRow>
             </TableBody>

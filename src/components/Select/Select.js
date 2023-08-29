@@ -16,21 +16,6 @@ const months = Array.from({ length: 12 }, (_, i) => {
   });
 });
 
-// const months = [
-//   { id: 1, name: 'January' },
-//   { id: 2, name: 'February' },
-//   { id: 3, name: 'March' },
-//   { id: 4, name: 'April' },
-//   { id: 5, name: 'May' },
-//   { id: 6, name: 'June' },
-//   { id: 7, name: 'July' },
-//   { id: 8, name: 'August' },
-//   { id: 9, name: 'September' },
-//   { id: 10, name: 'October' },
-//   { id: 11, name: 'November' },
-//   { id: 12, name: 'December' },
-// ];
-
 const monthOptions = Array(12)
   .fill(null)
   .map((_, index) => ({ value: index + 1, label: months[index] }));
@@ -41,13 +26,14 @@ for (let i = currentYear; i >= 2021; i--) {
   years.push({ value: i, label: i.toString() });
 }
 
-function SelectDate({ fetchDate, loader }) {
+function SelectDate({ fetchDate, loader, theme, styleSelect }) {
   const [date, setDate] = useState({
     month: currentMonth,
     year: currentYear,
   });
 
   const token = JSON.parse(localStorage.getItem('my-app-token'));
+  const styleText = !theme.isDarkMode ? s.selectContainerDark : s.selectContainer;
 
   async function fetchData(token, date) {
     const response = await fetch(
@@ -81,27 +67,31 @@ function SelectDate({ fetchDate, loader }) {
   }, []);
 
   return (
-    <div className={s.selectContainer}>
-      <Select
-        styles={selectStyles}
-        options={monthOptions}
-        placeholder="month"
-        onChange={option => {
-          updateDate('month', option.value);
-        }}
-        isSearchable={false}
-        defaultValue={monthOptions.find(month => month.value === date.month)}
-      />
-      <Select
-        styles={selectStyles}
-        options={years}
-        placeholder="year"
-        onChange={option => {
-          updateDate('year', option.value);
-        }}
-        isSearchable={false}
-        defaultValue={years.find(year => year.value === date.year)}
-      />
+    <div className={styleText}>
+      <div className={styleSelect}>
+        <Select
+          styles={selectStyles}
+          options={monthOptions}
+          placeholder="month"
+          onChange={option => {
+            updateDate('month', option.value);
+          }}
+          isSearchable={false}
+          defaultValue={monthOptions.find(month => month.value === date.month)}
+        />
+      </div>
+      <div className={styleSelect}>
+        <Select
+          styles={selectStyles}
+          options={years}
+          placeholder="year"
+          onChange={option => {
+            updateDate('year', option.value);
+          }}
+          isSearchable={false}
+          defaultValue={years.find(year => year.value === date.year)}
+        />
+      </div>
     </div>
   );
 }

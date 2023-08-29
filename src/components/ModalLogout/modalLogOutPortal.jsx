@@ -39,8 +39,7 @@ export  const LogoutModalPortal = ({ closeModal, onUserLogOut }) => {
   };
 
   const clearIconStyle = {
-    // marginLeft: "340px",
-    // marginTop:"30px"
+
     display: "block",
     position: "absolute",
     cursor: "pointer",
@@ -56,9 +55,11 @@ export  const LogoutModalPortal = ({ closeModal, onUserLogOut }) => {
   }
 
   const avaStyle = {
+
     // marginLeft: "170px",
     margin: "10px auto",
  
+
   }
 
   const textStyle = {
@@ -93,8 +94,8 @@ export  const LogoutModalPortal = ({ closeModal, onUserLogOut }) => {
 
 
   return ReactDOM.createPortal(
+      <div className='overlay'>
     <div className="modal"  onClick={onBackdropClick}>
-      <div >
         <Paper style={paperStyle}>
           <Grid container >
             <ClearIcon style={clearIconStyle} onClick={closeModal}></ClearIcon>
