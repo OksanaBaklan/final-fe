@@ -24,14 +24,20 @@
 }
 
 .updateIcon {
-  color: var(--main-text-color);
+  color: var(--accent-btn-color);
 
   background-color: transparent;
   border: none;
   float: right;
   cursor: pointer;
 }
-
+.tableCell {
+  color: var(--main-text-color);
+}
+.tableCellDark {
+  color: var(--secondary-text-color);
+  font-weight: 600;
+}
 @media screen and (min-width: 768px) {
   .table {
     width: 100%;

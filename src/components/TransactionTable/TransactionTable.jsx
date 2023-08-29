@@ -97,7 +97,7 @@ export default function TransactionTable({ transactions, transactionsDeleteHandl
       </div>
     );
   }
-
+const styleTableCell = !theme.isDarkMode ? s.tableCellDark : s.tableCell
   return (
     <>
       {transactions && <div className={s.tableWrapper}>
@@ -134,24 +134,27 @@ export default function TransactionTable({ transactions, transactionsDeleteHandl
                 {rows?.map((row, _id) => (
                   <TableRow
                     key={_id}
+                    
                     sx={{
-                      "&:last-child td, &:last-child th": { border: 0 },
+                      // "&:last-child td, &:last-child th": { border: 0 },
                     }}
                   >
-                    <TableCell component="th" scope="row">
-                      {row.name}
+                    <TableCell component="th" scope="row"  >
+                    <div className={styleTableCell}> {row.name}</div> 
                     </TableCell>
-                    <TableCell align="center">{row.type}</TableCell>
-                    <TableCell align="center">{row.category}</TableCell>
-                    <TableCell align="center">{row.comment}</TableCell>
+                    <TableCell align="center"><div className={styleTableCell}>{row.type}</div></TableCell>
+                    <TableCell align="center"><div className={styleTableCell}>{row.category}</div></TableCell>
+                    <TableCell align="center"><div className={styleTableCell}>{row.comment}</div></TableCell>
                     <TableCell
                       sx={{
                         color: row.type === "+" ? "#24CCA7" : "#FF6596",
                         fontWeight: 700,
                       }}
                       align="center"
+                     
                     >
-                      {row.amount}
+                      
+                      <div className={styleTableCell}>{row.amount}</div>
                     </TableCell>
                     <TableCell align="center">
                       <button className={s.deletebtn}

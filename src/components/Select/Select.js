@@ -16,7 +16,6 @@ const months = Array.from({ length: 12 }, (_, i) => {
   });
 });
 
-
 const monthOptions = Array(12)
   .fill(null)
   .map((_, index) => ({ value: index + 1, label: months[index] }));
@@ -27,13 +26,14 @@ for (let i = currentYear; i >= 2021; i--) {
   years.push({ value: i, label: i.toString() });
 }
 
-function SelectDate({ fetchDate, loader }) {
+function SelectDate({ fetchDate, loader, theme }) {
   const [date, setDate] = useState({
     month: currentMonth,
     year: currentYear,
   });
 
   const token = JSON.parse(localStorage.getItem('my-app-token'));
+  const styleText = !theme.isDarkMode ? s.selectContainerDark : s.selectContainer;
 
   async function fetchData(token, date) {
     const response = await fetch(
@@ -67,7 +67,7 @@ function SelectDate({ fetchDate, loader }) {
   }, []);
 
   return (
-    <div className={s.selectContainer}>
+    <div className={styleText}>
       <Select
         styles={selectStyles}
         options={monthOptions}

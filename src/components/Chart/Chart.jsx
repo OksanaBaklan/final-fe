@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getBalance, getTransactions } from "../../redux/transactions/transactions-selectors";
 import { useEffect } from "react";
 import { getBalanceTransactions } from "../../redux/transactions/transaction-operations";
+import { getToggleTheme } from "../../redux/global/global-selectors";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -27,7 +28,9 @@ const obj = {
 };
 
 export default function Chart() {
+  const theme = useSelector(getToggleTheme)
 
+  const styleText = !theme.isDarkMode ? s.textDark : s.textLight
   // const isAuth = useSelector(getAuth);
   const balance = useSelector(getBalance);
   const transactions = useSelector(getTransactions);
@@ -91,7 +94,7 @@ export default function Chart() {
             <div className={s.chart}>
               <Doughnut data={data} options={options} />
               <div className={s.containerTotal}>
-              <p className={s.total}>&euro; {balance}</p>
+              <p className={s.total}> <span className={styleText}>&euro; {balance}</span> </p>
               </div>
             </div>
           )}
@@ -101,6 +104,7 @@ export default function Chart() {
               fetchDate={setFetchDate}
               data={fetchDate}
               loader={setLoader}
+              theme={theme}
             />
           </div>
         </div>

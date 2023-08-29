@@ -4,7 +4,7 @@
   margin-bottom: 20px;
   margin-left: 0;
   margin-right: auto;
-  color: var(--main-text-color);
+  color: var(--secondary-text-color);
 }
 
 @media screen and (max-width: 768px) {
@@ -16,6 +16,6 @@
     margin-left: 0;
     margin-right: auto;
     flex-direction: column;
-    color: var(--main-text-color);
+    color: var(--secondary-text-color);
   }
 }

@@ -48,7 +48,7 @@ const TeamMembers = ({onModalClose, onOverlayClose}) => {
       {
         id:5,
         imageSrc: Alvaro,
-        title: "Alvaro",
+        title: "Alvaro Alvarez Valle",
         description: "Fullstack developer",
         email:"alvaroalvarezvalle@gmail.com",
         linkedin: "https://www.linkedin.com",
