@@ -77,7 +77,7 @@
     transition: color 250ms linear;
   }
 
-  .activeLinkDark{
+  .activeLinkDark {
     display: flex;
     align-items: center;
     justify-content: left;
@@ -89,7 +89,6 @@
     color: var(--accent-svg-color);
     fill: var(--main-text-color);
     transition: color 250ms linear;
-
   }
 
   .link {
@@ -108,7 +107,7 @@
     transition: color 250ms linear;
   }
   .linkDark {
-        display: flex;
+    display: flex;
     align-items: center;
     justify-content: left;
 
@@ -119,7 +118,6 @@
     fill: var(--main-text-color);
     color: var(--unselected-svg-color);
     transition: color 250ms linear;
-
   }
 
   .link:first-child {
@@ -156,5 +154,11 @@
   .text {
     display: block;
     margin-left: 20px;
+    color: var(--main-text-color);
+  }
+  .textDark {
+    display: block;
+    margin-left: 20px;
+    color: var(--secondary-text-color);
   }
 }

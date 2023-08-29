@@ -92,8 +92,8 @@ export  const LogoutModalPortal = ({ closeModal, onUserLogOut }) => {
 
 
   return ReactDOM.createPortal(
+      <div className='overlay'>
     <div className="modal"  onClick={onBackdropClick}>
-      <div >
         <Paper style={paperStyle}>
           <Grid container >
             <ClearIcon style={clearIconStyle} onClick={closeModal}></ClearIcon>

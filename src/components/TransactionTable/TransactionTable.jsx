@@ -4,7 +4,6 @@ import TableCell from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-
 import s from "./TransactionTable.module.css";
 import NoTransactions from "../NoTransactions";
 import dateConverter from "../../services/dateConverter";
@@ -24,6 +23,7 @@ import { fetchDetailsTransaction } from "../../redux/transactions/transaction-op
 import { globalAction, globalSelectors } from "../../redux/global";
 import ModalEditTransaction from "../EditTransactionModal/EditTransactionModal";
 import { getAuth } from "../../redux/auth/auth-selectors";
+import { getToggleTheme } from "../../redux/global/global-selectors";
 
 library.add(faTrash);
 library.add(faEdit);
@@ -59,6 +59,7 @@ export default function TransactionTable({ transactions, transactionsDeleteHandl
 
   const modal = useSelector(globalSelectors.getEditModalValue);
 
+  const themeMode = useSelector(getToggleTheme)
 
   useEffect(() => {
     dispatch(fetchDetailsTransaction(editId))
@@ -98,6 +99,10 @@ export default function TransactionTable({ transactions, transactionsDeleteHandl
     );
   }
 
+
+const styleTableCell = !themeMode.isDarkMode ? s.tableCellDark : s.tableCell
+
+console.log(themeMode.isDarkMode )
   return (
     <>
       {transactions && <div className={s.tableWrapper}>
@@ -134,24 +139,27 @@ export default function TransactionTable({ transactions, transactionsDeleteHandl
                 {rows?.map((row, _id) => (
                   <TableRow
                     key={_id}
+                    
                     sx={{
-                      "&:last-child td, &:last-child th": { border: 0 },
+                      // "&:last-child td, &:last-child th": { border: 0 },
                     }}
                   >
-                    <TableCell component="th" scope="row">
-                      {row.name}
+                    <TableCell component="th" scope="row"  >
+                    <div className={styleTableCell}> {row.name}</div> 
                     </TableCell>
-                    <TableCell align="center">{row.type}</TableCell>
-                    <TableCell align="center">{row.category}</TableCell>
-                    <TableCell align="center">{row.comment}</TableCell>
+                    <TableCell align="center"><div className={styleTableCell}>{row.type}</div></TableCell>
+                    <TableCell align="center"><div className={styleTableCell}>{row.category}</div></TableCell>
+                    <TableCell align="center"><div className={styleTableCell}>{row.comment}</div></TableCell>
                     <TableCell
                       sx={{
                         color: row.type === "+" ? "#24CCA7" : "#FF6596",
                         fontWeight: 700,
                       }}
                       align="center"
+                     
                     >
-                      {row.amount}
+                      
+                      <div className={styleTableCell}>{row.amount}</div>
                     </TableCell>
                     <TableCell align="center">
                       <button className={s.deletebtn}

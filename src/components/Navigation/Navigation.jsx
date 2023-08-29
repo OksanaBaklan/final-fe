@@ -14,10 +14,14 @@ import Media from "react-media";
 import { useMediaQuery } from "react-responsive";
 import { useSelector } from "react-redux";
 import { getAuth } from "../../redux/auth/auth-selectors";
+import { getToggleTheme } from "../../redux/global/global-selectors";
 
 export default function Navigation() {
   const isMobileOrTablet = useMediaQuery({ query: "(max-width: 767px)" });
   const isAuth = useSelector(getAuth);
+  const theme = useSelector(getToggleTheme)
+
+  const styleText = !theme.isDarkMode ? s.textDark : s.text
 
   return (
     <nav className={s.nav}>
@@ -28,7 +32,7 @@ export default function Navigation() {
 
         <HomeImgMob className={s.navImgMob} />
         <HomeImgTab className={s.navImgTab} />
-        <span className={s.text}>Home</span>
+        <span className={styleText}>Home</span>
       </NavLink>}
 
       {isAuth &&<NavLink
@@ -37,7 +41,7 @@ export default function Navigation() {
       >
         <StatisticsImgMob className={s.navImgMob} />
         <StatisticsImgTab className={s.navImgTab} />
-        <span className={s.text}>Statistic</span>
+        <span className={styleText}>Statistic</span>
       </NavLink>}
 
         {/* {isMobileOrTablet &&  */}

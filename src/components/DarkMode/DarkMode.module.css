@@ -16,7 +16,8 @@
 .darkmode .label {
   width: 39px;
   height: 20px;
-  background-color: var(--accent-bcg-color);
+  background-color: rgba(0, 0, 0, 0.671);
+  /* background-color: var(--accent-bcg-color); */
   display: flex;
   border-radius: 50px;
   align-items: center;
@@ -46,7 +47,7 @@
   height: 20px;
   background-color: white;
   position: absolute;
-  /* top: 2px; */
+
   left: 0;
   border-radius: 50%;
   transition: transform 0.2s linear;
