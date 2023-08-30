@@ -16,7 +16,7 @@
 .darkmode .label {
   width: 39px;
   height: 20px;
-  background-color: rgba(0, 0, 0, 0.671);
+  background-image: linear-gradient(30deg, rgb(46, 49, 46), rgb(35, 39, 35), rgb(20, 19, 19), rgb(27, 25, 25));
   /* background-color: var(--accent-bcg-color); */
   display: flex;
   border-radius: 50px;
@@ -27,6 +27,7 @@
   transform: scale(1.5);
   cursor: pointer;
 }
+
 .labelDark {
   width: 39px;
   height: 20px;
@@ -43,11 +44,11 @@
 }
 
 .darkmode .ball {
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   background-color: white;
   position: absolute;
-
+  box-shadow: 0px 6px 15px rgba(117, 117, 117, 0.5);
   left: 0;
   border-radius: 50%;
   transition: transform 0.2s linear;
