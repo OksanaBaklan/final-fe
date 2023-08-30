@@ -3,37 +3,44 @@ import axios from "axios";
 import Decimal from "decimal.js";
 import "./currency.css";
 import LoaderComponent from "../LoaderComponent/LoaderComponent";
+import { useSelector } from "react-redux";
+import { getAuth } from "../../redux/auth/auth-selectors";
 
 const Currency = () => {
+  const isAuth = useSelector(getAuth);
   const [exchangeRates, setExchangeRates] = useState([]);
+
   const fetchData = async () => {
-;
-    const url = "https://v6.exchangerate-api.com/v6/";
+    const ApiKey = '73b90c77c88bb0794bbc3e61';
+    const url = `https://v6.exchangerate-api.com/v6/${ApiKey}/latest/USD`;
 
     try {
       const response = await axios.get(url);
-
-      const  rates  = response.data.conversion_rates;
+      const rates = response.data.conversion_rates;
 
       if (rates) {
         const filteredRates = Object.entries(rates)
           .filter(
             ([currency]) =>
+              currency === "AED" ||
               currency === "USD" ||
-              currency === "CAD" ||
               currency === "JPY" ||
-              currency === "CNY",
+              currency === "CNY"
           )
           .map(([currency, rate]) => ({
             currency,
             rate: new Decimal(rate).toFixed(2),
           }));
 
+        if (isAuth) {
+          localStorage.setItem("exchangeRates", JSON.stringify(filteredRates));
+        } else {
+          localStorage.removeItem("exchangeRates");
+        }
+
         setExchangeRates(filteredRates);
       } else {
-        console.error(
-          "Error fetching exchange rates: Rates data is undefined or null",
-        );
+        console.error("Error fetching exchange rates: Rates data is undefined or null");
       }
     } catch (error) {
       console.error("Error fetching exchange rates:", error);
@@ -42,14 +49,13 @@ const Currency = () => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [isAuth]);
 
   return (
     <div className="currency">
-    <div className="currencyCard">
-      <div>
-        {exchangeRates.length > 0 ? (
-          <>
+      <div className="currencyCard">
+        <div>
+          {exchangeRates.length > 0 ? (
             <table style={{ borderCollapse: "collapse", width: "100%" }}>
               <thead>
                 <tr>
@@ -66,31 +72,17 @@ const Currency = () => {
                 ))}
               </tbody>
             </table>
-          </>
-        ) : (
-          <div>No data available
-            <LoaderComponent/>
-          </div>
-        )}
+          ) : (
+            <div>
+              No data available
+              <LoaderComponent />
+            </div>
+          )}
+        </div>
       </div>
-    </div>
     </div>
   );
 };
-
-// Define card style
-// const cardStyle = {
-//   backgroundColor: "#4A56E2",
-//   border: "1px solid #ccc",
-//   borderRadius: "10px",
-//   padding: "10px",
-//   margin: "auto",
-//   // width: "25%",
-//   height: "fit-content", // Adjusts the height based on the content
-//   display: "flex", // Displays as a flex container
-//   flexDirection: "column", // Aligns content in a column layout
-// };
-
 
 const tableHeaderStyle = {
   padding: "10px",
