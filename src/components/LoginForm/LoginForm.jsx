@@ -9,8 +9,6 @@ import { ReactComponent as Emailcon } from "../../images/icon-form/email.svg";
 import { ReactComponent as Passwordcon } from "../../images/icon-form/password.svg";
 import { loginUser } from "../../redux/auth/auth-operations";
 import { useDispatch } from "react-redux";
-// import { types } from "../../storeContext/authReducer/authReducer";
-// import { AuthContext } from "../../storeContext/authContext/AuthContext";
 import InputField from "../InputField/InputField";
 
 
@@ -31,7 +29,7 @@ export default function LoginForm() {
 
 
   const dispatch = useDispatch();
-  
+
   const handleSubmit = ({ email, password }) => {
     dispatch(loginUser({ email, password }));
   };

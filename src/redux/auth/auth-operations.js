@@ -11,6 +11,8 @@ const token = {
   unset() {
     axios.defaults.headers.common.Authorization = '';
     localStorage.removeItem('my-app-token');
+    localStorage.removeItem('exchangeRates');
+
   },
 };
 

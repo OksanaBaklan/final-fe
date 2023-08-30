@@ -1,6 +1,6 @@
 /** @format */
 
-import { Suspense, useContext, useEffect } from 'react';
+import { Suspense,  useEffect } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
 import { useMediaQuery } from 'react-responsive';
@@ -65,7 +65,7 @@ function App() {
                       element={isMobileOrTablet ? <Currency /> : <Navigate replace to="/table" />}
                     />
                   </Route>
-      
+
                   <Route path="/verify/:verificationToken" element={<VerifyPage />} />
                   <Route path="/password-reset/:email/:token" element={<PasswordRecovery />} />
                   <Route path="/password-reset" element={<PasswordReset />} />
