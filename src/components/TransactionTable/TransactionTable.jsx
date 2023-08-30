@@ -22,7 +22,6 @@ import { getDetailTransaction } from "../../redux/transactions/transactions-sele
 import { fetchDetailsTransaction } from "../../redux/transactions/transaction-operations";
 import { globalAction, globalSelectors } from "../../redux/global";
 import ModalEditTransaction from "../EditTransactionModal/EditTransactionModal";
-import { getAuth } from "../../redux/auth/auth-selectors";
 import { getToggleTheme } from "../../redux/global/global-selectors";
 
 library.add(faTrash);

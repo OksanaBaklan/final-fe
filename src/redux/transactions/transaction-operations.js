@@ -4,8 +4,8 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-axios.defaults.baseURL = 'http://localhost:5555/api';
-
+// axios.defaults.baseURL = 'http://localhost:5555/api';
+axios.defaults.baseURL = process.env.REACT_APP_BE_URL;
 export const addTransaction = createAsyncThunk(
   'transaction/addTransaction',
   async (credentials, { rejectWithValue }) => {
@@ -100,7 +100,7 @@ export const editTransaction = createAsyncThunk(
           Authorization: `Bearer ${JSON.parse(localStorage.getItem('my-app-token'))}`,
         },
       });
-      console.log("res from server",data);
+      console.log('res from server', data);
       return { editId: _id, balance: data.data.userBalance, transaction: data.data.transaction };
     } catch (err) {
       return rejectWithValue(toast.error("Can't update, you are logout"));

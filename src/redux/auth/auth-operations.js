@@ -1,7 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-axios.defaults.baseURL = 'http://localhost:5555/api';
+// axios.defaults.baseURL = 'http://localhost:5555/api';
+axios.defaults.baseURL = process.env.REACT_APP_BE_URL;
 
 const token = {
   set(token) {
@@ -11,8 +12,6 @@ const token = {
   unset() {
     axios.defaults.headers.common.Authorization = '';
     localStorage.removeItem('my-app-token');
-    localStorage.removeItem('exchangeRates');
-
   },
 };
 

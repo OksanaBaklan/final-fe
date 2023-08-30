@@ -28,7 +28,7 @@ function PasswordReset() {
 
   const submitHandler = async ({email}) => {
     try{
-        const response = await axios.post(`${process.env.REACT_APP_BE_URL}/api/users/password-reset`,{email})
+        const response = await axios.post(`${process.env.REACT_APP_BE_URL}/users/password-reset`,{email})
         setMessage(response.data)
         navigate("/login")
     }

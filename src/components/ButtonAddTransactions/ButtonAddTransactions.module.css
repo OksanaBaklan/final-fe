@@ -16,7 +16,7 @@
 .switch__marker {
   position: relative;
   background-color: #24cca7;
-  background-image: url("../../images/modal-transaction/income.png");
+  background-image: url('../../images/modal-transaction/income.png');
   background-repeat: no-repeat;
   background-position: center;
   width: 44px;
@@ -48,6 +48,6 @@
   .buttonAdd {
     position: absolute;
     bottom: 10%;
-    left: 96%;
+    left: 99%;
   }
 }

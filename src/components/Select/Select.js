@@ -37,7 +37,7 @@ function SelectDate({ fetchDate, loader, theme, styleSelect }) {
 
   async function fetchData(token, date) {
     const response = await fetch(
-      `http://localhost:5555/api/statistics?year=${date.year}&month=${date.month}`,
+      `${process.env.REACT_APP_BE_URL}/statistics?year=${date.year}&month=${date.month}`,
       {
         method: 'GET',
         headers: {

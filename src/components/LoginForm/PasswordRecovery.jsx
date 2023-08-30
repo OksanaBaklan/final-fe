@@ -30,7 +30,7 @@ try{
             "Authorization":`Bearer ${token}`
         }
     }
-    const response = await axios.put( `${process.env.REACT_APP_BE_URL}/api/users/password-reset`, {password,confirmPassword, email}, config)
+    const response = await axios.put( `${process.env.REACT_APP_BE_URL}/users/password-reset`, {password,confirmPassword, email}, config)
     setMessage(response.data)
     navigate("/login")
 

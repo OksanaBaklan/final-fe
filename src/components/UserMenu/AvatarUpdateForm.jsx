@@ -141,7 +141,7 @@ const formData = new FormData();
     formData.append('image', selectedFile);
     setIsLoading(true)
     try {
-      const dataAvatar = await axios.patch(`http://localhost:5555/api/users/avatars`, formData, {
+      const dataAvatar = await axios.patch(`${process.env.REACT_APP_BE_URL}/users/avatars`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

@@ -18,9 +18,9 @@ export default function Header() {
   const theme = useSelector(getToggleTheme)
   // const avatar = useSelector(getUserAvatar);
   const isLoading = useSelector(getLoadingAvatar)
-  console.log(isLoading)
-  axios.defaults.baseURL = "http://localhost:5555/api"
-
+  // console.log(isLoading)
+  // axios.defaults.baseURL = "http://localhost:5555/api"
+  axios.defaults.baseURL= process.env.REACT_APP_BE_URL
   useEffect(()=>{
       axios.get("/users/current")
       .then((res)=>{

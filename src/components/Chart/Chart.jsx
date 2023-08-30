@@ -31,6 +31,8 @@ export default function Chart() {
   const theme = useSelector(getToggleTheme)
 
   const styleText = !theme.isDarkMode ? s.textDark : s.textLight
+  const styleTitle = !theme.isDarkMode ? s.mainTitleDark : s.mainTitle
+
   // const isAuth = useSelector(getAuth);
   const balance = useSelector(getBalance);
   const transactions = useSelector(getTransactions);
@@ -74,7 +76,7 @@ export default function Chart() {
   return (
     <>
      {fetchDate? <div className={s.wrapper}>
-        <p className={s.mainTitle}>Statistics</p>
+        <p className={styleTitle}>Statistics</p>
 
         <div className={s.rightContainer}>
           {fetchDate.total.Expense === 0 && !loader && (

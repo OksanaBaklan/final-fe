@@ -1,4 +1,4 @@
-import { Fragment, useCallback, useEffect, useState } from "react";
+import { Fragment, useCallback, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import { ReactComponent as Logout } from "../../images/icon-logout/logout.svg";
 import { getUsername, getUserAvatar } from "../../redux/auth/auth-selectors";
