@@ -6,7 +6,7 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.25);
-  backdrop-filter: blur(20px);
+  /* backdrop-filter: blur(20px); */
 }
 
 .closeBtn {
@@ -19,6 +19,7 @@
   top: 20px;
   right: 20px;
 }
+
 .cards-container {
   position: relative;
   z-index: 1;
@@ -32,19 +33,23 @@
 }
 
 .cards-container .card {
+  background-color: rgba(255, 255, 255, .45);
+  border: 1px solid rgba(255, 255, 255, .25);
   z-index: 2;
   position: relative;
   width: 270px;
   height: 400px;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(0, 0, 0, 0.46);
   margin: 20px;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.25);
   border-radius: 15px;
   display: flex;
   justify-content: center;
   align-items: center;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(9.9px);
+  -webkit-backdrop-filter: blur(9.9px);
 }
+
 .team__title {
   margin-top: 25px;
   position: relative;
@@ -63,9 +68,10 @@
   opacity: 0.8;
   transition: 0.5s;
 }
+
 .cards-container .card:hover {
   opacity: 1;
-  transform: translateY(-20px);
+  transform: translateY(0px);
 }
 
 .imgBx {
@@ -75,8 +81,9 @@
   height: 180px;
   border-radius: 50%;
   overflow: hidden;
-  border: 5px solid rgba(255, 255, 255, 0.05);
+   border: 2px solid rgba(247, 247, 247, 0.23);
 }
+
 .imgBx img {
   position: absolute;
   top: 0;
@@ -85,9 +92,10 @@
   height: 100%;
   object-fit: cover;
 }
+
 .card:hover,
 .card:active {
-  border: 5px solid var(--line-table-color);
+  border: 2px solid var(--line-table-color);
 }
 
 .contentBx__title {
@@ -97,21 +105,25 @@
   margin: 20px 0 10px;
   line-height: 1.1em;
 }
+
 .contentBx__subtitle {
   text-transform: initial;
   color: #fff;
 }
+
 .sci {
   position: absolute;
   bottom: 1.7rem;
   right: 24%;
   display: flex;
 }
+
 .sci .sci__item {
   list-style: none;
   margin: 0 10px;
   opacity: 0.8;
 }
+
 .sci .sci__link {
   color: #fff;
   font-size: 24px;
@@ -121,21 +133,23 @@
   .team-section {
     max-width: 640px;
   }
+
   .card__content {
     opacity: 0.9;
     transition: 0.5s;
   }
+
   .cards-container .card:hover {
     opacity: 1;
-    transform: translateY(-20px);
+    transform: translateY(4px);
   }
 
   /* .sci { */
   .sci__item {
     opacity: 0;
     visibility: hidden;
-    transform: translateY(20px);
-    transition: 0.5s;
+    transform: translateY(8px);
+    transition: 0.7s ease-out;
     transition-delay: calc(0.1s * 0, 2);
   }
 
@@ -145,8 +159,10 @@
     visibility: initial;
     transform: translateY(0px);
   }
+
   /* } */
 }
+
 @media screen and (min-width: 1279px) {
   .team-section {
     max-width: 960px;
