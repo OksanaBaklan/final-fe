@@ -71,7 +71,7 @@ const TeamMembers = ({ onModalClose, onOverlayClose }) => {
             {team.map(feature => (
               <div className='card'>
                 <div className='card__content'>
-                  <div key={team.id} >
+                  <div key={feature.id} >
                     <div className='imgBx'>
                       <img src={feature.imageSrc} alt={feature.title} />
                     </div>
