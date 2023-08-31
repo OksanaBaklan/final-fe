@@ -56,7 +56,6 @@
 .textDark {
   display: none;
 }
-
 @media screen and (min-width: 768px) {
   .nav {
     padding: 30px 0 0 0;
@@ -154,7 +153,7 @@
     box-shadow: 0px 0px 16px 0px var(--accent-svg-color);
   }
 
-   {
+  .text {
     display: block;
     margin-left: 20px;
     color: var(--main-text-color);
