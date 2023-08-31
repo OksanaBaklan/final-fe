@@ -22,7 +22,9 @@ export default function LogoComponent() {
         <div className={s.logo}>
           <Link to="/" style={{ textDecoration: "none", color: "unset" }}>
             <LogoMobile />
-            <span className={s.logo__text}> MyMoneyMinder</span>
+            <span className={s.logo__text}> 
+            {/* MyMoneyMinder */}
+            </span>
           </Link>
         </div>
       )}

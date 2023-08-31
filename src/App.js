@@ -1,6 +1,6 @@
 /** @format */
 
-import { Suspense,  useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
 import { useMediaQuery } from 'react-responsive';
@@ -67,6 +67,10 @@ function App() {
                   </Route>
 
                   <Route path="/verify/:verificationToken" element={<VerifyPage />} />
+
+                  {/* http://localhost:3000/verify/1693505519242 */}
+                  {/* https://moneyminderapp.onrender.com/verify/1693505377514 */}
+                  
                   <Route path="/password-reset/:email/:token" element={<PasswordRecovery />} />
                   <Route path="/password-reset" element={<PasswordReset />} />
                   <Route path="*" element={<NothingPage />} />

@@ -7,6 +7,7 @@ import s from "./VerifyPage.module.css";
 
 // axios.defaults.baseURL = "http://localhost:5555/api/";
 axios.defaults.baseURL = process.env.REACT_APP_BE_URL
+// # REACT_APP_BE_URL=https://moneyminder-server.onrender.com/api
 
 export default function VerifyPage() {
   let { verificationToken } = useParams();
