@@ -157,7 +157,7 @@ const styleTableCell = !themeMode.isDarkMode ? s.tableCellDark : s.tableCell
                      
                     >
                       
-                      <div className={styleTableCell}>{row.amount}</div>
+                      <div>{row.amount}</div>
                     </TableCell>
                     <TableCell align="center">
                       <button className={s.deletebtn}
