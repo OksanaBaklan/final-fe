@@ -1,0 +1,37 @@
+{
+  "files": {
+    "main.css": "/final-fe/static/css/main.164264e3.css",
+    "main.js": "/final-fe/static/js/main.b0bc2ae2.js",
+    "static/js/787.6d37297e.chunk.js": "/final-fe/static/js/787.6d37297e.chunk.js",
+    "static/media/Simin.png": "/final-fe/static/media/Simin.e44c102d1590643e95b1.png",
+    "static/media/Alvaro.png": "/final-fe/static/media/Alvaro.ddac7707ad21aaf2f61c.png",
+    "static/media/hamza.png": "/final-fe/static/media/hamza.4e095dcbc633a26288f0.png",
+    "static/media/Natalia.jpg": "/final-fe/static/media/Natalia.f36067da8223cab67694.jpg",
+    "static/media/Oksana.jpeg": "/final-fe/static/media/Oksana.1700491786b0c2759397.jpeg",
+    "static/media/frame.png": "/final-fe/static/media/frame.48127139a14c04c39295.png",
+    "static/media/work-hard-man-starts-a-new-project-online.png": "/final-fe/static/media/work-hard-man-starts-a-new-project-online.4f2470afa2463e85e6a9.png",
+    "static/media/work-hard-woman-presenting-analytics-online-1.png": "/final-fe/static/media/work-hard-woman-presenting-analytics-online-1.bfc6071c04e208f199b2.png",
+    "static/media/work-hard-woman-is-puzzled-by-some-big-question.png": "/final-fe/static/media/work-hard-woman-is-puzzled-by-some-big-question.7a235d7e39b53aa59416.png",
+    "static/media/work-hard-man-flying-on-a-rocket.png": "/final-fe/static/media/work-hard-man-flying-on-a-rocket.094748785cc2eff49f2c.png",
+    "static/media/logoMobile.svg": "/final-fe/static/media/logoMobile.76eeade87e1cc69575ea0c8110612ddf.svg",
+    "static/media/logo.svg": "/final-fe/static/media/logo.2e8c127a95c7317a83a5e9e275a21ef5.svg",
+    "static/media/statistics.svg": "/final-fe/static/media/statistics.1435ce50502f3baec11106e44da90be0.svg",
+    "static/media/logout.svg": "/final-fe/static/media/logout.0551ce0dc79c58b324422cc4bda30f73.svg",
+    "static/media/pb.svg": "/final-fe/static/media/pb.2e4b4e70e342f080577ae04acbe4fb74.svg",
+    "index.html": "/final-fe/index.html",
+    "static/media/password.svg": "/final-fe/static/media/password.c554115129ad4848419662ba5620e2d6.svg",
+    "static/media/name.svg": "/final-fe/static/media/name.66ba0c09b6646313cc95704ce72290bf.svg",
+    "static/media/ellipse1.svg": "/final-fe/static/media/ellipse1.eb650effde152d523dab44bcb11840e7.svg",
+    "static/media/ellipse2.svg": "/final-fe/static/media/ellipse2.ff07611a54a95b39dc2c045b0d9314fb.svg",
+    "static/media/home.svg": "/final-fe/static/media/home.1b9199a4a4bd721ca2fabd9a5d0482bb.svg",
+    "static/media/email.svg": "/final-fe/static/media/email.114133c154bbd604b3ecab1dc9a5df9d.svg",
+    "static/media/close.svg": "/final-fe/static/media/close.4ca60f1813426122dabf98a3268fb691.svg",
+    "main.164264e3.css.map": "/final-fe/static/css/main.164264e3.css.map",
+    "main.b0bc2ae2.js.map": "/final-fe/static/js/main.b0bc2ae2.js.map",
+    "787.6d37297e.chunk.js.map": "/final-fe/static/js/787.6d37297e.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.164264e3.css",
+    "static/js/main.b0bc2ae2.js"
+  ]
+}
