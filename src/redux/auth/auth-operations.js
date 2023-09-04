@@ -121,7 +121,7 @@ export const passwordReset = createAsyncThunk(
       const response = await axios.post('/users/password-reset', credentials);
       console.log(response);
       if (response) {
-        toast.success('Go to your email and confirm registration');
+        toast.success('Go to your email and reset password');
         return response.data;
       }
     } catch (err) {
