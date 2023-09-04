@@ -66,10 +66,11 @@ function App() {
                     />
                   </Route>
 
-                  <Route path="/verify/:verificationToken" element={<VerifyPage />} />
+                  <Route path="/final-fe/verify/:verificationToken" element={<VerifyPage />} />
 
                   {/* http://localhost:3000/verify/1693505519242 */}
                   {/* https://moneyminderapp.onrender.com/verify/1693505377514 */}
+                  {/* https://oksanabaklan.github.io/final-fe/verify/1693820172631 */}
                   
                   <Route path="/password-reset/:email/:token" element={<PasswordRecovery />} />
                   <Route path="/password-reset" element={<PasswordReset />} />
