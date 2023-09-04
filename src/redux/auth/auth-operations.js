@@ -77,7 +77,7 @@ export const fetchCurrentUser = createAsyncThunk(
   async (_, { getState, rejectWithValue }) => {
     const state = getState();
     const persistedToken = state.auth.token;
-    console.log(persistedToken);
+    // console.log(persistedToken);
     if (!persistedToken) {
       return rejectWithValue();
     }
@@ -110,6 +110,30 @@ export const avatarUpdate = createAsyncThunk(
       }
 
       return rejectWithValue(err.response.message);
+    }
+  }
+);
+
+export const passwordReset = createAsyncThunk(
+  'auth/passwordReset',
+  async (credentials, { rejectWithValue }) => {
+    try {
+      const response = await axios.post('/users/password-reset', credentials);
+      console.log(response);
+      if (response) {
+        toast.success('Go to your email and confirm registration');
+        return response.data;
+      }
+    } catch (err) {
+      console.log(err);
+
+      if (err.response.status === 400) {
+        return rejectWithValue(toast.error('Invalid credentials'));
+      }
+      if (err.response.statusText === 'Internal Server Error') {
+        return toast.error('Please try again later');
+      }
+      return rejectWithValue(toast.error('Please try again later'));
     }
   }
 );

@@ -11,7 +11,7 @@
 }
 .header {
   box-shadow: 0 0 5px rgba(108, 107, 107, 0.627);
-  /* width: 100%; */
+  width: 100%;
   background-color: white;
   z-index: 100;
   padding-top: 15px;
@@ -36,27 +36,17 @@
   justify-content: center;
   align-items: center;
   height: 70px;
-  width: 6rem;
+  /* width: 6rem; */
   border-radius: 20px !important;
   text-transform: uppercase;
   position: relative;
-  padding: 0 20px;
+  padding: 0 0.5rem;
   transition: 0.3s;
   overflow: hidden;
   color: var(--accent-text-color);
   font-size: var(--font-size__main);
   font-family: var(--main__font-family);
-}
-
-.header .main-nav > li > a::before {
-  content: '';
-  position: absolute;
-  width: 6rem;
-  height: 5px;
-  background-color: var(--accent-svg-color);
-  top: 0;
-  left: -100%;
-  border-radius: 20px !important;
+  /* margin-left: 0.1rem; */
 }
 
 .header .main-nav > li > a:hover {
@@ -188,6 +178,21 @@
   font-family: var(--main__font-family);
 }
 @media screen and (min-width: 768px) {
+  .header .main-nav > li > a {
+    width: 6rem;
+    margin-left: 0.3rem;
+  }
+  .header .main-nav > li > a::before {
+    content: '';
+    position: absolute;
+    width: 6rem;
+    height: 5px;
+    background-color: var(--accent-svg-color);
+    top: 0;
+    left: -100%;
+    border-radius: 20px !important;
+  }
+
   .main-card h1 {
     font-size: 2.5em;
   }

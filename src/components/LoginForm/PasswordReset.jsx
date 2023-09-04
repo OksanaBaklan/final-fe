@@ -10,6 +10,8 @@ import classNames from "classnames";
 import InputField from "../InputField/InputField";
 import { ReactComponent as Emailcon } from "../../images/icon-form/email.svg";
 import { NavLink } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { passwordReset } from "../../redux/auth/auth-operations";
 
 const Schema = Yup.object().shape({
   email: Yup.string()
@@ -26,17 +28,13 @@ function PasswordReset() {
   const [errorMessage, setErrorMessage] = useState("")
   const [message, setMessage] = useState("")
 
-  const submitHandler = async ({email}) => {
-    try{
-        const response = await axios.post(`${process.env.REACT_APP_BE_URL}/users/password-reset`,{email})
-        setMessage(response.data)
-        navigate("/login")
-    }
-    catch(err) {
-        setErrorMessage(err.response.data)
-    }
+  const dispatch = useDispatch();
 
-  };
+  const submitHandler = ({email})=>{
+    dispatch(passwordReset({email}))
+  }
+
+
   return (
     <>      
   <div className={s.container}>
