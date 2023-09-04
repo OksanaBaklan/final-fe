@@ -35,7 +35,9 @@ const LandingPage = () => {
     imageSrc: manFly,
     title: "Secure and Accessible",
     description: "Your data is encrypted and always available, whether you're at home or on the go."
-  }]
+    }]
+  
+  
   return (
     <>
         <Header />
