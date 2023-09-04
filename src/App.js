@@ -1,7 +1,7 @@
 /** @format */
 
 import { Suspense, useEffect } from 'react';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { HashRouter, Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
 import { useMediaQuery } from 'react-responsive';
 
@@ -46,6 +46,7 @@ function App() {
 
             <AppBackground>
               <Suspense fallback={<LoaderComponent />}>
+                {/* <HashRouter> */}
                 <Routes>
                   <Route path="/home" element={isAuth ? <Navigate to="/" /> : <LandingPage />} />
                   <Route path="/login" element={isAuth ? <Navigate to="/" /> : <LoginPage />} />
@@ -71,11 +72,12 @@ function App() {
                   {/* http://localhost:3000/verify/1693505519242 */}
                   {/* https://moneyminderapp.onrender.com/verify/1693505377514 */}
                   {/* https://oksanabaklan.github.io/final-fe/verify/1693820172631 */}
-                  
+
                   <Route path="/password-reset/:email/:token" element={<PasswordRecovery />} />
                   <Route path="/password-reset" element={<PasswordReset />} />
                   <Route path="*" element={<NothingPage />} />
                 </Routes>
+                {/* </HashRouter> */}
               </Suspense>
             </AppBackground>
           </div>
