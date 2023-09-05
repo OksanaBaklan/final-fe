@@ -80,7 +80,7 @@ export default function Chart() {
 
         <div className={s.rightContainer}>
           {fetchDate.total.Expense === 0 && !loader && (
-            <p className={s.text}>There are no transaction for the selected period</p>
+            <p className={s.text}>There are no expenses for the selected period</p>
           )}
 
           {loader && (
