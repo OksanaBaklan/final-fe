@@ -5,3 +5,4 @@ export const getAuthRefresh = state => state.auth.isAuthRefresh;
 export const getToken = state => state.auth.token;
 export const getTransactionCategories = state => state.auth.user.transactionCategories;
 export const getLoadingAvatar = state => state.auth.isLoadingAvatar;
+export const getLoadingAuth = state => state.auth.isLoadingAuth;

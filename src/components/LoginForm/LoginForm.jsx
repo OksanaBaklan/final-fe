@@ -8,8 +8,10 @@ import LogoComponent from "../LogoComponent/LogoComponent";
 import { ReactComponent as Emailcon } from "../../images/icon-form/email.svg";
 import { ReactComponent as Passwordcon } from "../../images/icon-form/password.svg";
 import { loginUser } from "../../redux/auth/auth-operations";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import InputField from "../InputField/InputField";
+import { getLoading } from "../../redux/transactions/transactions-selectors";
+import LoaderComponent from "../LoaderComponent/LoaderComponent";
 
 
 const SignupSchema = Yup.object().shape({
@@ -33,9 +35,10 @@ export default function LoginForm() {
   const handleSubmit = ({ email, password }) => {
     dispatch(loginUser({ email, password }));
   };
+// getLoadingAuth
+const isLoading = useSelector(getLoading)
 
-
-  return (
+  return isLoading ? (<LoaderComponent/>):(
     <>
       <Formik
         initialValues={{

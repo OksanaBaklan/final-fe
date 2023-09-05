@@ -52,7 +52,9 @@ export const loginUser = createAsyncThunk(
       }
       return data;
     } catch (err) {
-      if (err.response.statusText === 'Bad Request') {
+      console.log(err);
+
+      if (err.response.data === 'Invalid Credentials') {
         return rejectWithValue(toast.error('E-mail or the password is incorrect'));
       }
       if (err.response.status === 500) {
