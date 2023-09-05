@@ -14,8 +14,8 @@ import { PersistGate } from 'redux-persist/integration/react';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    {/* <BrowserRouter> */}
-    <HashRouter>
+    <BrowserRouter>
+      {/* <HashRouter> */}
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <UserProvider>
@@ -23,8 +23,8 @@ root.render(
           </UserProvider>
         </PersistGate>
       </Provider>
-      </HashRouter>
-    {/* </BrowserRouter> */}
+      {/* </HashRouter> */}
+    </BrowserRouter>
   </React.StrictMode>
 );
 
