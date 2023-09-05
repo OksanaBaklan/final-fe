@@ -1,9 +1,11 @@
 import s from "./category.module.css";
 
 
-export default function Category({data}) {
+export default function Category({data, theme}) {
+  const styleCategory = theme.isDarkMode ? s.list : s.darkList;
+
   return (
-    <ul className={s.list}>
+    <ul className={styleCategory}>
       {data?.category.map((item) => (
         <li key={item.id}>
           <div className={s.containerTab}>

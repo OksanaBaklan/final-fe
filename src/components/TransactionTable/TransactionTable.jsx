@@ -146,7 +146,10 @@ const styleTableCell = !themeMode.isDarkMode ? s.tableCellDark : s.tableCell
                     <div className={styleTableCell}> {row.name}</div> 
                     </TableCell>
                     <TableCell align="center"><div className={styleTableCell}>{row.type}</div></TableCell>
-                    <TableCell align="center"><div className={styleTableCell}>{row.category}</div></TableCell>
+                    <TableCell align="center"                       sx={{
+                        color: row.type === "+" ? "#24CCA7" : "#FF6596",
+                        fontWeight: 700,
+                      }}><div >{row.type === "+" ? "Income" : row.category}</div></TableCell>
                     <TableCell align="center"><div className={styleTableCell}>{row.comment}</div></TableCell>
                     <TableCell
                       sx={{

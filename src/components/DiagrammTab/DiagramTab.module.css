@@ -23,7 +23,7 @@
 }
 .darkCategory {
   margin-top: 2px;
-  padding-top: 5%;
+  /* padding-top: 5%; */
   color: var(--main-text-color);
   background-color: white;
   border-radius: 30px;
