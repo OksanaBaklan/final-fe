@@ -54,18 +54,26 @@ const isLoadingAvatar = createReducer(false, {
   [avatarUpdate.fulfilled]: () => false,
   [avatarUpdate.rejected]: () => false,
 });
+
 const isLoadingAuth = createReducer(false, {
   [loginUser.pending]: () => true,
   [loginUser.fulfilled]: () => false,
   [loginUser.rejected]: () => false,
 
+  [logOut.pending]: () => true,
+  [logOut.fulfilled]: () => false,
+  [logOut.rejected]: () => false,
 
+  [authUser.pending]: () => true,
+  [authUser.fulfilled]: () => false,
+  [authUser.rejected]: () => false,
 });
+
 export default combineReducers({
   user,
   token,
   isAuth,
   isAuthRefresh,
   isLoadingAvatar,
-  isLoadingAuth
+  isLoadingAuth,
 });

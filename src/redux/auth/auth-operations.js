@@ -19,11 +19,11 @@ export const authUser = createAsyncThunk(
   'auth/addUser',
   async (credentials, { rejectWithValue }) => {
     try {
-      const { data } = await axios.post('/users/signup', credentials);
-      console.log(data.data);
-      if (data) {
+      const response = await axios.post('/users/signup', credentials);
+      // console.log(data.data);
+      if (response.data) {
         toast.success('Go to your email and confirm registration');
-        return data.data;
+        return response.data.data;
       }
     } catch (err) {
       console.log(err);
@@ -50,11 +50,11 @@ export const loginUser = createAsyncThunk(
         token.set(response.data.token);
         toast.success('You are successfully logged in');
       }
-      console.log('response login', response);
+      // console.log('response login', response);
 
       return response.data;
     } catch (err) {
-      console.log('response err',err);
+      // console.log('response err',err);
 
       if (err.response.data === 'Invalid Credentials') {
         return rejectWithValue(toast.error('E-mail or the password is incorrect'));

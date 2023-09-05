@@ -8,11 +8,13 @@ import { ReactComponent as Passwordcon } from "../../images/icon-form/password.s
 import classNames from "classnames";
 import { useState } from "react";
 import LogoComponent from "../LogoComponent/LogoComponent";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { authUser } from "../../redux/auth/auth-operations";
 import { Formik, Form } from "formik";
 import InputField from "../InputField/InputField"
 import ProgressSwitch from "../RegisterForm/ProgressSwitch"
+import { getLoadingAuth } from "../../redux/auth/auth-selectors";
+import LoaderComponent from "../LoaderComponent/LoaderComponent";
 
 const SignupSchema = Yup.object().shape({
   email: Yup.string()
@@ -47,8 +49,9 @@ export default function RegisterForm() {
     }
   };
 
+  const isLoading = useSelector(getLoadingAuth)
 
-  return (
+  return isLoading ? (<LoaderComponent/>):(
     <>
     <Formik
       initialValues={{

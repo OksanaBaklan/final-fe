@@ -10,8 +10,8 @@ import { ReactComponent as Passwordcon } from "../../images/icon-form/password.s
 import { loginUser } from "../../redux/auth/auth-operations";
 import { useDispatch, useSelector } from "react-redux";
 import InputField from "../InputField/InputField";
-import { getLoading } from "../../redux/transactions/transactions-selectors";
 import LoaderComponent from "../LoaderComponent/LoaderComponent";
+import { getLoadingAuth } from "../../redux/auth/auth-selectors";
 
 
 const SignupSchema = Yup.object().shape({
@@ -36,7 +36,7 @@ export default function LoginForm() {
     dispatch(loginUser({ email, password }));
   };
 // getLoadingAuth
-const isLoading = useSelector(getLoading)
+const isLoading = useSelector(getLoadingAuth)
 
   return isLoading ? (<LoaderComponent/>):(
     <>
