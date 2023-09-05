@@ -96,7 +96,7 @@ export default function Chart() {
             <div className={s.chart}>
               <Doughnut data={data} options={options} />
               <div className={s.containerTotal}>
-              <p className={s.total}> <span className={styleText}>&euro; {balance}</span> </p>
+              <p className={s.total}> <span className={styleText}>&euro; {fetchDate.total.Expense.toFixed(2)}</span> </p>
               </div>
             </div>
           )}

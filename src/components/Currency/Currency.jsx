@@ -12,7 +12,7 @@ const Currency = () => {
 
   const fetchData = async () => {
     const ApiKey = '73b90c77c88bb0794bbc3e61';
-    const url = `https://v6.exchangerate-api.com/v6/${ApiKey}/latest/USD`;
+    const url = `https://v6.exchangerate-api.com/v6/${ApiKey}/latest/EUR`;
 
     try {
       const response = await axios.get(url);
