@@ -10,8 +10,10 @@ import classNames from "classnames";
 import InputField from "../InputField/InputField";
 import { ReactComponent as Emailcon } from "../../images/icon-form/email.svg";
 import { NavLink } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { passwordReset } from "../../redux/auth/auth-operations";
+import { getLoadingAuth } from "../../redux/auth/auth-selectors";
+import LoaderComponent from "../LoaderComponent/LoaderComponent";
 
 const Schema = Yup.object().shape({
   email: Yup.string()
@@ -33,9 +35,10 @@ function PasswordReset() {
   const submitHandler = ({email})=>{
     dispatch(passwordReset({email}))
   }
+  const isLoading = useSelector(getLoadingAuth)
 
 
-  return (
+  return isLoading ? (<LoaderComponent/>):(
     <>      
   <div className={s.container}>
     <Formik

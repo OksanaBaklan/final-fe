@@ -11,8 +11,12 @@ import { ReactComponent as Emailcon } from "../../images/icon-form/email.svg";
 import { ReactComponent as Passwordcon } from "../../images/icon-form/password.svg";
 
 import { NavLink } from "react-router-dom";
+import LoaderComponent from "../LoaderComponent/LoaderComponent";
 
 function PasswordRecovery() {
+
+  const [isLoading, setIsLoading] = useState(false)
+
   const navigate = useNavigate();
 
   const [errorMessage, setErrorMessage] = useState("")
@@ -23,7 +27,7 @@ function PasswordRecovery() {
   const submitHandler = async({password,confirmPassword, email})=>{
 
 if (password !== confirmPassword) return setErrorMessage("passwords not match")
-
+setIsLoading(true)
 try{
     const config = {
         headers:{
@@ -32,6 +36,8 @@ try{
     }
     const response = await axios.put( `${process.env.REACT_APP_BE_URL}/users/password-reset`, {password,confirmPassword, email}, config)
     setMessage(response.data)
+    setIsLoading(false)
+
     navigate("/login")
 
 }catch(err){
@@ -39,7 +45,7 @@ setErrorMessage(err.response.data)
 }
   }
   
-  return (
+  return isLoading  ? (<LoaderComponent/>):(
     <>
       <div className={s.container}>
       <Formik

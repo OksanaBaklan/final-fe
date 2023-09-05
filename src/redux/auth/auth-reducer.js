@@ -67,6 +67,10 @@ const isLoadingAuth = createReducer(false, {
   [authUser.pending]: () => true,
   [authUser.fulfilled]: () => false,
   [authUser.rejected]: () => false,
+
+  [passwordReset.pending]: () => true,
+  [passwordReset.fulfilled]: () => false,
+  [passwordReset.rejected]: () => false,
 });
 
 export default combineReducers({
