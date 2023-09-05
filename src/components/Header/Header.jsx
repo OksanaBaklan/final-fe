@@ -13,7 +13,7 @@ import { useState } from "react";
 
 export default function Header() {
   const [avatar, setAvatar] = useState("")
-  console.log(avatar)
+  // console.log(avatar)
 
   const theme = useSelector(getToggleTheme)
   // const avatar = useSelector(getUserAvatar);
@@ -29,7 +29,7 @@ export default function Header() {
       .catch((err) => {
         if(err.response.status === 401)
         localStorage.removeItem("my-app-token");
-        console.log(err.message)
+        // console.log(err.message)
       })
       },[])
 
