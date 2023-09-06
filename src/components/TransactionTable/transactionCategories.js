@@ -66,7 +66,7 @@ export const transactionCategories = [
   },
   {
     id: '321344421',
-    name: 'Drugs',
+    name: 'Rent',
     isInc: true,
     color: '#7FC18F',
     isActive: true,
