@@ -22,8 +22,6 @@ export default function ModalEditTransaction({ modalAction, editId, transactionD
 
   const dispatch = useDispatch();
 
-  // console.log(transactionDetails.amount,editId);
-
   const handleSubmit = ({ date, isIncome, amount, comment, categoryId }) => {
     console.log("payload with new data from editModal", date, isIncome, amount, comment, categoryId)
     dispatch(editTransaction({
@@ -102,9 +100,6 @@ export default function ModalEditTransaction({ modalAction, editId, transactionD
 
           isIncome = !isIncome;
           handleSubmit({ date, isIncome, categoryId, ...all });
-
-          // console.log("date",date);
-          // console.log("categoryId",categoryId);
 
           resetForm();
           modalAction();
